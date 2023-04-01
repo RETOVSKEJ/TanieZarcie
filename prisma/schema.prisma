@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model Shop {
+//   id   Int    @id @default(autoincrement())
+//   name String @unique
+// }
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  foods Food[]
+}
+
+model Zestawy {
+  id    Int    @id @default(autoincrement())
+  price Float
+  name  String @unique
+  foods Food[]
+}
+
+model Food {
+  id         Int              @id @default(autoincrement())
+  name       String           @unique
+  price      Float
+  wo         WartosciOdzywcze @relation(fields: [woId], references: [id])
+  woId       Int              @unique
+  current    Boolean          @default(true)
+  category   Category         @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  zestawy    Zestawy[]
+}
+
+model WartosciOdzywcze {
+  id                     Int      @id @default(autoincrement())
+  name                   String   @unique
+  food                   Food?
+  alergeny               String? // TODO normalization can be done here
+  kcal100g               Decimal? @db.Decimal(5, 2)
+  kcalPorcja             Decimal  @db.Decimal(5, 2)
+  kcalRI                 Decimal  @db.Decimal(5, 2)
+  tluszcze100g           Decimal? @db.Decimal(5, 2)
+  tluszczePorcja         Decimal  @db.Decimal(5, 2)
+  tluszczeRI             Decimal  @db.Decimal(5, 2)
+  tluszczeNasycone100g   Decimal? @db.Decimal(5, 2)
+  tluszczeNasyconePorcja Decimal  @db.Decimal(5, 2)
+  tluszczeNasyconeRI     Decimal  @db.Decimal(5, 2)
+  weglowodany100g        Decimal? @db.Decimal(5, 2)
+  weglowodanyPorcja      Decimal  @db.Decimal(5, 2)
+  weglowodanyRI          Decimal  @db.Decimal(5, 2)
+  cukry100g              Decimal? @db.Decimal(5, 2)
+  cukryPorcja            Decimal  @db.Decimal(5, 2)
+  cukryRI                Decimal  @db.Decimal(5, 2)
+  blonnik100g            Decimal? @db.Decimal(5, 2)
+  blonnikPorcja          Decimal  @db.Decimal(5, 2)
+  bialko100g             Decimal? @db.Decimal(5, 2)
+  bialkoPorcja           Decimal  @db.Decimal(5, 2)
+  bialkoRI               Decimal  @db.Decimal(5, 2)
+  sol100g                Decimal? @db.Decimal(5, 2)
+  solPorcja              Decimal  @db.Decimal(5, 2)
+  solRI                  Decimal  @db.Decimal(5, 2)
+}

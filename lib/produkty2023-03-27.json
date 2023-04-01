@@ -1,0 +1,782 @@
+[
+  {
+    "id": 1,
+    "categoryId": 1,
+    "name": "Maestro Caramelized Onion",
+    "price": 26.9
+  },
+  {
+    "id": 2,
+    "categoryId": 1,
+    "name": "McZestaw Maestro Caramelized Onion",
+    "price": 33.9
+  },
+  {
+    "id": 3,
+    "categoryId": 1,
+    "name": "Maestro Grilled Cheese",
+    "price": 26.9
+  },
+  {
+    "id": 4,
+    "categoryId": 1,
+    "name": "McZestaw Maestro Grilled Cheese",
+    "price": 33.9
+  },
+  {
+    "id": 5,
+    "categoryId": 1,
+    "name": "Maestro Grand Classic",
+    "price": 26.9
+  },
+  {
+    "id": 6,
+    "categoryId": 1,
+    "name": "McZestaw Maestro Grand Classic",
+    "price": 33.9
+  },
+  {
+    "id": 7,
+    "categoryId": 1,
+    "name": "Big Mac",
+    "price": 18.5
+  },
+  {
+    "id": 8,
+    "categoryId": 1,
+    "name": "McZestaw Big Mac",
+    "price": 26.9
+  },
+  {
+    "id": 9,
+    "categoryId": 1,
+    "name": "McRoyal",
+    "price": 18.2
+  },
+  {
+    "id": 10,
+    "categoryId": 1,
+    "name": "McZestaw McRoyal",
+    "price": 26.4
+  },
+  {
+    "id": 11,
+    "categoryId": 1,
+    "name": "McRoyal Podwójny",
+    "price": 23.9
+  },
+  {
+    "id": 12,
+    "categoryId": 1,
+    "name": "McZestaw McRoyal Podwójny®",
+    "price": 31.9
+  },
+  {
+    "id": 13,
+    "categoryId": 1,
+    "name": "WieśMac",
+    "price": 18.2
+  },
+  {
+    "id": 14,
+    "categoryId": 1,
+    "name": "McZestaw WieśMac",
+    "price": 26.4
+  },
+  {
+    "id": 15,
+    "categoryId": 1,
+    "name": "WieśMac Podwójny",
+    "price": 23.9
+  },
+  {
+    "id": 16,
+    "categoryId": 1,
+    "name": "McZestaw WieśMac Podwójny",
+    "price": 31.9
+  },
+  {
+    "id": 17,
+    "categoryId": 1,
+    "name": "McDouble",
+    "price": 9.9
+  },
+  {
+    "id": 18,
+    "categoryId": 1,
+    "name": "Cheeseburger",
+    "price": 7.9
+  },
+  {
+    "id": 19,
+    "categoryId": 1,
+    "name": "Hamburger",
+    "price": 7.5
+  },
+  {
+    "id": 20,
+    "categoryId": 1,
+    "name": "Jalapeño Burger",
+    "price": 7.9
+  },
+  {
+    "id": 21,
+    "categoryId": 1,
+    "name": "Supreme Chicken Sweet & Spicy Burger",
+    "price": 24.2
+  },
+  {
+    "id": 22,
+    "categoryId": 1,
+    "name": "McZestaw Supreme Chicken Sweet & Spicy Burger",
+    "price": 31.5
+  },
+  {
+    "id": 23,
+    "categoryId": 1,
+    "name": "Supreme Chicken Sweet & Spicy McWrap",
+    "price": 24.2
+  },
+  {
+    "id": 24,
+    "categoryId": 1,
+    "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap",
+    "price": 31.5
+  },
+  {
+    "id": 25,
+    "categoryId": 1,
+    "name": "Veggie McWrap",
+    "price": 17.6
+  },
+  {
+    "id": 26,
+    "categoryId": 1,
+    "name": "McZestaw Veggie McWrap",
+    "price": 26.2
+  },
+  {
+    "id": 27,
+    "categoryId": 1,
+    "name": "Veggie Burger",
+    "price": 17.6
+  },
+  {
+    "id": 28,
+    "categoryId": 1,
+    "name": "McZestaw Veggie Burger",
+    "price": 26.2
+  },
+  {
+    "id": 29,
+    "categoryId": 1,
+    "name": "McChicken",
+    "price": 17.4
+  },
+  {
+    "id": 30,
+    "categoryId": 1,
+    "name": "McZestaw McChicken",
+    "price": 25.9
+  },
+  {
+    "id": 31,
+    "categoryId": 1,
+    "name": "Red Chikker",
+    "price": 7.9
+  },
+  {
+    "id": 32,
+    "categoryId": 1,
+    "name": "Chikker",
+    "price": 7.9
+  },
+  {
+    "id": 33,
+    "categoryId": 1,
+    "name": "McWrap Chrupiący Klasyczny",
+    "price": 18.9
+  },
+  {
+    "id": 34,
+    "categoryId": 1,
+    "name": "McZestaw McWrap Chrupiący Klasyczny",
+    "price": 27.9
+  },
+  {
+    "id": 35,
+    "categoryId": 1,
+    "name": "McWrap Chrupiący Bekon Deluxe",
+    "price": 19.4
+  },
+  {
+    "id": 36,
+    "categoryId": 1,
+    "name": "McZestaw McWrap Chrupiący Bekon Deluxe",
+    "price": 28.4
+  },
+  {
+    "id": 37,
+    "categoryId": 2,
+    "name": "Chicken Box",
+    "price": 44.5
+  },
+  {
+    "id": 38,
+    "categoryId": 2,
+    "name": "Supreme Chicken Tenders 3 szt.",
+    "price": 17.2
+  },
+  {
+    "id": 39,
+    "categoryId": 2,
+    "name": "McZestaw Supreme Chicken Tenders 3 szt.",
+    "price": 25.4
+  },
+  {
+    "id": 40,
+    "categoryId": 2,
+    "name": "Supreme Chicken Tenders 5 szt.",
+    "price": 21.3
+  },
+  {
+    "id": 41,
+    "categoryId": 2,
+    "name": "6 McNuggets",
+    "price": 16.9
+  },
+  {
+    "id": 42,
+    "categoryId": 2,
+    "name": "McZestaw 6 McNuggets",
+    "price": 25.2
+  },
+  {
+    "id": 43,
+    "categoryId": 2,
+    "name": "9 McNuggets",
+    "price": 20.2
+  },
+  {
+    "id": 44,
+    "categoryId": 2,
+    "name": "20 McNuggets",
+    "price": 30.3
+  },
+  {
+    "id": 45,
+    "categoryId": 3,
+    "name": "Hamburger Happy Meal",
+    "price": 16.1
+  },
+  {
+    "id": 46,
+    "categoryId": 3,
+    "name": "Cheeseburger Happy Meal",
+    "price": 16.1
+  },
+  {
+    "id": 47,
+    "categoryId": 3,
+    "name": "McNuggets Happy Meal",
+    "price": 16.1
+  },
+  {
+    "id": 48,
+    "categoryId": 4,
+    "name": "Chrupiące talarki z sosem",
+    "price": 8.9
+  },
+  {
+    "id": 49,
+    "categoryId": 4,
+    "name": "Frytki Duże",
+    "price": 9.9
+  },
+  {
+    "id": 50,
+    "categoryId": 4,
+    "name": "Frytki Średnie",
+    "price": 9.3
+  },
+  {
+    "id": 51,
+    "categoryId": 4,
+    "name": "Frytki Małe",
+    "price": 8.3
+  },
+  {
+    "id": 52,
+    "categoryId": 4,
+    "name": "Sałatka Kurczak Premium",
+    "price": 20.2
+  },
+  {
+    "id": 53,
+    "categoryId": 4,
+    "name": "Sałatka",
+    "price": 8.6
+  },
+  {
+    "id": 54,
+    "categoryId": 4,
+    "name": "Chrupiące Marcheweczki",
+    "price": 3.9000000000000004
+  },
+  {
+    "id": 55,
+    "categoryId": 4,
+    "name": "Soczyste Jabłuszka",
+    "price": 5.9
+  },
+  {
+    "id": 56,
+    "categoryId": 4,
+    "name": "Kubuś Mus",
+    "price": 5.1
+  },
+  {
+    "id": 57,
+    "categoryId": 4,
+    "name": "Sos Czosnkowy",
+    "price": 1
+  },
+  {
+    "id": 58,
+    "categoryId": 4,
+    "name": "Ketchup Płatny",
+    "price": 1.5
+  },
+  {
+    "id": 59,
+    "categoryId": 4,
+    "name": "Sos Śmietanowy",
+    "price": 1.5
+  },
+  {
+    "id": 60,
+    "categoryId": 4,
+    "name": "Sos Musztardowy",
+    "price": 1
+  },
+  {
+    "id": 61,
+    "categoryId": 4,
+    "name": "Sos Barbeque",
+    "price": 1.5
+  },
+  {
+    "id": 62,
+    "categoryId": 4,
+    "name": "Sos Słodko-Kwaśny",
+    "price": 1.5
+  },
+  {
+    "id": 63,
+    "categoryId": 4,
+    "name": "Sos Vinegret",
+    "price": 1.5
+  },
+  {
+    "id": 64,
+    "categoryId": 4,
+    "name": "Sos 1000 Wysp",
+    "price": 1.5
+  },
+  {
+    "id": 65,
+    "categoryId": 4,
+    "name": "Sos Koperkowy",
+    "price": 1
+  },
+  {
+    "id": 66,
+    "categoryId": 4,
+    "name": "Oliwa z Oliwek",
+    "price": 1.5
+  },
+  {
+    "id": 67,
+    "categoryId": 5,
+    "name": "Shake o smaku Truskawkowym mały",
+    "price": 7.9
+  },
+  {
+    "id": 68,
+    "categoryId": 5,
+    "name": "Shake o smaku Truskawkowym duży",
+    "price": 9.9
+  },
+  {
+    "id": 69,
+    "categoryId": 5,
+    "name": "Shake o smaku czekoladowym mały",
+    "price": 7.9
+  },
+  {
+    "id": 70,
+    "categoryId": 5,
+    "name": "Shake o smaku czekoladowym duży",
+    "price": 9.9
+  },
+  {
+    "id": 71,
+    "categoryId": 5,
+    "name": "Shake o smaku waniliowym mały",
+    "price": 7.9
+  },
+  {
+    "id": 72,
+    "categoryId": 5,
+    "name": "Shake o smaku waniliowym duży",
+    "price": 9.9
+  },
+  {
+    "id": 73,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką Lion®i polewą karmelową",
+    "price": 10.5
+  },
+  {
+    "id": 74,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką Lion®i polewą truskawkową",
+    "price": 10.5
+  },
+  {
+    "id": 75,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką Lion®i polewą czekoladową",
+    "price": 10.5
+  },
+  {
+    "id": 76,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką Lion®",
+    "price": 9.9
+  },
+  {
+    "id": 77,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką M&M's® i polewą czekoladową",
+    "price": 10.5
+  },
+  {
+    "id": 78,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką M&M's® i polewą truskawkową",
+    "price": 10.5
+  },
+  {
+    "id": 79,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką M&M's® i polewą karmelową",
+    "price": 10.5
+  },
+  {
+    "id": 80,
+    "categoryId": 5,
+    "name": "McFlurry o smaku waniliowym z posypką M&M's®",
+    "price": 9.9
+  },
+  {
+    "id": 81,
+    "categoryId": 5,
+    "name": "Lody o smaku waniliowym z polewą karmelową",
+    "price": 9.2
+  },
+  {
+    "id": 82,
+    "categoryId": 5,
+    "name": "Lody o smaku waniliowym z polewą czekoladową",
+    "price": 9.2
+  },
+  {
+    "id": 83,
+    "categoryId": 5,
+    "name": "Lody o smaku waniliowym z polewą truskawkową",
+    "price": 9.2
+  },
+  {
+    "id": 84,
+    "categoryId": 5,
+    "name": "Criossant maślany",
+    "price": 5.9
+  },
+  {
+    "id": 85,
+    "categoryId": 5,
+    "name": "Muffin z truskawkami i białą czekoladą",
+    "price": 6.9
+  },
+  {
+    "id": 86,
+    "categoryId": 5,
+    "name": "Ciacho słony karmel",
+    "price": 5.9
+  },
+  {
+    "id": 87,
+    "categoryId": 5,
+    "name": "Makaronik o smaku pistacjowym",
+    "price": 4.9
+  },
+  {
+    "id": 88,
+    "categoryId": 5,
+    "name": "Makaronik o smaku czekoladowym",
+    "price": 4.9
+  },
+  {
+    "id": 89,
+    "categoryId": 5,
+    "name": "Croissant z nadzieniem kakaowym",
+    "price": 6.9
+  },
+  {
+    "id": 90,
+    "categoryId": 5,
+    "name": "Ciastko Jabłkowe",
+    "price": 7.9
+  },
+  {
+    "id": 91,
+    "categoryId": 5,
+    "name": "Ciacho owsiane",
+    "price": 5.9
+  },
+  {
+    "id": 92,
+    "categoryId": 5,
+    "name": "Ciacho z kawałkami czekolady",
+    "price": 5.9
+  },
+  {
+    "id": 93,
+    "categoryId": 5,
+    "name": "Muffin z czekoladą",
+    "price": 6.9
+  },
+  {
+    "id": 94,
+    "categoryId": 5,
+    "name": "Makaronik o smaku malinowym",
+    "price": 4.9
+  },
+  {
+    "id": 95,
+    "categoryId": 6,
+    "name": "Coca Cola mała",
+    "price": 6.2
+  },
+  {
+    "id": 96,
+    "categoryId": 6,
+    "name": "Coca Cola średnia",
+    "price": 8.2
+  },
+  {
+    "id": 97,
+    "categoryId": 6,
+    "name": "Coca Cola duża",
+    "price": 9.2
+  },
+  {
+    "id": 98,
+    "categoryId": 6,
+    "name": "Coca-Cola Zero mała",
+    "price": 6.2
+  },
+  {
+    "id": 99,
+    "categoryId": 6,
+    "name": "Coca-Cola Zero średnia",
+    "price": 8.2
+  },
+  {
+    "id": 100,
+    "categoryId": 6,
+    "name": "Coca-Cola Zero duża",
+    "price": 9.2
+  },
+  {
+    "id": 101,
+    "categoryId": 6,
+    "name": "Fanta mała",
+    "price": 6.2
+  },
+  {
+    "id": 102,
+    "categoryId": 6,
+    "name": "Fanta średnia",
+    "price": 8.2
+  },
+  {
+    "id": 103,
+    "categoryId": 6,
+    "name": "Fanta duża",
+    "price": 9.2
+  },
+  {
+    "id": 104,
+    "categoryId": 6,
+    "name": "Sprite mały",
+    "price": 6.2
+  },
+  {
+    "id": 105,
+    "categoryId": 6,
+    "name": "Sprite średni",
+    "price": 8.2
+  },
+  {
+    "id": 106,
+    "categoryId": 6,
+    "name": "Sprite duży",
+    "price": 9.2
+  },
+  {
+    "id": 107,
+    "categoryId": 6,
+    "name": "Lipton Ice Tea mały",
+    "price": 6.2
+  },
+  {
+    "id": 108,
+    "categoryId": 6,
+    "name": "Lipton Ice Tea średni",
+    "price": 8.2
+  },
+  {
+    "id": 109,
+    "categoryId": 6,
+    "name": "Lipton Ice Tea duży",
+    "price": 9.2
+  },
+  {
+    "id": 110,
+    "categoryId": 6,
+    "name": "Woda Gazowana",
+    "price": 6.9
+  },
+  {
+    "id": 111,
+    "categoryId": 6,
+    "name": "Woda Niegazowana",
+    "price": 6.9
+  },
+  {
+    "id": 112,
+    "categoryId": 6,
+    "name": "Shake o smaku czekoladowym mały",
+    "price": 7.9
+  },
+  {
+    "id": 113,
+    "categoryId": 6,
+    "name": "Shake o smaku czekoladowym duży",
+    "price": 9.9
+  },
+  {
+    "id": 114,
+    "categoryId": 6,
+    "name": "Shake o smaku waniliowym mały",
+    "price": 7.9
+  },
+  {
+    "id": 115,
+    "categoryId": 6,
+    "name": "Shake o smaku waniliowym duży",
+    "price": 9.9
+  },
+  {
+    "id": 116,
+    "categoryId": 6,
+    "name": "Shake o smaku Truskawkowym mały",
+    "price": 7.9
+  },
+  {
+    "id": 117,
+    "categoryId": 6,
+    "name": "Shake o smaku Truskawkowym duży",
+    "price": 9.9
+  },
+  {
+    "id": 118,
+    "categoryId": 6,
+    "name": "Café Latte",
+    "price": 11.2
+  },
+  {
+    "id": 119,
+    "categoryId": 6,
+    "name": "Flat White",
+    "price": 11.2
+  },
+  {
+    "id": 120,
+    "categoryId": 6,
+    "name": "Kawa z mlekiem",
+    "price": 9.2
+  },
+  {
+    "id": 121,
+    "categoryId": 6,
+    "name": "Kawa czarna",
+    "price": 8.7
+  },
+  {
+    "id": 122,
+    "categoryId": 6,
+    "name": "Cappuccino",
+    "price": 7.5
+  },
+  {
+    "id": 123,
+    "categoryId": 6,
+    "name": "Chocoberry Latte",
+    "price": 14.7
+  },
+  {
+    "id": 124,
+    "categoryId": 6,
+    "name": "Caramel Latte Macchiato 0,4l",
+    "price": 14.7
+  },
+  {
+    "id": 125,
+    "categoryId": 6,
+    "name": "Herbata Zimowa z Jabłkami",
+    "price": 12.7
+  },
+  {
+    "id": 126,
+    "categoryId": 7,
+    "name": "Red Chikker",
+    "price": 10.9
+  },
+  {
+    "id": 127,
+    "categoryId": 7,
+    "name": "Cheeseburger",
+    "price": 10.9
+  },
+  {
+    "id": 128,
+    "categoryId": 7,
+    "name": "Hamburger",
+    "price": 10.9
+  },
+  {
+    "id": 129,
+    "categoryId": 7,
+    "name": "Chikker",
+    "price": 10.9
+  },
+  {
+    "id": 130,
+    "categoryId": 7,
+    "name": "Jalapeño Burger 2forU",
+    "price": 10.9
+  }
+]

@@ -1,0 +1,11 @@
+.product {
+    border: 1px solid red;
+}
+
+.product:hover {
+    border: 3px solid blue;
+}
+
+div.product {
+    outline: 2px solid green;
+}

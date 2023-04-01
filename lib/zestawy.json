@@ -1,0 +1,316 @@
+[
+    {
+        "id": 1,
+        "price": 33.9,
+        "name": "McZestaw Maestro Caramelized Onion z Frytkami"
+    },
+    {
+        "id": 2,
+        "price": 33.9,
+        "name": "McZestaw Maestro Caramelized Onion z Colą"
+    },
+    {
+        "id": 3,
+        "price": 33.9,
+        "name": "McZestaw Maestro Grilled Cheese z Frytkami"
+    },
+    {
+        "id": 4,
+        "price": 33.9,
+        "name": "McZestaw Maestro Grilled Cheese z Colą"
+    },
+    {
+        "id": 5,
+        "price": 33.9,
+        "name": "McZestaw Maestro Grand Classic z Frytkami"
+    },
+    {"id": 6, "price": 33.9, "name": "McZestaw Maestro Grand Classic z Colą"},
+    {"id": 7, "price": 26.9, "name": "McZestaw Big Mac z Frytkami"},
+    {"id": 8, "price": 26.9, "name": "McZestaw Big Mac z Colą"},
+    {"id": 9, "price": 26.4, "name": "McZestaw McRoyal z Frytkami"},
+    {"id": 10, "price": 26.4, "name": "McZestaw McRoyal z Colą"},
+    {"id": 11, "price": 31.9, "name": "McZestaw McRoyal Podwójny z Frytkami"},
+    {"id": 12, "price": 31.9, "name": "McZestaw McRoyal Podwójny z Colą"},
+    {"id": 13, "price": 26.4, "name": "McZestaw WieśMac z Frytkami"},
+    {"id": 14, "price": 26.4, "name": "McZestaw WieśMac z Colą"},
+    {"id": 15, "price": 31.9, "name": "McZestaw WieśMac Podwójny z Frytkami"},
+    {"id": 16, "price": 31.9, "name": "McZestaw WieśMac Podwójny z Colą"},
+    {
+        "id": 17,
+        "price": 31.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy Burger z Frytkami"
+    },
+    {
+        "id": 18,
+        "price": 31.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy Burger z Colą"
+    },
+    {
+        "id": 19,
+        "price": 31.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap z Frytkami"
+    },
+    {
+        "id": 20,
+        "price": 31.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap z Colą"
+    },
+    {"id": 21, "price": 26.2, "name": "McZestaw Veggie McWrap z Frytkami"},
+    {"id": 22, "price": 26.2, "name": "McZestaw Veggie McWrap z Colą"},
+    {"id": 23, "price": 26.2, "name": "McZestaw Veggie Burger z Frytkami"},
+    {"id": 24, "price": 26.2, "name": "McZestaw Veggie Burger z Colą"},
+    {"id": 25, "price": 25.9, "name": "McZestaw McChicken z Frytkami"},
+    {"id": 26, "price": 25.9, "name": "McZestaw McChicken z Colą"},
+    {
+        "id": 27,
+        "price": 27.9,
+        "name": "McZestaw McWrap Chrupiący Klasyczny z Frytkami"
+    },
+    {
+        "id": 28,
+        "price": 27.9,
+        "name": "McZestaw McWrap Chrupiący Klasyczny z Colą"
+    },
+    {
+        "id": 29,
+        "price": 28.4,
+        "name": "McZestaw McWrap Chrupiący Bekon Deluxe z Frytkami"
+    },
+    {
+        "id": 30,
+        "price": 28.4,
+        "name": "McZestaw McWrap Chrupiący Bekon Deluxe z Colą"
+    },
+    {
+        "id": 31,
+        "price": 25.4,
+        "name": "McZestaw Supreme Chicken Tenders 3 szt. z Frytkami"
+    },
+    {
+        "id": 32,
+        "price": 25.4,
+        "name": "McZestaw Supreme Chicken Tenders 3 szt. z Colą"
+    },
+    {"id": 33, "price": 25.2, "name": "McZestaw 6 McNuggets z Frytkami"},
+    {"id": 34, "price": 25.2, "name": "McZestaw 6 McNuggets z Colą"},
+    {
+        "id": 35,
+        "price": 36.9,
+        "name": "McZestaw Maestro Caramelized Onion Powiększony z Frytkami"
+    },
+    {
+        "id": 36,
+        "price": 36.9,
+        "name": "McZestaw Maestro Caramelized Onion Powiększony z Colą"
+    },
+    {
+        "id": 37,
+        "price": 36.9,
+        "name": "McZestaw Maestro Grilled Cheese Powiększony z Frytkami"
+    },
+    {
+        "id": 38,
+        "price": 36.9,
+        "name": "McZestaw Maestro Grilled Cheese Powiększony z Colą"
+    },
+    {
+        "id": 39,
+        "price": 36.9,
+        "name": "McZestaw Maestro Grand Classic Powiększony z Frytkami"
+    },
+    {
+        "id": 40,
+        "price": 36.9,
+        "name": "McZestaw Maestro Grand Classic Powiększony z Colą"
+    },
+    {
+        "id": 41,
+        "price": 29.9,
+        "name": "McZestaw Big Mac Powiększony z Frytkami"
+    },
+    {"id": 42, "price": 29.9, "name": "McZestaw Big Mac Powiększony z Colą"},
+    {
+        "id": 43,
+        "price": 29.4,
+        "name": "McZestaw McRoyal Powiększony z Frytkami"
+    },
+    {"id": 44, "price": 29.4, "name": "McZestaw McRoyal Powiększony z Colą"},
+    {
+        "id": 45,
+        "price": 34.9,
+        "name": "McZestaw McRoyal Podwójny Powiększony z Frytkami"
+    },
+    {
+        "id": 46,
+        "price": 34.9,
+        "name": "McZestaw McRoyal Podwójny Powiększony z Colą"
+    },
+    {
+        "id": 47,
+        "price": 29.4,
+        "name": "McZestaw WieśMac Powiększony z Frytkami"
+    },
+    {"id": 48, "price": 29.4, "name": "McZestaw WieśMac Powiększony z Colą"},
+    {
+        "id": 49,
+        "price": 34.9,
+        "name": "McZestaw WieśMac Podwójny Powiększony z Frytkami"
+    },
+    {
+        "id": 50,
+        "price": 34.9,
+        "name": "McZestaw WieśMac Podwójny Powiększony z Colą"
+    },
+    {
+        "id": 51,
+        "price": 34.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy Burger Powiększony z Frytkami"
+    },
+    {
+        "id": 52,
+        "price": 34.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy Burger Powiększony z Colą"
+    },
+    {
+        "id": 53,
+        "price": 34.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap Powiększony z Frytkami"
+    },
+    {
+        "id": 54,
+        "price": 34.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap Powiększony z Colą"
+    },
+    {
+        "id": 55,
+        "price": 29.2,
+        "name": "McZestaw Veggie McWrap Powiększony z Frytkami"
+    },
+    {
+        "id": 56,
+        "price": 29.2,
+        "name": "McZestaw Veggie McWrap Powiększony z Colą"
+    },
+    {
+        "id": 57,
+        "price": 29.2,
+        "name": "McZestaw Veggie Burger Powiększony z Frytkami"
+    },
+    {
+        "id": 58,
+        "price": 29.2,
+        "name": "McZestaw Veggie Burger Powiększony z Colą"
+    },
+    {
+        "id": 59,
+        "price": 28.9,
+        "name": "McZestaw McChicken Powiększony z Frytkami"
+    },
+    {
+        "id": 60,
+        "price": 28.9,
+        "name": "McZestaw McChicken Powiększony z Colą"
+    },
+    {
+        "id": 61,
+        "price": 30.9,
+        "name": "McZestaw McWrap Chrupiący Klasyczny Powiększony z Frytkami"
+    },
+    {
+        "id": 62,
+        "price": 30.9,
+        "name": "McZestaw McWrap Chrupiący Klasyczny Powiększony z Colą"
+    },
+    {
+        "id": 63,
+        "price": 31.4,
+        "name": "McZestaw McWrap Chrupiący Bekon Deluxe Powiększony z Frytkami"
+    },
+    {
+        "id": 64,
+        "price": 31.4,
+        "name": "McZestaw McWrap Chrupiący Bekon Deluxe Powiększony z Colą"
+    },
+    {
+        "id": 65,
+        "price": 28.4,
+        "name": "McZestaw Supreme Chicken Tenders 3 szt. Powiększony z Frytkami"
+    },
+    {
+        "id": 66,
+        "price": 28.4,
+        "name": "McZestaw Supreme Chicken Tenders 3 szt. Powiększony z Colą"
+    },
+    {
+        "id": 67,
+        "price": 28.2,
+        "name": "McZestaw 6 McNuggets Powiększony z Frytkami"
+    },
+    {
+        "id": 68,
+        "price": 28.2,
+        "name": "McZestaw 6 McNuggets Powiększony z Colą"
+    },
+    {"id": 75, "price": 10.9, "name": "Red Chikker 2forU z Frytkami"},
+    {"id": 76, "price": 10.9, "name": "Red Chikker 2forU z Colą"},
+    {"id": 77, "price": 10.9, "name": "Cheeseburger 2forU z Frytkami"},
+    {"id": 78, "price": 10.9, "name": "Cheeseburger 2forU z Colą"},
+    {"id": 79, "price": 10.9, "name": "Hamburger 2forU z Frytkami"},
+    {"id": 80, "price": 10.9, "name": "Hamburger 2forU z Colą"},
+    {"id": 81, "price": 10.9, "name": "Chikker 2forU z Frytkami"},
+    {"id": 82, "price": 10.9, "name": "Chikker 2forU z Colą"},
+    {"id": 83, "price": 10.9, "name": "Jalapeño Burger 2forU z Frytkami"},
+    {"id": 84, "price": 10.9, "name": "Jalapeño Burger 2forU z Colą"},
+    {
+        "id": 85,
+        "price": 12.9,
+        "name": "Red Chikker 2forU Powiększony z Frytkami"
+    },
+    {"id": 86, "price": 12.9, "name": "Red Chikker 2forU Powiększony z Colą"},
+    {
+        "id": 87,
+        "price": 12.9,
+        "name": "Cheeseburger 2forU Powiększony z Frytkami"
+    },
+    {
+        "id": 88,
+        "price": 12.9,
+        "name": "Cheeseburger 2forU Powiększony z Colą"
+    },
+    {
+        "id": 89,
+        "price": 12.9,
+        "name": "Hamburger 2forU Powiększony z Frytkami"
+    },
+    {"id": 90, "price": 12.9, "name": "Hamburger 2forU Powiększony z Colą"},
+    {"id": 91, "price": 12.9, "name": "Chikker 2forU Powiększony z Frytkami"},
+    {"id": 92, "price": 12.9, "name": "Chikker 2forU Powiększony z Colą"},
+    {
+        "id": 93,
+        "price": 12.9,
+        "name": "Jalapeño Burger 2forU Powiększony z Frytkami"
+    },
+    {
+        "id": 94,
+        "price": 12.9,
+        "name": "Jalapeño Burger 2forU Powiększony z Colą"
+    },
+    {"id": 69, "price": 16.1, "name": "Hamburger Happy Meal z Frytkami"},
+    {
+        "id": 70,
+        "price": 16.1,
+        "name": "Hamburger Happy Meal z Marcheweczkami"
+    },
+    {"id": 71, "price": 16.1, "name": "Cheeseburger Happy Meal z Frytkami"},
+    {
+        "id": 72,
+        "price": 16.1,
+        "name": "Cheeseburger Happy Meal z Marcheweczkami"
+    },
+    {"id": 73, "price": 16.1, "name": "McNuggets Happy Meal z Frytkami"},
+    {
+        "id": 74,
+        "price": 16.1,
+        "name": "McNuggets Happy Meal z Marcheweczkami"
+    }
+]

@@ -1,0 +1,92 @@
+[
+    {"id": 1, "price": 33.9, "name": "McZestaw Maestro Caramelized Onion"},
+    {"id": 2, "price": 33.9, "name": "McZestaw Maestro Grilled Cheese"},
+    {"id": 3, "price": 33.9, "name": "McZestaw Maestro Grand Classic"},
+    {"id": 4, "price": 26.9, "name": "McZestaw Big Mac"},
+    {"id": 5, "price": 26.4, "name": "McZestaw McRoyal"},
+    {"id": 6, "price": 31.9, "name": "McZestaw McRoyal Podwójny"},
+    {"id": 7, "price": 26.4, "name": "McZestaw WieśMac"},
+    {"id": 8, "price": 31.9, "name": "McZestaw WieśMac Podwójny"},
+    {
+        "id": 9,
+        "price": 31.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy Burger"
+    },
+    {
+        "id": 10,
+        "price": 31.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap"
+    },
+    {"id": 11, "price": 26.2, "name": "McZestaw Veggie McWrap"},
+    {"id": 12, "price": 26.2, "name": "McZestaw Veggie Burger"},
+    {"id": 13, "price": 25.9, "name": "McZestaw McChicken"},
+    {"id": 14, "price": 27.9, "name": "McZestaw McWrap Chrupiący Klasyczny"},
+    {
+        "id": 15,
+        "price": 28.4,
+        "name": "McZestaw McWrap Chrupiący Bekon Deluxe"
+    },
+    {
+        "id": 16,
+        "price": 25.4,
+        "name": "McZestaw Supreme Chicken Tenders 3 szt."
+    },
+    {"id": 17, "price": 25.2, "name": "McZestaw 6 McNuggets"},
+    {
+        "id": 18,
+        "price": 36.9,
+        "name": "McZestaw Maestro Caramelized Onion Powiększony"
+    },
+    {
+        "id": 19,
+        "price": 36.9,
+        "name": "McZestaw Maestro Grilled Cheese Powiększony"
+    },
+    {
+        "id": 20,
+        "price": 36.9,
+        "name": "McZestaw Maestro Grand Classic Powiększony"
+    },
+    {"id": 21, "price": 29.9, "name": "McZestaw Big Mac Powiększony"},
+    {"id": 22, "price": 29.4, "name": "McZestaw McRoyal Powiększony"},
+    {
+        "id": 23,
+        "price": 34.9,
+        "name": "McZestaw McRoyal Podwójny Powiększony"
+    },
+    {"id": 24, "price": 29.4, "name": "McZestaw WieśMac Powiększony"},
+    {
+        "id": 25,
+        "price": 34.9,
+        "name": "McZestaw WieśMac Podwójny Powiększony"
+    },
+    {
+        "id": 26,
+        "price": 34.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy Burger Powiększony"
+    },
+    {
+        "id": 27,
+        "price": 34.5,
+        "name": "McZestaw Supreme Chicken Sweet & Spicy McWrap Powiększony"
+    },
+    {"id": 28, "price": 29.2, "name": "McZestaw Veggie McWrap Powiększony"},
+    {"id": 29, "price": 29.2, "name": "McZestaw Veggie Burger Powiększony"},
+    {"id": 30, "price": 28.9, "name": "McZestaw McChicken Powiększony"},
+    {
+        "id": 31,
+        "price": 30.9,
+        "name": "McZestaw McWrap Chrupiący Klasyczny Powiększony"
+    },
+    {
+        "id": 32,
+        "price": 31.4,
+        "name": "McZestaw McWrap Chrupiący Bekon Deluxe Powiększony"
+    },
+    {
+        "id": 33,
+        "price": 28.4,
+        "name": "McZestaw Supreme Chicken Tenders 3 szt. Powiększony"
+    },
+    {"id": 34, "price": 28.2, "name": "McZestaw 6 McNuggets Powiększony"}
+]
