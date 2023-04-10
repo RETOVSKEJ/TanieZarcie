@@ -1,64 +1,55 @@
 import Image from "next/image"
+import Link from "next/link"
 import {Inter} from "next/font/google"
 import styles from "./page.module.css"
-import {FC, ReactElement} from "react"
+import {FC, Suspense} from "react"
+import {Zestaw} from "@/types/types"
+import Table from "../components/Table/Table"
+import TableButtonSrv from "../components/TableButton/TableButtonSrv"
+import Header from "../components/Header/Header"
+import Spinner from "@/components/Spinner/Spinner"
+import {Singleton} from "../lib/data"
 
 const inter = Inter({subsets: ["latin"]})
 
-type Product = {
-    id: number
-    name: string
-    price: number
-    woId: number
-    current: boolean
-    categoryId: number
-}
+// type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
 
-type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
+// async function getFoods(): Promise<Product[]> {
+//     const res = await fetch("http://localhost:3000/api/food")
+//     const data: Product[] = await res.json()
+//     return data
+// }
 
-async function getFoods(): Promise<Product[]> {
-    const res = await fetch("http://localhost:3000/api/food")
-    const data: Product[] = await res.json()
+// `http://localhost:3000/api/ranking/top10?orderby=${orderby}`
+
+async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
+    const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
+    const data: Zestaw[] = await res.json()
+    await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO do usunięcia, narazie
     return data
 }
 
 export default async function Home() {
-    const arr: Product[] = await getFoods()
-    let rank = 1
+    const ranking = await fetchAllZestawy()
+
     return (
-        <>
-            <table>
-                <tr>
-                    <th>Rank</th>
-                    <th>Image</th>
-                    <th>Nazwa</th>
-                    <th>W. Odż.</th>
-                </tr>
-                {arr.map((product: ProductNoCurrent) => {
-                    rank++
-                    return (
-                        <tr key={product.id}>
-                            <td>{rank}</td>
-                            <td>altImg</td>
-                            <td>
-                                {product.name}
-                                <span style={{display: "block"}}>{product.price}</span>
-                            </td>
-                            <td>{product.woId}</td>
-                        </tr>
-                    )
-                })}
-            </table>
-        </>
+        <main className={inter.className}>
+            <Suspense fallback={<Spinner />}>
+                <Header />
+            </Suspense>
+            <Table initialData={ranking} />
+        </main>
     )
 }
 
-export function Food({product}: {product: Product}) {
-    return (
-        <div className={styles.product}>
-            <h1>{product.name}</h1>
-            <p>{product.price}</p>
-            <p>{product.woId}</p>
-        </div>
-    )
-}
+// export function PriceButton() {
+//     // const [cena, setCena] = useState(20)
+//     const handleClick = () => {
+//         return getRanking("bialko")
+//     }
+//     return (
+//         <>
+//             <button onClick={}>Cena</button>
+//         </>
+//     )
+// }

@@ -176,6 +176,21 @@ async function groupByKcal() {
     console.log(result)
 }
 
+// POWIEKSZONE zestawy
+// const Powiekszone = await prisma.zestawy.updateMany({
+//     where: {
+//         name: {
+//             contains: "Powiększony",
+//         },
+//         id: {
+//             lt: 35,
+//         },
+//     },
+//     data: {
+//         name: {},
+//     },
+// })
+
 async function seed() {
     // id 1-34 - srednie
     // id 35-68 duze
@@ -190,21 +205,29 @@ async function seed() {
     // nugets 43, 44, 45, 46  (4,6,9,20)
     // BRAKUJE : mcdouble, supreme chicken, chickenbox
 
-    const Powiekszone = await prisma.zestawy.updateMany({
-        where: {
-            name: {
-                contains: "Powiększony",
+    const test = await prisma.food.findMany({
+        where: {id: 1},
+        include: {
+            wo: {
+                select: {
+                    bialkoPorcja: true,
+                    kcalPorcja: true,
+                    tluszczePorcja: true,
+                    weglowodanyPorcja: true,
+                    cukryPorcja: true,
+                },
             },
-            id: {
-                lt: 35,
-            },
-        },
-        data: {
-            name: {},
         },
     })
+    // const test2 = await prisma.zestawy.create({
+    //     data: {
 
-    console.log(Powiekszone)
+    //         id: 153151,
+    //         name: "test",
+    //         price: 0,
+    //     },
+    // })
+    console.log(test)
 }
 
 seed()

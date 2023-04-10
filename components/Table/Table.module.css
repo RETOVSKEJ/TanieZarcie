@@ -1,0 +1,30 @@
+.price {
+    display: block;
+    color: var(--text-secondary);
+}
+
+.placeholder {
+    width: 600px;
+    height: 40px;
+    margin-block: 10px;
+    background-color: rgb(201, 200, 200);
+    animation: suspense 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes suspense {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.table__row {
+    width: 600px;
+    height: 40px;
+    margin-block: 10px;
+}

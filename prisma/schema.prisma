@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -10,62 +8,83 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model Shop {
-//   id   Int    @id @default(autoincrement())
-//   name String @unique
-// }
-
 model Category {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  foods Food[]
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  Food Food[]
 }
 
 model Zestawy {
-  id    Int    @id @default(autoincrement())
+  id    Int    @id(map: "Zestawy_pkey1") @default(autoincrement())
+  name  String @unique(map: "Zestawy_name_idx")
   price Float
-  name  String @unique
-  foods Food[]
+  slug  String @unique(map: "Zestawy_slug_key1")
+  foods Food[] @relation("FoodToZestawy")
 }
 
 model Food {
-  id         Int              @id @default(autoincrement())
-  name       String           @unique
+  id         Int              @id(map: "Food_pkey1") @default(autoincrement())
+  name       String           @unique(map: "Food_name_idx")
   price      Float
   wo         WartosciOdzywcze @relation(fields: [woId], references: [id])
-  woId       Int              @unique
+  woId       Int              @unique(map: "Food_woId_idx")
   current    Boolean          @default(true)
-  category   Category         @relation(fields: [categoryId], references: [id])
   categoryId Int
-  zestawy    Zestawy[]
+  slug       String           @unique(map: "Food_slug_key1")
+  zestawy    Zestawy[]        @relation("FoodToZestawy")
+  Category   Category         @relation(fields: [categoryId], references: [id])
 }
 
 model WartosciOdzywcze {
-  id                     Int      @id @default(autoincrement())
-  name                   String   @unique
-  food                   Food?
-  alergeny               String? // TODO normalization can be done here
-  kcal100g               Decimal? @db.Decimal(5, 2)
-  kcalPorcja             Decimal  @db.Decimal(5, 2)
-  kcalRI                 Decimal  @db.Decimal(5, 2)
-  tluszcze100g           Decimal? @db.Decimal(5, 2)
-  tluszczePorcja         Decimal  @db.Decimal(5, 2)
-  tluszczeRI             Decimal  @db.Decimal(5, 2)
-  tluszczeNasycone100g   Decimal? @db.Decimal(5, 2)
-  tluszczeNasyconePorcja Decimal  @db.Decimal(5, 2)
-  tluszczeNasyconeRI     Decimal  @db.Decimal(5, 2)
-  weglowodany100g        Decimal? @db.Decimal(5, 2)
-  weglowodanyPorcja      Decimal  @db.Decimal(5, 2)
-  weglowodanyRI          Decimal  @db.Decimal(5, 2)
-  cukry100g              Decimal? @db.Decimal(5, 2)
-  cukryPorcja            Decimal  @db.Decimal(5, 2)
-  cukryRI                Decimal  @db.Decimal(5, 2)
-  blonnik100g            Decimal? @db.Decimal(5, 2)
-  blonnikPorcja          Decimal  @db.Decimal(5, 2)
-  bialko100g             Decimal? @db.Decimal(5, 2)
-  bialkoPorcja           Decimal  @db.Decimal(5, 2)
-  bialkoRI               Decimal  @db.Decimal(5, 2)
-  sol100g                Decimal? @db.Decimal(5, 2)
-  solPorcja              Decimal  @db.Decimal(5, 2)
-  solRI                  Decimal  @db.Decimal(5, 2)
+  id                     Int     @id @default(autoincrement())
+  name                   String  @unique
+  alergeny               String?
+  kcal100g               Float?
+  kcalPorcja             Float
+  kcalRI                 Float
+  tluszcze100g           Float?
+  tluszczePorcja         Float
+  tluszczeRI             Float
+  tluszczeNasycone100g   Float?
+  tluszczeNasyconePorcja Float
+  tluszczeNasyconeRI     Float
+  weglowodany100g        Float?
+  weglowodanyPorcja      Float
+  weglowodanyRI          Float
+  cukry100g              Float?
+  cukryPorcja            Float
+  cukryRI                Float
+  blonnik100g            Float?
+  blonnikPorcja          Float
+  bialko100g             Float?
+  bialkoPorcja           Float
+  bialkoRI               Float
+  sol100g                Float
+  solPorcja              Float
+  solRI                  Float
+  Food                   Food?
+}
+
+view rankings {
+  id               Int    @unique
+  name             String
+  slug             String @unique
+  price            Float
+  kcal             Float
+  bialko           Float
+  tluszcze         Float
+  tluszczeNasycone Float
+  weglowodany      Float
+  cukry            Float
+  blonnik          Float
+  sol              Float
+}
+
+view rankingsmat {
+  zestawid   Int    @unique
+  zestawname String
+  zestawslug String @unique
+  rankprice  Int
+  rankkcal   Int
+  rankbialko Int
 }
