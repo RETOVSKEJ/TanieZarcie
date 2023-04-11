@@ -10,24 +10,10 @@ import {
     useEffect,
     useState,
     useRef,
+    useReducer,
     SetStateAction,
     Dispatch,
 } from "react"
-
-type data = Zestaw[]
-
-type ButtonComponentProps = {
-    setClicked: Dispatch<SetStateAction<string>>
-    children: string
-}
-
-function ButtonComponent({setClicked, children}: ButtonComponentProps) {
-    function handleClick() {
-        setClicked(children)
-    }
-    return <button onClick={handleClick}>{children}</button>
-    // return <button onClick={handleClick}>Switch Table</button>
-}
 
 // function reducer(state, action) {
 //     switch (action.type) {
@@ -38,48 +24,50 @@ function ButtonComponent({setClicked, children}: ButtonComponentProps) {
 //     }
 // }
 
-export default function Table({initialData}: {initialData: data}) {
-    const [lastClicked, setClicked] = useState("")
-    const [data, setData] = useState<data>(initialData)
+const ACTIONS = {
+    KCAL: "Kcal",
+    BIALKO: "Bialko",
+    PRICE: "Price",
+}
+
+type ActionType = {
+    type: string
+    payload?: any
+}
+
+function reducer(prevState: Zestaw[], action: ActionType): Zestaw[] {
+    let newState: typeof prevState
+    switch (action.type) {
+        case ACTIONS.KCAL:
+            newState = [...prevState]
+            return newState.sort((a, b) => b.kcal - a.kcal)
+        case ACTIONS.BIALKO:
+            newState = [...prevState]
+            return newState.sort((a, b) => b.bialko - a.bialko)
+        case ACTIONS.PRICE:
+            newState = [...prevState]
+            return newState.sort((a, b) => a.price - b.price)
+        default:
+            return prevState
+    }
+}
+
+export default function Table({initialData}: {initialData: Zestaw[]}) {
     const notInitialRender = useRef(false)
+    const [data, dispatch] = useReducer(reducer, initialData)
 
-    useEffect(() => {
-        if (notInitialRender.current) {
-            console.log(lastClicked)
-            if (lastClicked == "Bialko") {
-                setData((prev) => {
-                    const newData = [...prev]
-                    newData.sort((a, b) => b.bialko - a.bialko)
-                    return newData
-                })
-                console.log(data)
-            } else if (lastClicked == "Kcal") {
-                setData((prev) => {
-                    const newData = [...prev]
-                    newData.sort((a, b) => b.kcal - a.kcal)
-                    return newData
-                })
-                console.log(data)
-            } else if (lastClicked == "Price") {
-                setData((prev) => {
-                    const newData = [...prev]
-                    newData.sort((a, b) => a.price - b.price)
-                    return newData
-                })
-                console.log(data)
-            }
-        } else {
-            notInitialRender.current = true
-        }
-    }, [lastClicked])
-
-    Singleton.test += 25
     let rank = 0
     return (
         <>
-            <ButtonComponent setClicked={setClicked}>Bialko</ButtonComponent>
-            <ButtonComponent setClicked={setClicked}>Kcal</ButtonComponent>
-            <ButtonComponent setClicked={setClicked}>Price</ButtonComponent>
+            <button onClick={() => dispatch({type: ACTIONS.BIALKO})}>
+                {ACTIONS.BIALKO}
+            </button>
+            <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
+                {ACTIONS.KCAL}
+            </button>
+            <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
+                {ACTIONS.PRICE}
+            </button>
             <TableWrapper>
                 {data.map((elem: Zestaw | Food) => {
                     rank++
