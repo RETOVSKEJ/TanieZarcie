@@ -1,5 +1,6 @@
 import Image from "next/image"
 import {Zestaw, ZestawRanks} from "@/types/types"
+import {Dancing_Script} from "next/font/google"
 import s from "./hero.module.css"
 
 export async function getZestaw(slug: string): Promise<Zestaw> {
@@ -13,6 +14,11 @@ export async function getZestawRanks(slug: string): Promise<ZestawRanks> {
     const data: ZestawRanks = await res.json()
     return data
 }
+
+const dancingFont = Dancing_Script({
+    weight: ["700"],
+    subsets: ["latin"],
+})
 
 export default function HeroZestaw({
     product,
@@ -30,10 +36,24 @@ export default function HeroZestaw({
                     height={400}
                     alt={product.name}
                 />
+                <strong
+                    style={{fontSize: 32}}
+                    className={dancingFont.className}
+                >
+                    {product.name}
+                </strong>
+                <p style={{marginTop: 8}}>
+                    Cena:
+                    <span
+                        style={{
+                            fontWeight: 700,
+                        }}
+                    >
+                        {" " + product.price} zł
+                    </span>
+                </p>
             </div>
             <div className={s.product}>
-                <strong>{product.name}</strong>
-                <p>{product.price}</p>
                 <div className={s.wartosciOdzywcze}>
                     <h2 className={s.spaceDown}>Tabela wartości odżywczych:</h2>
                     <p>
@@ -88,7 +108,7 @@ export function Table({children}) {
 
 export function HeroZestawRanks({productRanks}: {productRanks: ZestawRanks}) {
     function colorizeRank(rank: number): object {
-        const style = {color: "#e00", "text-shadow": "0px 1px 1px #000;"}
+        const style = {color: "#e00", textShadow: "0px 1px 1px #000"}
         if (rank <= 10) {
             style.color = "#0d0"
             return style
@@ -107,19 +127,19 @@ export function HeroZestawRanks({productRanks}: {productRanks: ZestawRanks}) {
                     Aktualne Miejsca w Zestawieniach:
                 </h2>
                 <strong>
-                    Ranking Cena:{" "}
+                    Ranking Cena:
                     <span style={colorizeRank(productRanks.rankprice)}>
                         {productRanks.rankprice}
                     </span>
                 </strong>
                 <strong>
-                    Ranking Kcal:{" "}
+                    Ranking Kcal:
                     <span style={colorizeRank(productRanks.rankkcal)}>
                         {productRanks.rankkcal}
                     </span>
                 </strong>
                 <strong>
-                    Ranking Białko:{" "}
+                    Ranking Białko:
                     <span style={colorizeRank(productRanks.rankbialko)}>
                         {productRanks.rankbialko}
                     </span>

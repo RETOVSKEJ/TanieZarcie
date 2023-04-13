@@ -2,10 +2,10 @@ import {NextResponse} from "next/server"
 import prisma from "../../../prisma/client"
 
 export async function GET(request: Request) {
-    const kategoriaId = 6
+    const NAPOJE_CAT_ID = 6
     const napoje = await prisma.food.findMany({
         where: {
-            categoryId: 8,
+            categoryId: NAPOJE_CAT_ID,
         },
     })
     if (napoje.length == 0) {

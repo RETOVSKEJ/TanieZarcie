@@ -1,10 +1,18 @@
 BUGI:
 -about us przy zwijaniu sie brzydko przerzuca (overflow-wrap)
 -tabela overflowuje sie
+	-<div> cannot appear as a child of <table>.
+   	 at div
+   	 at table
+   	 at div
+ 
 	-poprawic szerokosc tabeli przy roznnych sortowaniach
 	-dodac tytul wartosc odzywcze (B / kcal)
 	-cachowac tabele
-
+-SearchBar
+	-DEBOUNCE  (CHYBA JEDNAK NIE BO NIE ROBIE CALLI DO DB)
+	-ANIMACJE
+	-
 
 
 ogolne pomysly:

@@ -72,20 +72,18 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
     return (
         <>
             <div className={s.table__wrapper}>
+                <div className={s.table__buttons}>
+                    <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
+                        <AiOutlineThunderbolt />
+                    </button>
+                    <button onClick={() => dispatch({type: ACTIONS.BIALKO})}>
+                        <TbMeat />
+                    </button>
+                    <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
+                        <TbBrandCashapp />
+                    </button>
+                </div>
                 <table className={s.table}>
-                    <div className={s.table__buttons}>
-                        <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
-                            <AiOutlineThunderbolt />
-                        </button>
-                        <button
-                            onClick={() => dispatch({type: ACTIONS.BIALKO})}
-                        >
-                            <TbMeat />
-                        </button>
-                        <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
-                            <TbBrandCashapp />
-                        </button>
-                    </div>
                     <caption></caption>
                     <tbody className={s.tbody}>
                         <tr className={s.theaders}>
@@ -98,13 +96,13 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                             rank++
                             return (
                                 <Suspense
-                                    key={elem.name}
+                                    key={elem.id}
                                     fallback={
                                         <div className={s.placeholder}></div>
                                     }
                                 >
                                     <TableRow
-                                        key={elem.name}
+                                        key={elem.id}
                                         rank={rank}
                                         product={elem}
                                         activeSort={activeSort}

@@ -31,7 +31,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <body className={inter.className}>
                 <div className="nav-wrapper">
                     <nav className={dancingFont.className + " navbar"}>
-                        <SearchBar searchIcon={<BsSearch />} />
+                        <SearchBar inter={inter} searchIcon={<BsSearch />} />
                     </nav>
                     <nav
                         style={{
