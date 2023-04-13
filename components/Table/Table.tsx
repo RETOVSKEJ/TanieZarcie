@@ -5,15 +5,9 @@ import Link from "next/link"
 import {Food, Zestaw} from "../../types/types"
 import s from "./Table.module.css"
 import {Singleton} from "@/lib/data"
-import {
-    Suspense,
-    useEffect,
-    useState,
-    useRef,
-    useReducer,
-    SetStateAction,
-    Dispatch,
-} from "react"
+import {Suspense, useEffect, useState, useRef, useReducer} from "react"
+import {TbMeat, TbBrandCashapp} from "react-icons/tb"
+import {AiOutlineThunderbolt} from "react-icons/ai"
 
 // function reducer(state, action) {
 //     switch (action.type) {
@@ -35,18 +29,33 @@ type ActionType = {
     payload?: any
 }
 
-function reducer(prevState: Zestaw[], action: ActionType): Zestaw[] {
+type StateType = {
+    data: Zestaw[]
+    activeSort: string
+}
+
+function reducer(prevState: StateType, action: ActionType): StateType {
     let newState: typeof prevState
     switch (action.type) {
         case ACTIONS.KCAL:
-            newState = [...prevState]
-            return newState.sort((a, b) => b.kcal - a.kcal)
+            newState = {
+                data: [...prevState.data].sort((a, b) => b.kcal - a.kcal),
+                activeSort: ACTIONS.KCAL,
+            }
+            return newState
         case ACTIONS.BIALKO:
-            newState = [...prevState]
-            return newState.sort((a, b) => b.bialko - a.bialko)
+            newState = {
+                data: [...prevState.data].sort((a, b) => b.bialko - a.bialko),
+                activeSort: ACTIONS.BIALKO,
+            }
+            return newState
         case ACTIONS.PRICE:
-            newState = [...prevState]
-            return newState.sort((a, b) => a.price - b.price)
+            newState = {
+                data: [...prevState.data].sort((a, b) => a.price - b.price),
+                activeSort: ACTIONS.PRICE,
+            }
+            return newState
+
         default:
             return prevState
     }
@@ -54,56 +63,58 @@ function reducer(prevState: Zestaw[], action: ActionType): Zestaw[] {
 
 export default function Table({initialData}: {initialData: Zestaw[]}) {
     const notInitialRender = useRef(false)
-    const [data, dispatch] = useReducer(reducer, initialData)
+    const [{data, activeSort}, dispatch] = useReducer(reducer, {
+        data: initialData,
+        activeSort: ACTIONS.KCAL,
+    })
 
     let rank = 0
     return (
         <>
-            <button onClick={() => dispatch({type: ACTIONS.BIALKO})}>
-                {ACTIONS.BIALKO}
-            </button>
-            <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
-                {ACTIONS.KCAL}
-            </button>
-            <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
-                {ACTIONS.PRICE}
-            </button>
-            <TableWrapper>
-                {data.map((elem: Zestaw | Food) => {
-                    rank++
-                    return (
-                        <Suspense
-                            key={elem.name}
-                            fallback={<div className={s.placeholder}></div>}
+            <div className={s.table__wrapper}>
+                <table className={s.table}>
+                    <div className={s.table__buttons}>
+                        <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
+                            <AiOutlineThunderbolt />
+                        </button>
+                        <button
+                            onClick={() => dispatch({type: ACTIONS.BIALKO})}
                         >
-                            <TableRow
-                                key={elem.name}
-                                rank={rank}
-                                product={elem}
-                            />
-                        </Suspense>
-                    )
-                })}
-            </TableWrapper>
-        </>
-    )
-}
-
-export function TableWrapper({children}) {
-    return (
-        <>
-            <table>
-                <caption>Nazwa Tabeli</caption>
-                <tbody>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Image</th>
-                        <th>Nazwa</th>
-                        <th>W. Odż.</th>
-                    </tr>
-                    {children}
-                </tbody>
-            </table>
+                            <TbMeat />
+                        </button>
+                        <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
+                            <TbBrandCashapp />
+                        </button>
+                    </div>
+                    <caption></caption>
+                    <tbody className={s.tbody}>
+                        <tr className={s.theaders}>
+                            <th>Rank</th>
+                            <th>{/*Image*/}</th>
+                            <th>Zestaw</th>
+                            <th>W. Odż.</th>
+                        </tr>
+                        {data.map((elem: Zestaw | Food) => {
+                            rank++
+                            return (
+                                <Suspense
+                                    key={elem.name}
+                                    fallback={
+                                        <div className={s.placeholder}></div>
+                                    }
+                                >
+                                    <TableRow
+                                        key={elem.name}
+                                        rank={rank}
+                                        product={elem}
+                                        activeSort={activeSort}
+                                    />
+                                </Suspense>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </>
     )
 }
@@ -111,10 +122,24 @@ export function TableWrapper({children}) {
 export function TableRow({
     rank,
     product,
+    activeSort,
 }: {
     rank: number
-    product: Food | Zestaw
+    product: Zestaw
+    activeSort: string
 }) {
+    const FontWeightStyle = {
+        FontWeightKcal: {
+            fontWeight:
+                activeSort === ACTIONS.KCAL || activeSort === ""
+                    ? "700"
+                    : "400",
+        },
+        FontWeightBialko: {
+            fontWeight: activeSort === ACTIONS.BIALKO ? "700" : "400",
+        },
+    }
+
     return (
         <tr className={s.table__row}>
             <td>{rank}</td>
@@ -128,9 +153,18 @@ export function TableRow({
             </td>
             <td>
                 <Link href={"zestawy/" + product.slug}>{product.name}</Link>
+
                 <span className={s.price}>{product.price}</span>
             </td>
-            <td>placeholder</td>
+            <td>
+                <span style={FontWeightStyle.FontWeightKcal}>
+                    {product.kcal.toFixed(0)} kcal
+                </span>
+                /
+                <span style={FontWeightStyle.FontWeightBialko}>
+                    {product.bialko.toFixed(0)} g
+                </span>
+            </td>
         </tr>
     )
 }

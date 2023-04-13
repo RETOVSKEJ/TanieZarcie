@@ -9,16 +9,9 @@ import TableButtonSrv from "../components/TableButton/TableButtonSrv"
 import Header from "../components/Header/Header"
 import Spinner from "@/components/Spinner/Spinner"
 import {Singleton} from "../lib/data"
-
-const inter = Inter({subsets: ["latin"]})
+import s from "./page.module.css"
 
 // type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
-
-// async function getFoods(): Promise<Product[]> {
-//     const res = await fetch("http://localhost:3000/api/food")
-//     const data: Product[] = await res.json()
-//     return data
-// }
 
 // `http://localhost:3000/api/ranking/top10?orderby=${orderby}`
 
@@ -33,7 +26,7 @@ export default async function Home() {
     const ranking = await fetchAllZestawy()
 
     return (
-        <main className={inter.className}>
+        <main className={s.main}>
             <Suspense fallback={<Spinner />}>
                 <Header />
             </Suspense>

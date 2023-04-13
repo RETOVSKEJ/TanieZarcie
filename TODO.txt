@@ -1,0 +1,52 @@
+BUGI:
+-about us przy zwijaniu sie brzydko przerzuca (overflow-wrap)
+-tabela overflowuje sie
+	-poprawic szerokosc tabeli przy roznnych sortowaniach
+	-dodac tytul wartosc odzywcze (B / kcal)
+	-cachowac tabele
+
+
+
+ogolne pomysly:
+
+-random zestaw
+-rest api auth
+-Zakladka dla niezdecydowanych gdzie bedzie wybierac jedzenie:
+    -np, jaki masz fundusz, jak chcesz sie najjesc, czy cos slodkiego
+    czy chcesz mieso itp.
+-RANKINGI gdzie bedzie cala tabela
+-Strona zglos problem (formularz ze zla cena produktu itp)
+
+
+UX:
+
+-ACCESIBILITY, ARIA, TABINDEX, FOCUS
+-wybrac CZCIONKE
+-UJEDNOLICIC NAZEWNICTWO
+-META-data 
+-poprawic BUGI z listy
+-memoizacja posortwanych tabel 
+-ssg dla about i niektorych takich
+-cachowac tabele na cliencie
+-dodac ZDJECIA
+-search bar z debouncem 
+    (zestawy fetchuja sie odrazu po wejsciu, a food i napoje może po najechaniu myszka na search bar)
+-wartosci odzywcze uzupelnic zamiast place holdera
+-ERRORY, LOADINGI, SUSPENSY
+
+STyling:
+
+-CSS, media queries, responsywnosc
+	width sidebaru 100px media query
+-animacje dla przycisków bialko kcal price
+-dodać REACT IKONY
+-SUSPENSE
+-Hover-tracking, rozjasnienie napisu w miejscu hovera
+
+-Baza:
+
+-dodac jeszcze jakies produkty i zestawy
+    drwala i chickenboxy
+-poprawic price powiekszonych zestawów
+-sprawdzic price jakji jest rzeczywiscie w maku
+-ToFixed(2)  ---> skrócic liczbe cyfr po przecinku do max 2 w każdyc wartosciach odzywczych itp

@@ -1,0 +1,9 @@
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    z-index: -2;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+}

@@ -4,7 +4,7 @@ import Image from "next/image"
 import s from "../list.module.css"
 
 async function getZestawy() {
-    const res = await fetch(`http://localhost:3000/api/zestawywo`)
+    const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
     const data: Zestaw[] = await res.json()
     return data
 }

@@ -1,4 +1,5 @@
 "use client"
+
 import s from "./Header.module.css"
 import {useEffect, useState, useRef} from "react"
 import {Singleton} from "@/lib/data"
@@ -28,8 +29,6 @@ export default function Header() {
                     Najlepsza porównywarka zestawów z McDonalda
                 </p>
             </header>
-            <button onClick={() => (Singleton.test += 23)}>add</button>
-            <button onClick={() => console.log(Singleton.test)}>elo</button>
         </>
     )
 }
