@@ -1,14 +1,10 @@
 import Image from "next/image"
-import Link from "next/link"
 import {Inter} from "next/font/google"
-import styles from "./page.module.css"
 import {FC, Suspense} from "react"
 import {Zestaw} from "@/types/types"
 import Table from "../components/Table/Table"
-import TableButtonSrv from "../components/TableButton/TableButtonSrv"
 import Header from "../components/Header/Header"
 import Spinner from "@/components/Spinner/Spinner"
-import {Singleton} from "../lib/data"
 import s from "./page.module.css"
 
 // type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
@@ -26,12 +22,18 @@ export default async function Home() {
     const ranking = await fetchAllZestawy()
 
     return (
-        <main className={s.main}>
+        <>
             <Suspense fallback={<Spinner />}>
                 <Header />
             </Suspense>
             <Table initialData={ranking} />
-        </main>
+            <div style={{marginLeft: "1.5rem", color: "#eee"}}>
+                <em>
+                    * Ceny z portalu pyszne.pl, ostatnia aktualizacja cen:
+                    14.04.2023
+                </em>
+            </div>
+        </>
     )
 }
 

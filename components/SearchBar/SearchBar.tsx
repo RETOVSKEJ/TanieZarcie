@@ -2,10 +2,9 @@
 
 import {useEffect, useState, useRef} from "react"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
-import s from "./searchbar.module.css"
+import s from "./SearchBar.module.css"
 import {Food, Zestaw} from "@/types/types"
-import Image from "next/image"
-import Link from "next/link"
+import ProductCard from "./ProductCard"
 
 function highlightSearchInput(productName: string, searchInput: string) {
     const index = productName.toLowerCase().indexOf(searchInput.toLowerCase())
@@ -94,36 +93,17 @@ export default function SearchBar({searchIcon, inter}) {
                                 .slice(0, PRODUCT_LIMIT)
                                 .map((product) => {
                                     return (
-                                        <Link
-                                            key={product.id}
-                                            href={product.slug}
-                                            className={s.searchResult}
-                                            onClick={() => {
-                                                setFocus(false)
-                                            }}
+                                        <ProductCard
+                                            product={product}
+                                            setFocus={setFocus}
                                         >
-                                            <Image
-                                                alt={
-                                                    "Zdjecie produktu" +
-                                                    product.name
-                                                }
-                                                src="/test.avif"
-                                                width={64}
-                                                height={64}
-                                            />
                                             <span>
                                                 {highlightSearchInput(
                                                     product.name,
                                                     searchInput
                                                 )}
                                             </span>
-                                            <span
-                                                style={{fontWeight: "700"}}
-                                                className={s.price}
-                                            >
-                                                {product.price}
-                                            </span>
-                                        </Link>
+                                        </ProductCard>
                                     )
                                 })
                         )}

@@ -1,0 +1,46 @@
+.title {
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    color: #eee;
+}
+
+.zestawyWrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 1rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.list {
+    color: #eee;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+
+.zestaw {
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    border: var(--border);
+    border-radius: var(--radius);
+    background-image: var(--btn-gradient-hero);
+    color: var(--text-secondary);
+}
+
+.zestawName {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-weight: 700;
+}
+
+.lowerBody {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}

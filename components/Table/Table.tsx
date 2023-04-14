@@ -8,6 +8,7 @@ import {Singleton} from "@/lib/data"
 import {Suspense, useEffect, useState, useRef, useReducer} from "react"
 import {TbMeat, TbBrandCashapp} from "react-icons/tb"
 import {AiOutlineThunderbolt} from "react-icons/ai"
+import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
 
 // function reducer(state, action) {
 //     switch (action.type) {
@@ -68,21 +69,12 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
         activeSort: ACTIONS.KCAL,
     })
 
+    const buttonsRef = useRef<HTMLDivElement>(null)
+
     let rank = 0
     return (
         <>
-            <div className={s.table__wrapper}>
-                <div className={s.table__buttons}>
-                    <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
-                        <AiOutlineThunderbolt />
-                    </button>
-                    <button onClick={() => dispatch({type: ACTIONS.BIALKO})}>
-                        <TbMeat />
-                    </button>
-                    <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
-                        <TbBrandCashapp />
-                    </button>
-                </div>
+            <div className={s.tableWrapper}>
                 <table className={s.table}>
                     <caption></caption>
                     <tbody className={s.tbody}>
@@ -112,6 +104,17 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                         })}
                     </tbody>
                 </table>
+                <div ref={buttonsRef} className={s.tableButtons}>
+                    <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
+                        <AiOutlineThunderbolt />
+                    </button>
+                    <button onClick={() => dispatch({type: ACTIONS.BIALKO})}>
+                        <TbMeat />
+                    </button>
+                    <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
+                        <TbBrandCashapp />
+                    </button>
+                </div>
             </div>
         </>
     )
@@ -139,7 +142,7 @@ export function TableRow({
     }
 
     return (
-        <tr className={s.table__row}>
+        <tr className={s.tableRow}>
             <td>{rank}</td>
             <td>
                 <Image
@@ -150,7 +153,9 @@ export function TableRow({
                 ></Image>
             </td>
             <td>
-                <Link href={"zestawy/" + product.slug}>{product.name}</Link>
+                <Link href={product.slug} className={s.tableRow__name}>
+                    {product.name}
+                </Link>
 
                 <span className={s.price}>{product.price}</span>
             </td>

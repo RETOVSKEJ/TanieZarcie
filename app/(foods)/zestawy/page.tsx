@@ -2,6 +2,7 @@ import {Zestaw} from "../../../types/types"
 import Link from "next/link"
 import Image from "next/image"
 import s from "../list.module.css"
+import ProductCard from "@/components/SearchBar/ProductCard"
 
 async function getZestawy() {
     const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
@@ -11,34 +12,35 @@ async function getZestawy() {
 
 function ZestawDiv({product}: {product: Zestaw}) {
     return (
-        <div className="zestaw">
-            <Link href={"zestawy/" + product.slug}>
-                {product.name}
+        <Link href={product.slug} className={s.zestaw}>
+            <p className={s.zestawName}> {product.name}</p>
+            <div className={s.lowerBody}>
                 <Image
                     src="/test.avif"
-                    width={50}
-                    height={50}
+                    width={64}
+                    height={64}
                     alt={product.name}
                 />
-            </Link>
-
-            <strong>{product.price}</strong>
-            <p>{product.kcal}</p>
-            <strong>{product.bialko}</strong>
-        </div>
+                <div className={s.lowerRight}>
+                    <p>Cena: {product.price} zł</p>
+                    <p>{product.kcal} kcal</p>
+                    <p>{product.bialko} g</p>
+                </div>
+            </div>
+        </Link>
     )
 }
 
 export default async function Zestawy() {
     const zestawy = await getZestawy()
     return (
-        <>
-            <h1>Zestawy</h1>
+        <div className={s.zestawyWrapper}>
+            <h1 className={s.title}>Zestawy</h1>
             <div className={s.list}>
                 {zestawy.map((product) => (
                     <ZestawDiv product={product} key={product.id} />
                 ))}
             </div>
-        </>
+        </div>
     )
 }

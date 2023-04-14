@@ -4,6 +4,8 @@ import HeroZestaw, {
     getZestawRanks,
     getZestaw,
 } from "@/components/HeroZestaw/HeroZestaw"
+import s from "./page.module.css"
+import Button from "@/components/Button/Button"
 
 export default async function Page({params}) {
     const productPromise = getZestaw(params.slug)
@@ -12,5 +14,12 @@ export default async function Page({params}) {
         productPromise,
         productRanksPromise,
     ])
-    return <HeroZestaw product={product} productRanks={productRanks} />
+
+    return (
+        <div className={s.heroWrapper}>
+            <Button></Button>
+            <HeroZestaw product={product} productRanks={productRanks} />
+            <Button></Button>
+        </div>
+    )
 }

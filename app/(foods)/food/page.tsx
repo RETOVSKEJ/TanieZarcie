@@ -10,7 +10,7 @@ async function getFoods() {
 function FoodDiv({product}: {product: Food}) {
     return (
         <div className="product">
-            <Link href={"food/" + product.slug}>{product.name}</Link>
+            <Link href={product.slug}>{product.name}</Link>
             <strong>{product.price}</strong>
             <strong>KCAL: {product.wo.kcalPorcja}</strong>
             <p>BIALKO: {product.wo.bialkoPorcja}</p>

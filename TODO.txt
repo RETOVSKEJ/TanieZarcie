@@ -1,3 +1,12 @@
+PO POWROCIE:
+-zdecydowac nad ogolnym wygladlem zestawow itp
+	-pomyslec nad architektura komponentow, czy client czy serwer itp
+-Carousela z zestawami (pomyślec czy zrobic karouzele na hero, czy na /zestawy) i czy w ogole robic
+-Tabela na głownej do skonczenia / wyrównania
+-Media Queries i RWD
+
+
+
 BUGI:
 -about us przy zwijaniu sie brzydko przerzuca (overflow-wrap)
 -tabela overflowuje sie
@@ -9,10 +18,18 @@ BUGI:
 	-poprawic szerokosc tabeli przy roznnych sortowaniach
 	-dodac tytul wartosc odzywcze (B / kcal)
 	-cachowac tabele
+	-Przyciski żeby jezdziły razem z tabelą góra dół 
+
+(useRef + EventListener)
+onScroll={(e) => buttonsRef.current?.style.marginTop: }
+cos z tych
+
+-Widok HeroZestaw  - Carousel, ze strzalkami lewo prawo, zeby mozna bylo przewijac
+	dodac <figure> zamiast <img>
+
 -SearchBar
 	-DEBOUNCE  (CHYBA JEDNAK NIE BO NIE ROBIE CALLI DO DB)
 	-ANIMACJE
-	-
 
 
 ogolne pomysly:
@@ -37,9 +54,6 @@ UX:
 -ssg dla about i niektorych takich
 -cachowac tabele na cliencie
 -dodac ZDJECIA
--search bar z debouncem 
-    (zestawy fetchuja sie odrazu po wejsciu, a food i napoje może po najechaniu myszka na search bar)
--wartosci odzywcze uzupelnic zamiast place holdera
 -ERRORY, LOADINGI, SUSPENSY
 
 STyling:
@@ -53,6 +67,7 @@ STyling:
 
 -Baza:
 
+-DODAC INFO czy PRODUKT JEST ZESTAWEM/FOODEM/NAPOJEM
 -dodac jeszcze jakies produkty i zestawy
     drwala i chickenboxy
 -poprawic price powiekszonych zestawów

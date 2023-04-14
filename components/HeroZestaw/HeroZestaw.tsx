@@ -1,7 +1,7 @@
 import Image from "next/image"
 import {Zestaw, ZestawRanks} from "@/types/types"
 import {Dancing_Script} from "next/font/google"
-import s from "./hero.module.css"
+import s from "./Hero.module.css"
 
 export async function getZestaw(slug: string): Promise<Zestaw> {
     const res = await fetch(`http://127.0.0.1:3000/api/zestawywo/${slug}`)
