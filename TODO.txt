@@ -8,6 +8,7 @@ PO POWROCIE:
 
 
 BUGI:
+-next.js bug z loading.tsx, który wyłacza media query i meta tagi
 -about us przy zwijaniu sie brzydko przerzuca (overflow-wrap)
 -tabela overflowuje sie
 	-<div> cannot appear as a child of <table>.
@@ -30,10 +31,17 @@ cos z tych
 -SearchBar
 	-DEBOUNCE  (CHYBA JEDNAK NIE BO NIE ROBIE CALLI DO DB)
 	-ANIMACJE
+	-DODAC X (anuluj) w search barze dla mobilek
+	-poprawic animacje w mobilkach
+
+
 
 
 ogolne pomysly:
 
+-staggered about us itp (intersection do takich opoznionych renderow strony)
+-łaczenie produktów i liczenie kalorii
+	-z czego składają sie zestawy
 -random zestaw
 -rest api auth
 -Zakladka dla niezdecydowanych gdzie bedzie wybierac jedzenie:

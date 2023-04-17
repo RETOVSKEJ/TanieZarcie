@@ -34,6 +34,8 @@
 }
 
 .table {
+    --goto-padding: 1rem;
+    --padding: 2.5rem;
     display: block;
     --table-border-width: 8px;
     position: relative;
@@ -43,21 +45,71 @@
         linear-gradient(85deg, rgba(220, 190, 0, 1) 0%, rgba(245, 240, 0, 1) 30%, rgba(255, 255, 0, 1) 50%, rgba(245, 240, 0, 1) 70%, rgba(220, 200, 0, 1) 100%) border-box;
     border-radius: 50em;
     border: var(--table-border-width) solid transparent;
-    padding: 1rem 3rem;
+    padding: 1.25rem calc(var(--padding) - var(--goto-padding)) 1.25rem var(--padding);
     border-radius: 8px;
     /* height: calc(100vh - var(--navbar-height)); */
     overflow-y: auto;
+    width: fit-content;
 }
 
-
-.tableRow {
-    width: 600px;
-    margin-block: 10px;
+.table img {
+    vertical-align: middle;
 }
+
+.table th {
+    background-color: var(--primary);
+    padding: 0.25em 0.5em;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.table td {
+    padding-block: 0.25rem;
+}
+
+.table th.hgoto {
+    /* visibility: hidden; */
+}
+
+.table td.dgoto {
+    text-align: center;
+}
+
+.goto {
+    border: var(--border);
+    border-radius: var(--radius);
+    background-image: var(--btn-gradient);
+    padding: 0.35rem;
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goto svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    padding-left: 1px;
+}
+
+.tableRow {}
+
+.table .rank {
+    text-align: center;
+}
+
+.tableRow__zestaw {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2vw;
+}
+
 
 .tableRow__name:hover {
     opacity: 0.6;
 }
+
 
 .tableButtons {
     /* margin-top: 20px;
@@ -67,7 +119,6 @@
     margin-right: auto;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 .tableButtons>button {
@@ -133,7 +184,13 @@
     border-color: rgb(250, 230, 0) transparent transparent transparent;
 }
 
-
 .table::-webkit-scrollbar-button:vertical:hover {
     border-color: rgb(0, 0, 0, 0.8) transparent rgb(0, 0, 0, 0.8) transparent;
 }
+
+
+
+/* 
+.goto {
+    display: none;
+} */

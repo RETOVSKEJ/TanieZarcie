@@ -13,19 +13,19 @@ async function getZestawy() {
 function ZestawDiv({product}: {product: Zestaw}) {
     return (
         <Link href={product.slug} className={s.zestaw}>
-            <p className={s.zestawName}> {product.name}</p>
-            <div className={s.lowerBody}>
+            <div className={s.left}>
+                <p className={s.zestawName}> {product.name}</p>
+                <p>Cena: {product.price} zł</p>
+                <p>{product.kcal} kcal</p>
+                <p>{product.bialko} g</p>
+            </div>
+            <div className={s.right}>
                 <Image
                     src="/test.avif"
-                    width={64}
-                    height={64}
+                    width={150}
+                    height={150}
                     alt={product.name}
                 />
-                <div className={s.lowerRight}>
-                    <p>Cena: {product.price} zł</p>
-                    <p>{product.kcal} kcal</p>
-                    <p>{product.bialko} g</p>
-                </div>
             </div>
         </Link>
     )

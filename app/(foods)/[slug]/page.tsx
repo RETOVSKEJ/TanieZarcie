@@ -1,10 +1,8 @@
-import Image from "next/image"
 import {Zestaw, ZestawRanks} from "@/types/types"
 import HeroZestaw, {
     getZestawRanks,
     getZestaw,
 } from "@/components/HeroZestaw/HeroZestaw"
-import s from "./page.module.css"
 import Button from "@/components/Button/Button"
 
 export default async function Page({params}) {
@@ -16,7 +14,7 @@ export default async function Page({params}) {
     ])
 
     return (
-        <div className={s.heroWrapper}>
+        <div className="heroWrapper">
             <Button></Button>
             <HeroZestaw product={product} productRanks={productRanks} />
             <Button></Button>

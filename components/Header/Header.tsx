@@ -16,7 +16,7 @@ export default function Header() {
             if (i === headerTitle.length) {
                 clearInterval(interval)
             }
-        }, 80)
+        }, 75)
 
         return () => clearInterval(interval)
     }, [])
@@ -24,7 +24,7 @@ export default function Header() {
     return (
         <>
             <header>
-                <h1 className={s.title}>{title}</h1>
+                <h1 className={s.title + " title"}>{title}</h1>
                 <p className={s.desc}>
                     Najlepsza porównywarka zestawów z McDonalda
                 </p>

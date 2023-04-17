@@ -1,0 +1,51 @@
+.hamburger {
+    display: none;
+    appearance: none;
+}
+
+.input {
+    appearance: none;
+}
+
+@media screen and (max-width: 600px) {
+    .hamburger {
+        margin-right: auto;
+        display: block;
+        z-index: -1;
+    }
+
+    .hamburger label {
+        position: fixed;
+        display: inline-flex;
+        flex-direction: column;
+        gap: 5px;
+        /* wystarczy zmienic gap na 13px i wyjdzie piekna strzalka! */
+        cursor: pointer;
+        padding: 11px 9px;
+        border: var(--border);
+        border-radius: var(--radius);
+        background-image: var(--btn-gradient);
+        box-shadow: var(--btn-shadow);
+        /* inline-flex do buttona */
+    }
+
+    .hamburger label span {
+        width: var(--hamburger-width);
+        height: var(--hamburger-height);
+        background-color: var(--text-primary);
+        pointer-events: none;
+        transition: transform 400ms ease-in-out, opacity 200ms;
+    }
+
+    .input:checked+label .top {
+        transform: translateY(7px) rotate(405deg);
+    }
+
+    .input:checked+label .bottom {
+        transform: translateY(-7px) rotate(-405deg);
+    }
+
+    .input:checked+label .middle {
+        opacity: 0;
+    }
+}

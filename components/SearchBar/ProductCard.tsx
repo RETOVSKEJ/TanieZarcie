@@ -6,15 +6,17 @@ import s from "./SearchBar.module.css"
 import {Dispatch, SetStateAction} from "react"
 import {Food, Zestaw} from "@/types/types"
 
+type ProductCardProps = {
+    product: Food | Zestaw
+    setFocus?: Dispatch<SetStateAction<boolean>>
+    children?: React.ReactNode
+}
+
 export default function ProductCard({
     product,
     setFocus,
     children,
-}: {
-    product: Food | Zestaw
-    setFocus?: Dispatch<SetStateAction<boolean>>
-    children?: React.ReactNode
-}) {
+}: ProductCardProps) {
     return (
         <Link
             key={product.id}

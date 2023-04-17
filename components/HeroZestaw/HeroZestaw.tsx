@@ -28,7 +28,7 @@ export default function HeroZestaw({
     productRanks: ZestawRanks
 }) {
     return (
-        <div className={s.hero}>
+        <div className={s.hero + " hero"}>
             <div className={s.image_wrapper}>
                 <Image
                     src="/test.avif"
@@ -85,24 +85,6 @@ export default function HeroZestaw({
                 <HeroZestawRanks productRanks={productRanks} />
             </div>
         </div>
-    )
-}
-
-export function Table({children}) {
-    return (
-        <>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Image</th>
-                        <th>Nazwa</th>
-                        <th>W. Odż.</th>
-                    </tr>
-                    {children}
-                </tbody>
-            </table>
-        </>
     )
 }
 

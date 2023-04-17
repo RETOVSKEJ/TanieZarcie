@@ -6,9 +6,11 @@ import {Food, Zestaw} from "../../types/types"
 import s from "./Table.module.css"
 import {Singleton} from "@/lib/data"
 import {Suspense, useEffect, useState, useRef, useReducer} from "react"
-import {TbMeat, TbBrandCashapp} from "react-icons/tb"
+import {TbMeat, TbBrandCashapp, TbChevronRight} from "react-icons/tb"
 import {AiOutlineThunderbolt} from "react-icons/ai"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
+import SearchBar from "../SearchBar/SearchBar"
+import Zestawy from "@/app/(foods)/zestawy/page"
 
 // function reducer(state, action) {
 //     switch (action.type) {
@@ -74,15 +76,14 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
     let rank = 0
     return (
         <>
-            <div className={s.tableWrapper}>
-                <table className={s.table}>
-                    <caption></caption>
+            <div className={s.tableWrapper + " tableWrapper"}>
+                <table className={s.table + " table"}>
                     <tbody className={s.tbody}>
                         <tr className={s.theaders}>
-                            <th>Rank</th>
-                            <th>{/*Image*/}</th>
+                            <th className={s.hrank + " hrank"}>Rank</th>
                             <th>Zestaw</th>
                             <th>W. Odż.</th>
+                            <th className={s.hgoto + " hgoto"}>Więcej</th>
                         </tr>
                         {data.map((elem: Zestaw | Food) => {
                             rank++
@@ -104,7 +105,10 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                         })}
                     </tbody>
                 </table>
-                <div ref={buttonsRef} className={s.tableButtons}>
+                <div
+                    ref={buttonsRef}
+                    className={s.tableButtons + " tableButtons"}
+                >
                     <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
                         <AiOutlineThunderbolt />
                     </button>
@@ -143,21 +147,21 @@ export function TableRow({
 
     return (
         <tr className={s.tableRow}>
-            <td>{rank}</td>
-            <td>
+            <td className={s.rank + " rank"}>{rank}</td>
+            <td className={s.tableRow__zestaw}>
                 <Image
                     src="/test.avif"
-                    width={50}
-                    height={50}
+                    width={64}
+                    height={64}
                     alt="zdjecie żarcia"
                 ></Image>
-            </td>
-            <td>
-                <Link href={product.slug} className={s.tableRow__name}>
+                <Link
+                    href={product.slug}
+                    className={s.tableRow__name + " tableRow__name"}
+                >
                     {product.name}
+                    <span className={s.price}>{product.price} zł</span>
                 </Link>
-
-                <span className={s.price}>{product.price}</span>
             </td>
             <td>
                 <span style={FontWeightStyle.FontWeightKcal}>
@@ -167,6 +171,11 @@ export function TableRow({
                 <span style={FontWeightStyle.FontWeightBialko}>
                     {product.bialko.toFixed(0)} g
                 </span>
+            </td>
+            <td className={s.dgoto + " dgoto"}>
+                <Link href={product.slug} className={s.goto + " goto"}>
+                    <TbChevronRight />
+                </Link>
             </td>
         </tr>
     )
