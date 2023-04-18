@@ -28,7 +28,6 @@
 }
 
 
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -44,7 +43,6 @@ body {
   background-size: cover;
   background-color: rgb(77, 48, 78); */
   background: rgb(252, 252, 252);
-  /* background: linear-gradient(80deg, rgba(245, 255, 0, 1) 0%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 80%, rgba(254, 255, 0, 1) 100%); */
   isolation: isolate;
   z-index: -999;
   display: grid;
@@ -54,6 +52,11 @@ body {
     "sidebar footer footer footer";
   grid-template-rows: var(--navbar-height) calc(100vh - var(--navbar-height) - var(--footer-height)) var(--footer-height);
   grid-template-columns: 210px repeat(auto-fit, minmax(120px, 1fr));
+}
+
+/* REACT UTILITY CLASSES */
+.fixed {
+  overflow: hidden;
 }
 
 a {
@@ -133,7 +136,7 @@ button:hover {
 .sidebar-container li {}
 
 .sidebar-container li:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .sidebar-container li:hover {
@@ -156,7 +159,7 @@ button:hover {
 .socials-icons {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
 }
 
@@ -257,8 +260,6 @@ footer {
     white-space: nowrap;
   }
 
-  .goto {}
-
 }
 
 @media screen and (max-width: 600px) {
@@ -273,9 +274,8 @@ footer {
     font-size: 14px;
   }
 
-
   .title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   /* main {
@@ -305,25 +305,9 @@ footer {
     display: none;
   }
 
-  .sidebar-container {
-    list-style-type: none;
-    top: 0;
-    display: flex;
-    font-size: 1.5rem;
-    position: fixed;
-    border-radius: 1rem;
-    align-items: center;
-    width: 100%;
-    max-height: 100dvh;
-    height: 100vh;
-    overflow-y: hidden;
-    flex-direction: column;
-    transform: translateX(-110%);
-    z-index: -2;
-    transition: transform 15.3s ease;
-  }
 
   .sidebar-container {
+    padding: 0;
     list-style-type: none;
     top: 0;
     display: flex;
@@ -336,9 +320,13 @@ footer {
     height: 100vh;
     overflow-y: hidden;
     flex-direction: column;
-    transform: translateX(-110%);
-    z-index: -2;
-    transition: transform 0.5s ease;
+    left: -110%;
+    z-index: 50;
+    transition: left 0.5s ease;
+  }
+
+  .sidebar-container li:first-of-type {
+    margin-top: 3rem;
   }
 
   .sidebar-container a {
@@ -347,8 +335,7 @@ footer {
 
   #menuButton:checked~.sidebar-container {
     left: 0;
-    top: 0;
-    transform: translateX(0%);
+    /* TRANSITION */
   }
 
   hr {
@@ -358,12 +345,12 @@ footer {
 
   #menuButton:checked~.sidebar-container>li {
     text-align: center;
-    text-decoration: none;
   }
 
   #menuBbutton:checked~.sidebar-container a:hover {
     background-color: rgba(255, 255, 255, 0.15)
   }
+
 
   .tableButtons {
     position: fixed;

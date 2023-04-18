@@ -1,3 +1,6 @@
+TODO o 23:
+-FALLBACKI pod safari i te wszystkie dvh itp
+
 PO POWROCIE:
 -zdecydowac nad ogolnym wygladlem zestawow itp
 	-pomyslec nad architektura komponentow, czy client czy serwer itp

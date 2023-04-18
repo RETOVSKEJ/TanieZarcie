@@ -9,7 +9,6 @@
 
 @media screen and (max-width: 600px) {
     .hamburger {
-        margin-right: auto;
         display: block;
         z-index: -1;
     }
@@ -26,6 +25,7 @@
         border-radius: var(--radius);
         background-image: var(--btn-gradient);
         box-shadow: var(--btn-shadow);
+        z-index: 51;
         /* inline-flex do buttona */
     }
 
