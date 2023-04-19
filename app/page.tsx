@@ -27,7 +27,13 @@ export default async function Home() {
                 <Header />
             </Suspense>
             <Table initialData={ranking} />
-            <div style={{marginLeft: "1.5rem", color: "#eee"}}>
+            <div
+                style={{
+                    marginLeft: "1.5rem",
+                    color: "var(--text-white)",
+                    marginBottom: "0.5rem",
+                }}
+            >
                 <em>
                     * Ceny z portalu pyszne.pl, ostatnia aktualizacja cen:
                     14.04.2023

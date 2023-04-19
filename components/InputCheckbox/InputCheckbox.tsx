@@ -25,7 +25,7 @@ export default function InputCheckbox() {
             console.log(ev.target)
             return checkboxRef.current?.click()
         }
-    }, 120)
+    }, 100)
 
     useEffect(() => {
         if (checked) {
@@ -34,6 +34,7 @@ export default function InputCheckbox() {
         } else {
             document.body.classList.remove("fixed")
         }
+        return () => document.body.removeEventListener("click", clickDebounced)
     }, [checked])
 
     return (

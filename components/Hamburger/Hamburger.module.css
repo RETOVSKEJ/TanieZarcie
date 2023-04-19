@@ -8,6 +8,7 @@
 }
 
 @media screen and (max-width: 600px) {
+
     .hamburger {
         display: block;
         z-index: -1;

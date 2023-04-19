@@ -1,0 +1,65 @@
+.zestaw {
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    border: var(--border);
+    border-radius: var(--radius);
+    background-image: var(--btn-gradient-hero);
+    color: var(--text-secondary);
+}
+
+.right {
+    display: block;
+    object-fit: cover;
+    position: relative;
+}
+
+.left {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.zestawName {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+}
+
+
+.leftLower {
+    padding: 0.7rem;
+    font-size: 14px;
+    border-radius: var(--radius);
+    display: flex;
+    margin-top: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.25rem;
+    background-image: var(--btn-gradient-hero-sm);
+    color: var(--text-primary);
+    box-shadow: var(--glass-shadow);
+}
+
+.leftLower p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftLower span {
+    margin-left: auto;
+}
+
+@media screen and (max-width: 600px) {
+
+    .zestaw {
+        gap: 0.25rem;
+        padding: 0.75rem 1rem;
+        padding-right: 0.25rem;
+    }
+}

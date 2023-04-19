@@ -4,7 +4,7 @@ import {useEffect, useState, useRef} from "react"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
 import s from "./SearchBar.module.css"
 import {Food, Zestaw} from "@/types/types"
-import ProductCard from "./ProductCard"
+import SearchProductCard from "./SearchProductCard"
 import {Inter, Dancing_Script} from "next/font/google"
 import {BsSearch} from "react-icons/bs"
 
@@ -101,7 +101,7 @@ export default function SearchBar() {
                         ) : (
                             filteredProducts.map((product) => {
                                 return (
-                                    <ProductCard
+                                    <SearchProductCard
                                         product={product}
                                         setFocus={setFocus}
                                     >
@@ -111,7 +111,7 @@ export default function SearchBar() {
                                                 searchInput
                                             )}
                                         </span>
-                                    </ProductCard>
+                                    </SearchProductCard>
                                 )
                             })
                         )}

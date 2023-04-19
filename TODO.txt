@@ -8,6 +8,10 @@ PO POWROCIE:
 -Tabela na głownej do skonczenia / wyrównania
 -Media Queries i RWD
 
+TODO:
+- zrobic sortowanie napojów zestawow i foodu
+- dopicowac RWD
+- carousela fetch instant 3 produkty, a potem tylko pobierac pojedynczo kolejne przy kliknieciach
 
 
 BUGI:

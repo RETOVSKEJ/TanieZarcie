@@ -1,6 +1,13 @@
 .title {
     font-size: clamp(1.2rem, 2vw, 2rem);
-    color: #eee;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .zestawyWrapper {
@@ -14,38 +21,18 @@
 }
 
 .list {
-    color: #eee;
+    color: var(--text-white);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(385px, 1fr));
+    gap: 2rem;
+
 }
 
 
-
-.zestaw {
-    padding: 1rem 1.25rem;
-    display: flex;
-    gap: 1rem;
-    flex-direction: row;
-    justify-content: space-between;
-    border: var(--border);
-    border-radius: var(--radius);
-    background-image: var(--btn-gradient-hero);
-    color: var(--text-secondary);
-}
-
-.right {
-    display: block;
-    object-fit: cover;
-    position: relative;
-}
-
-.zestawName {
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
-    font-weight: 700;
-    margin-bottom: 0.25rem;
+@media screen and (max-width: 1500px) {
+    /* .zestawyWrapper {
+        padding: 0.25rem 0.5rem;
+    } */
 }
 
 @media screen and (max-width: 1000px) {
@@ -56,6 +43,18 @@
 
 @media screen and (max-width: 600px) {
     .zestawyWrapper {
-        padding: 0.5rem 0.75rem;
+        padding: 0.25rem 0.25rem;
+    }
+
+    .list {
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .title {
+        margin-top: 1rem;
+        font-size: 2rem;
+        color: var(--text-white);
+        text-align: center;
     }
 }

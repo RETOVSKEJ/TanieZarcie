@@ -2,43 +2,52 @@ import {Zestaw} from "../../../types/types"
 import Link from "next/link"
 import Image from "next/image"
 import s from "../list.module.css"
-import ProductCard from "@/components/SearchBar/ProductCard"
+import ZestawCard from "@/components/ProductCard/ZestawCard"
+import SortButtons from "@/components/SortButtons/SortButtons"
+import {Sorter} from "@/components/SortButtons/SortTypes"
 
-async function getZestawy() {
-    const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
+async function getZestawy(sort: Sorter["sort"], order: Sorter["order"]) {
+    const res = await fetch(
+        `http://127.0.0.1:3000/api/zestawywo?sort=${sort}&order=${order}`
+    )
     const data: Zestaw[] = await res.json()
     return data
 }
 
-function ZestawDiv({product}: {product: Zestaw}) {
-    return (
-        <Link href={product.slug} className={s.zestaw}>
-            <div className={s.left}>
-                <p className={s.zestawName}> {product.name}</p>
-                <p>Cena: {product.price} zł</p>
-                <p>{product.kcal} kcal</p>
-                <p>{product.bialko} g</p>
-            </div>
-            <div className={s.right}>
-                <Image
-                    src="/test.avif"
-                    width={150}
-                    height={150}
-                    alt={product.name}
-                />
-            </div>
-        </Link>
-    )
-}
+export default async function Foods({searchParams}) {
+    const initialData: Sorter = {
+        sort: "KCAL",
+        sortPath: "?sort=kcalPorcja&order=desc",
+        order: "desc",
+        style: {
+            backgroundImage: "var(--btn-gradient)",
+            filter: "brightness(0.65)",
+        },
+    }
 
-export default async function Zestawy() {
-    const zestawy = await getZestawy()
+    let {sort, order} = searchParams
+    sort ? sort : (sort = initialData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
+    order ? order : (order = initialData.order)
+    const zestawy = await getZestawy(sort, order)
     return (
         <div className={s.zestawyWrapper}>
-            <h1 className={s.title}>Zestawy</h1>
+            <div className={s.header}>
+                <h1 className={s.title}>Zestawy</h1>
+                <div>
+                    <strong
+                        style={{
+                            color: "var(--text-white)",
+                            marginRight: "0.75rem",
+                        }}
+                    >
+                        Sortowanie:
+                    </strong>
+                    <SortButtons initialData={initialData} />
+                </div>
+            </div>
             <div className={s.list}>
                 {zestawy.map((product) => (
-                    <ZestawDiv product={product} key={product.id} />
+                    <ZestawCard product={product} key={product.id} />
                 ))}
             </div>
         </div>

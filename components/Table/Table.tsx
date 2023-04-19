@@ -4,13 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import {Food, Zestaw} from "../../types/types"
 import s from "./Table.module.css"
-import {Singleton} from "@/lib/data"
 import {Suspense, useEffect, useState, useRef, useReducer} from "react"
 import {TbMeat, TbBrandCashapp, TbChevronRight} from "react-icons/tb"
 import {AiOutlineThunderbolt} from "react-icons/ai"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
-import SearchBar from "../SearchBar/SearchBar"
-import Zestawy from "@/app/(foods)/zestawy/page"
 
 // function reducer(state, action) {
 //     switch (action.type) {
@@ -71,8 +68,6 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
         activeSort: ACTIONS.KCAL,
     })
 
-    const buttonsRef = useRef<HTMLDivElement>(null)
-
     let rank = 0
     return (
         <>
@@ -105,10 +100,7 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                         })}
                     </tbody>
                 </table>
-                <div
-                    ref={buttonsRef}
-                    className={s.tableButtons + " tableButtons"}
-                >
+                <div className={s.tableButtons + " tableButtons"}>
                     <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
                         <AiOutlineThunderbolt />
                     </button>

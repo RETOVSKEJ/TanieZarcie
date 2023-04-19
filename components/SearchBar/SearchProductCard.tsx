@@ -12,7 +12,7 @@ type ProductCardProps = {
     children?: React.ReactNode
 }
 
-export default function ProductCard({
+export default function SearchProductCard({
     product,
     setFocus,
     children,

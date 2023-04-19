@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import s from "./ProductCard.module.css"
-import {Food} from "@/types/types"
+import {Zestaw} from "@/types/types"
 
-export default function ProductCard({product}: {product: Food}) {
+export default function ZestawCard({product}: {product: Zestaw}) {
     return (
         <Link href={product.slug} className={s.zestaw}>
             <div className={s.left}>
@@ -20,17 +20,16 @@ export default function ProductCard({product}: {product: Food}) {
                 </div>
                 <div className={s.leftLower}>
                     <p>
-                        Kcal: <span>{product.wo.kcalPorcja} </span>
+                        Kcal: <span>{product.kcal} </span>
                     </p>
                     <p>
-                        Białko: <span>{product.wo.bialkoPorcja} g</span>
+                        Białko: <span>{product.bialko} g</span>
                     </p>
                     <p>
-                        Węglowodany:{" "}
-                        <span>{product.wo.weglowodanyPorcja} g</span>
+                        Węglowodany: <span>{product.weglowodany} g</span>
                     </p>
                     <p>
-                        Tłuszcze: <span>{product.wo.tluszczePorcja} g</span>
+                        Tłuszcze: <span>{product.tluszcze} g</span>
                     </p>
                 </div>
             </div>

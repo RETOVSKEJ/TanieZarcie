@@ -32,8 +32,8 @@ export default function HeroZestaw({
             <div className={s.image_wrapper}>
                 <Image
                     src="/test.avif"
-                    width={400}
-                    height={400}
+                    width={350}
+                    height={350}
                     alt={product.name}
                 />
                 <strong
@@ -56,31 +56,48 @@ export default function HeroZestaw({
             <div className={s.product}>
                 <div className={s.wartosciOdzywcze}>
                     <h2 className={s.spaceDown}>Tabela wartości odżywczych:</h2>
-                    <p>
-                        Kcal:<span>{product.kcal}</span>
-                    </p>
-                    <p>
-                        Białko:<span>{product.bialko + " g"}</span>
-                    </p>
-                    <p>
-                        Węglowodany:<span>{product.weglowodany + " g"}</span>
-                    </p>
-                    <p>
-                        w tym cukry:<span>{product.cukry + " g"}</span>
-                    </p>
-                    <p>
-                        Tłuszcze: <span>{product.tluszcze + " g"}</span>
-                    </p>
-                    <p>
-                        w tym tłuszcze nasycone:
-                        <span>{product.tluszczeNasycone + " g"}</span>
-                    </p>
-                    <p>
-                        Błonnik:<span>{product.blonnik + " g"}</span>
-                    </p>
-                    <p>
-                        Sól:<span>{product.sol + " g"}</span>
-                    </p>
+                    <div className={s.flex}>
+                        <p>
+                            Kcal:<span>{product.kcal}</span>
+                        </p>
+                        <p>
+                            Białko:<span>{product.bialko}g</span>
+                        </p>
+                        <p>
+                            Węglowodany:<span>{product.weglowodany}g</span>
+                        </p>
+                        <p>
+                            <span
+                                style={{
+                                    fontWeight: 700,
+                                    fontSize: "14px",
+                                }}
+                            >
+                                w tym cukry:
+                            </span>
+                            <span>{product.cukry}g</span>
+                        </p>
+                        <p>
+                            Tłuszcze: <span>{product.tluszcze}g</span>
+                        </p>
+                        <p>
+                            <span
+                                style={{
+                                    fontWeight: 700,
+                                    fontSize: "14px",
+                                }}
+                            >
+                                w tym kwasy tłuszczowe nasycone:
+                            </span>
+                            <span>{product.tluszczeNasycone}g</span>
+                        </p>
+                        <p>
+                            Błonnik:<span>{product.blonnik}g</span>
+                        </p>
+                        <p>
+                            Sól:<span>{product.sol}g</span>
+                        </p>
+                    </div>
                 </div>
                 <HeroZestawRanks productRanks={productRanks} />
             </div>
@@ -108,24 +125,26 @@ export function HeroZestawRanks({productRanks}: {productRanks: ZestawRanks}) {
                 <h2 className={s.spaceDown}>
                     Aktualne Miejsca w Zestawieniach:
                 </h2>
-                <strong>
-                    Ranking Cena:
-                    <span style={colorizeRank(productRanks.rankprice)}>
-                        {productRanks.rankprice}
-                    </span>
-                </strong>
-                <strong>
-                    Ranking Kcal:
-                    <span style={colorizeRank(productRanks.rankkcal)}>
-                        {productRanks.rankkcal}
-                    </span>
-                </strong>
-                <strong>
-                    Ranking Białko:
-                    <span style={colorizeRank(productRanks.rankbialko)}>
-                        {productRanks.rankbialko}
-                    </span>
-                </strong>
+                <div className={s.flex}>
+                    <strong>
+                        Ranking Cena:
+                        <span style={colorizeRank(productRanks.rankprice)}>
+                            {productRanks.rankprice}
+                        </span>
+                    </strong>
+                    <strong>
+                        Ranking Kcal:
+                        <span style={colorizeRank(productRanks.rankkcal)}>
+                            {productRanks.rankkcal}
+                        </span>
+                    </strong>
+                    <strong>
+                        Ranking Białko:
+                        <span style={colorizeRank(productRanks.rankbialko)}>
+                            {productRanks.rankbialko}
+                        </span>
+                    </strong>
+                </div>
             </div>
         </>
     )
