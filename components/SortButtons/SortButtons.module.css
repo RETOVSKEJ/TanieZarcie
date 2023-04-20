@@ -9,18 +9,50 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 36px;
-    width: 24px;
-    padding: 0.5rem 0.75rem;
+    width: 100%;
+    padding: 0.75rem 0.75rem;
     margin: 0;
-    box-sizing: content-box;
-    border-radius: 6px 0px 0px 0px;
+    border-radius: 8px 0px 0px 0px;
     border: none;
     box-shadow: inset 0 -7px 9px -7px rgba(0, 0, 0, 0.25);
+    transition: none;
+}
+
+.sortButtons button:hover {
+    filter: brightness(1.1);
+}
+
+.sortButtons svg {
+    width: 24px;
+    height: 24px;
 }
 
 
-.sortButtons svg {
-    width: 32px;
-    height: 32px;
+@media screen and (max-width: 600px) {
+    .sortButtons.sortButtons {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        bottom: 0;
+        left: 0;
+        height: var(--navbar-height-sm);
+        background-color: var(--primary);
+        width: 100%;
+        z-index: 1000;
+        margin-top: 4px;
+    }
+
+    .sortButtons button {
+        width: auto;
+        padding: 0.5rem 2rem;
+        height: 100%;
+        border-radius: 0 8px 0 8px;
+        filter: brightness(1.0) !important;
+        transition: var(--btn-transition) !important;
+    }
+
+    .sortButtons button:hover {
+        filter: brightness(1.15) !important;
+    }
 }

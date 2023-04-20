@@ -1,6 +1,4 @@
 import {Zestaw} from "../../../types/types"
-import Link from "next/link"
-import Image from "next/image"
 import s from "../list.module.css"
 import ZestawCard from "@/components/ProductCard/ZestawCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
@@ -15,34 +13,23 @@ async function getZestawy(sort: Sorter["sort"], order: Sorter["order"]) {
 }
 
 export default async function Foods({searchParams}) {
-    const initialData: Sorter = {
+    const initialSorterData: Omit<Sorter, "style"> = {
         sort: "KCAL",
         sortPath: "?sort=kcalPorcja&order=desc",
         order: "desc",
-        style: {
-            backgroundImage: "var(--btn-gradient)",
-            filter: "brightness(0.65)",
-        },
     }
 
     let {sort, order} = searchParams
-    sort ? sort : (sort = initialData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
-    order ? order : (order = initialData.order)
+    sort ? sort : (sort = initialSorterData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
+    order ? order : (order = initialSorterData.order)
     const zestawy = await getZestawy(sort, order)
     return (
         <div className={s.zestawyWrapper}>
             <div className={s.header}>
                 <h1 className={s.title}>Zestawy</h1>
                 <div>
-                    <strong
-                        style={{
-                            color: "var(--text-white)",
-                            marginRight: "0.75rem",
-                        }}
-                    >
-                        Sortowanie:
-                    </strong>
-                    <SortButtons initialData={initialData} />
+                    <strong className={s.sorting}>Sortowanie:</strong>
+                    <SortButtons initialData={initialSorterData} />
                 </div>
             </div>
             <div className={s.list}>

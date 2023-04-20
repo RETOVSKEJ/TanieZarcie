@@ -13,19 +13,15 @@ async function getFoods(sort: Sorter["sort"], order: Sorter["order"]) {
 }
 
 export default async function Foods({searchParams}) {
-    const initialData: Sorter = {
+    const initialSorterData: Omit<Sorter, "style"> = {
         sort: "KCAL",
         sortPath: "?sort=kcalPorcja&order=desc",
         order: "desc",
-        style: {
-            backgroundImage: "var(--btn-gradient)",
-            filter: "brightness(0.65)",
-        },
     }
 
     let {sort, order} = searchParams
-    sort ? sort : (sort = initialData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
-    order ? order : (order = initialData.order)
+    sort ? sort : (sort = initialSorterData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
+    order ? order : (order = initialSorterData.order)
     const foods = await getFoods(sort, order)
 
     return (
@@ -38,10 +34,11 @@ export default async function Foods({searchParams}) {
                             color: "var(--text-white)",
                             marginRight: "0.75rem",
                         }}
+                        className={s.sorting}
                     >
                         Sortowanie:
                     </strong>
-                    <SortButtons initialData={initialData} />
+                    <SortButtons initialData={initialSorterData} />
                 </div>
             </div>
             <div className={s.list}>

@@ -1,5 +1,27 @@
 TODO o 23:
+-Carousela pojedynczego produktu (przyciemnienia po bokach, przyciski na telefonie - moze poczytac o jakics right/left swapach na mobilki)
+-(ssg) strona about us i inne
+-wyrownanie tabeli na głownej, ujednolicić przyciski do sortowania
+-loadingi i suspensy
 -FALLBACKI pod safari i te wszystkie dvh itp
+-accesibility, metatagi
+
+-REST API AUTH -> NEXT AUTH
+
+-Baza:
+
+-DODAC INFO czy PRODUKT JEST ZESTAWEM/FOODEM/NAPOJEM
+-dodac jeszcze jakies produkty i zestawy
+    drwala i chickenboxy
+-poprawic price powiekszonych zestawów
+-sprawdzic price jakji jest rzeczywiscie w maku
+-ToFixed(2)  ---> skrócic liczbe cyfr po przecinku do max 2 w każdyc wartosciach odzywczych itp
+
+-na PRZYSZŁOSC:
+-filter do 20zł do 40zł
+-z czego skłądaja sie dane zestawy, np:  frytki, cola, itp
+-komponowanie zestawów z produktów i liczenie kalorii
+-zgłos błąd strona, donate strona, reklamy
 
 PO POWROCIE:
 -zdecydowac nad ogolnym wygladlem zestawow itp
@@ -15,6 +37,7 @@ TODO:
 
 
 BUGI:
+-Hover na sortButtons móglby być, ale jest tam wiele problemów zwiazanych z inline stylami itp.
 -next.js bug z loading.tsx, który wyłacza media query i meta tagi
 -about us przy zwijaniu sie brzydko przerzuca (overflow-wrap)
 -tabela overflowuje sie
@@ -80,11 +103,3 @@ STyling:
 -SUSPENSE
 -Hover-tracking, rozjasnienie napisu w miejscu hovera
 
--Baza:
-
--DODAC INFO czy PRODUKT JEST ZESTAWEM/FOODEM/NAPOJEM
--dodac jeszcze jakies produkty i zestawy
-    drwala i chickenboxy
--poprawic price powiekszonych zestawów
--sprawdzic price jakji jest rzeczywiscie w maku
--ToFixed(2)  ---> skrócic liczbe cyfr po przecinku do max 2 w każdyc wartosciach odzywczych itp

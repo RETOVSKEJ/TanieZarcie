@@ -4,14 +4,14 @@ import Image from "next/image"
 import Link from "next/link"
 import {Food, Zestaw} from "../../types/types"
 import s from "./Table.module.css"
-import {Suspense, useEffect, useState, useRef, useReducer} from "react"
-import {TbMeat, TbBrandCashapp, TbChevronRight} from "react-icons/tb"
-import {AiOutlineThunderbolt} from "react-icons/ai"
+import {Suspense, useState, useReducer, useEffect} from "react"
+import {TbMeat, TbBrandCashapp, TbChevronRight, TbBolt} from "react-icons/tb"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
+import {SorterChoices} from "../SortButtons/SortTypes"
 
 // function reducer(state, action) {
 //     switch (action.type) {
-//         case "BIALKO":
+//         case "BIALKODESC":
 //             return action.payload
 //         default:
 //             return state
@@ -19,9 +19,13 @@ import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
 // }
 
 const ACTIONS = {
-    KCAL: "Kcal",
-    BIALKO: "Bialko",
-    PRICE: "Price",
+    initial: "initial",
+    KCALDESC: "KCALDESC",
+    KCALASC: "KCALASC",
+    BIALKODESC: "BIALKODESC",
+    BIALKOASC: "BIALKOASC",
+    PRICEASC: "PRICEASC",
+    PRICEDESC: "PRICEDESC",
 }
 
 type ActionType = {
@@ -34,39 +38,96 @@ type StateType = {
     activeSort: string
 }
 
+const inActiveStyle = {
+    backgroundImage: "var(--btn-gradient)",
+    opacity: 0.7,
+    transition: "none",
+}
+const activeStyleRed = {
+    backgroundImage: "var(--btn-gradient-red)",
+    opacity: 1,
+    transition: "none",
+}
+const activeStyleGreen = {
+    backgroundImage: "var(--btn-gradient-green)",
+    opacity: 1,
+    transition: "none",
+}
+
 function reducer(prevState: StateType, action: ActionType): StateType {
     let newState: typeof prevState
     switch (action.type) {
-        case ACTIONS.KCAL:
+        case ACTIONS.initial:
             newState = {
                 data: [...prevState.data].sort((a, b) => b.kcal - a.kcal),
-                activeSort: ACTIONS.KCAL,
+                activeSort: ACTIONS.initial,
             }
             return newState
-        case ACTIONS.BIALKO:
+        case ACTIONS.KCALDESC:
+            newState = {
+                data: [...prevState.data].sort((a, b) => b.kcal - a.kcal),
+                activeSort: ACTIONS.KCALDESC,
+            }
+            return newState
+        case ACTIONS.KCALASC:
+            newState = {
+                data: [...prevState.data].sort((a, b) => a.kcal - b.kcal),
+                activeSort: ACTIONS.KCALASC,
+            }
+            return newState
+        case ACTIONS.BIALKODESC:
             newState = {
                 data: [...prevState.data].sort((a, b) => b.bialko - a.bialko),
-                activeSort: ACTIONS.BIALKO,
+                activeSort: ACTIONS.BIALKODESC,
             }
             return newState
-        case ACTIONS.PRICE:
+        case ACTIONS.BIALKOASC:
+            newState = {
+                data: [...prevState.data].sort((a, b) => a.bialko - b.bialko),
+                activeSort: ACTIONS.BIALKOASC,
+            }
+            return newState
+        case ACTIONS.PRICEASC:
             newState = {
                 data: [...prevState.data].sort((a, b) => a.price - b.price),
-                activeSort: ACTIONS.PRICE,
+                activeSort: ACTIONS.PRICEASC,
             }
             return newState
-
+        case ACTIONS.PRICEDESC:
+            newState = {
+                data: [...prevState.data].sort((a, b) => b.price - a.price),
+                activeSort: ACTIONS.PRICEDESC,
+            }
+            return newState
         default:
             return prevState
     }
 }
 
 export default function Table({initialData}: {initialData: Zestaw[]}) {
-    const notInitialRender = useRef(false)
     const [{data, activeSort}, dispatch] = useReducer(reducer, {
         data: initialData,
-        activeSort: ACTIONS.KCAL,
+        activeSort: ACTIONS.initial,
     })
+    const [initialRender, setInitialRender] = useState(true)
+
+    useEffectAfterMount(() => {
+        setInitialRender(false)
+    }, [activeSort])
+
+    function styleButton(currentChoice: SorterChoices) {
+        if (initialRender) {
+            // DEFAULT STYLING ON FIRST ENTRY
+            return inActiveStyle
+        }
+        if (activeSort.includes(currentChoice)) {
+            // STYLING ON ACTIVE SORT
+            if (activeSort.includes("DESC")) return activeStyleGreen
+            if (activeSort.includes("ASC")) return activeStyleRed
+        }
+        // STYLING ON INACTIVE SORT
+        return inActiveStyle
+    }
 
     let rank = 0
     return (
@@ -101,14 +162,35 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                     </tbody>
                 </table>
                 <div className={s.tableButtons + " tableButtons"}>
-                    <button onClick={() => dispatch({type: ACTIONS.KCAL})}>
-                        <AiOutlineThunderbolt />
-                    </button>
-                    <button onClick={() => dispatch({type: ACTIONS.BIALKO})}>
-                        <TbMeat />
-                    </button>
-                    <button onClick={() => dispatch({type: ACTIONS.PRICE})}>
+                    <button
+                        onClick={() =>
+                            activeSort == ACTIONS.PRICEDESC
+                                ? dispatch({type: ACTIONS.PRICEASC})
+                                : dispatch({type: ACTIONS.PRICEDESC})
+                        }
+                        style={styleButton("PRICE")}
+                    >
                         <TbBrandCashapp />
+                    </button>
+                    <button
+                        onClick={() =>
+                            activeSort == ACTIONS.KCALDESC
+                                ? dispatch({type: ACTIONS.KCALASC})
+                                : dispatch({type: ACTIONS.KCALDESC})
+                        }
+                        style={styleButton("KCAL")}
+                    >
+                        <TbBolt />
+                    </button>
+                    <button
+                        onClick={() =>
+                            activeSort == ACTIONS.BIALKODESC
+                                ? dispatch({type: ACTIONS.BIALKOASC})
+                                : dispatch({type: ACTIONS.BIALKODESC})
+                        }
+                        style={styleButton("BIALKO")}
+                    >
+                        <TbMeat />
                     </button>
                 </div>
             </div>
@@ -128,12 +210,17 @@ export function TableRow({
     const FontWeightStyle = {
         FontWeightKcal: {
             fontWeight:
-                activeSort === ACTIONS.KCAL || activeSort === ""
+                activeSort === ACTIONS.KCALDESC ||
+                activeSort === ACTIONS.KCALASC
                     ? "700"
                     : "400",
         },
         FontWeightBialko: {
-            fontWeight: activeSort === ACTIONS.BIALKO ? "700" : "400",
+            fontWeight:
+                activeSort === ACTIONS.BIALKODESC ||
+                activeSort === ACTIONS.BIALKOASC
+                    ? "700"
+                    : "400",
         },
     }
 

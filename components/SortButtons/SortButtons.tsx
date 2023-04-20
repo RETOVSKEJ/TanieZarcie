@@ -1,12 +1,13 @@
 "use client"
 import s from "./SortButtons.module.css"
-import {useReducer} from "react"
+import {useReducer, useState} from "react"
 import {usePathname, useRouter} from "next/navigation"
 import {TbMeat, TbBrandCashapp, TbBolt} from "react-icons/tb"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
 import {Sorter, SorterChoices} from "./SortTypes"
 
 export const ACTIONS = {
+    initial: "",
     PRICEASC: "?sort=price&order=asc",
     PRICEDESC: "?sort=price&order=desc",
     KCALASC: "?sort=kcalPorcja&order=asc",
@@ -17,6 +18,16 @@ export const ACTIONS = {
 
 function reducer(prevState: Sorter, action: {type: string}): Sorter {
     switch (action.type) {
+        case ACTIONS.initial:
+            return {
+                order: "asc",
+                sort: "PRICE",
+                sortPath: ACTIONS.PRICEASC,
+                style: {
+                    backgroundImage: "var(--btn-gradient-red)",
+                    filter: "none",
+                },
+            }
         case ACTIONS.PRICEASC:
             return {
                 order: "asc",
@@ -82,25 +93,39 @@ function reducer(prevState: Sorter, action: {type: string}): Sorter {
     }
 }
 
-export default function SortButtons({initialData}: {initialData: Sorter}) {
-    const [{sort, sortPath, order, style}, dispatch] = useReducer(
-        reducer,
-        initialData
-    )
+export default function SortButtons({
+    initialData,
+}: {
+    initialData: Omit<Sorter, "style">
+}) {
+    const [{sort, sortPath, order, style}, dispatch] = useReducer(reducer, {
+        ...initialData,
+        style: {},
+    })
+    const [initialRender, setInitialRender] = useState(true)
     const path = usePathname()
     const router = useRouter()
 
     useEffectAfterMount(() => {
         router.replace(path + sortPath)
-        console.log(path + sortPath)
+        setInitialRender(false)
     }, [sortPath])
 
     function styleButton(currentChoice: SorterChoices) {
-        if (sort == currentChoice) return style
-        return {
-            // DEFAULT STYLING (FOR OFF BUTTONS)
-            backgroundImage: "var(--btn-gradient)",
-            filter: "brightness(0.65)",
+        if (initialRender)
+            return {
+                backgroundImage: "var(--btn-gradient)",
+                opacity: 0.65,
+                transition: "none",
+            }
+        else {
+            if (sort == currentChoice) return style
+            return {
+                // DEFAULT STYLING (FOR OFF BUTTONS)
+                backgroundImage: "var(--btn-gradient)",
+                opacity: 0.65,
+                transition: "none",
+            }
         }
     }
 
@@ -108,6 +133,11 @@ export default function SortButtons({initialData}: {initialData: Sorter}) {
         // INTERPOLACJA STRINGOW NA PROPERTY (ACTIONS.PRICEDESC) + pod ifem wartosci są specjalnie zamienione miejscami!
         // (ev) nie istotny, to dla callbacku w OnClicku!
         return (ev) => {
+            if (sortChoice == "KCAL" && initialRender) {
+                dispatch({type: ACTIONS.KCALDESC})
+                setInitialRender(false)
+                return
+            }
             if (sort == sortChoice) {
                 order == "asc"
                     ? dispatch({type: ACTIONS[sortChoice + "DESC"]})

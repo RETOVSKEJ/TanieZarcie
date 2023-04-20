@@ -13,19 +13,15 @@ async function getNapoje(sort: Sorter["sort"], order: Sorter["order"]) {
 }
 
 export default async function Napoje({searchParams}) {
-    const initialData: Sorter = {
+    const initialSorterData: Omit<Sorter, "style"> = {
         sort: "PRICE",
         sortPath: "?sort=price&order=asc",
         order: "asc",
-        style: {
-            backgroundImage: "var(--btn-gradient)",
-            filter: "brightness(0.65)",
-        },
     }
 
     let {sort, order} = searchParams
-    sort ? sort : (sort = initialData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
-    order ? order : (order = initialData.order)
+    sort ? sort : (sort = initialSorterData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
+    order ? order : (order = initialSorterData.order)
     const napoje = await getNapoje(sort, order)
 
     return (
@@ -38,10 +34,11 @@ export default async function Napoje({searchParams}) {
                             color: "var(--text-white)",
                             marginRight: "0.75rem",
                         }}
+                        className={s.sorting}
                     >
                         Sortowanie:
                     </strong>
-                    <SortButtons initialData={initialData} />
+                    <SortButtons initialData={initialSorterData} />
                 </div>
             </div>
             <div className={s.list}>

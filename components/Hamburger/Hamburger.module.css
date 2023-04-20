@@ -10,6 +10,7 @@
 @media screen and (max-width: 600px) {
 
     .hamburger {
+        pointer-events: auto;
         display: block;
         z-index: -1;
     }
@@ -27,7 +28,12 @@
         background-image: var(--btn-gradient);
         box-shadow: var(--btn-shadow);
         z-index: 51;
+        transition: filter 300ms ease;
         /* inline-flex do buttona */
+    }
+
+    .hamburger label:hover {
+        filter: brightness(1.15)
     }
 
     .hamburger label span {
