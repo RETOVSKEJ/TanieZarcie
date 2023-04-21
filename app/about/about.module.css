@@ -1,0 +1,30 @@
+.page {
+    color: var(--text-white);
+}
+
+.header {
+    margin-block: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.content {
+    margin: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+    .page {
+        grid-area: none;
+    }
+
+    .header {
+        width: 100%;
+        margin-block: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .content {
+        margin: 1rem;
+    }
+}
