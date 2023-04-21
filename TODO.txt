@@ -1,10 +1,40 @@
+Architektura pojedynczego produktu:
+-Context lub RSC wrapper zestawów i buttona.  Nasze Fetche mozemy robic wewnatrz głownego page tsc
+
+
+Carousel:
+-powinna byc pod swapowanie na telefonach i pod przyciski na wiekszych ekranach
+	(moze sprawdzanie user-agent zamiast wielkosci ekranu)
+-powinna dodawac anchory do html wraz z kazdym kolejnym swapem i zapisywac historie poprzednich
+	-prawdopodobnie intersection observer do fetchowania kolejnych zestawow
+-na wejściu powinno fetchować jeden lub dwa dodatkowe zestawy
+
+
+-swap na tel nie polega na przesuwanie css przyciskami! tak jak przy hamburgerze!
+-swap na tel to zwykły scroll wraz ze scroll-snap-align lub czyms takim
+
+pobieram pierwszy jakis zestaw, a reszta po rankingu ceny onClick albo intersection ( w przyszlosci jako lazy loading) 
+
+
+
 TODO o 23:
 -Carousela pojedynczego produktu (przyciemnienia po bokach, przyciski na telefonie - moze poczytac o jakics right/left swapach na mobilki)
 -(ssg) strona about us i inne
 -wyrownanie tabeli na głownej, ujednolicić przyciski do sortowania
--loadingi i suspensy
+-loadingi i suspensy (next/dynamic czyli lazy loading na CAROUSELE liste zestawy itp)
 -FALLBACKI pod safari i te wszystkie dvh itp
--accesibility, metatagi
+
+https://nextjs.org/docs/advanced-features/security-headers
+
+	@supports (scroll-snap-type) {    ->  sprawdzic te @supports
+  .slider > a {
+    display: none;
+  }
+}
+
+
+-accesibility, metatagi, tooltipy
+
 
 -REST API AUTH -> NEXT AUTH
 

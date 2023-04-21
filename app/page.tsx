@@ -9,8 +9,6 @@ import s from "./page.module.css"
 
 // type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
 
-// `http://localhost:3000/api/ranking/top10?orderby=${orderby}`
-
 async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
     const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
     const data: Zestaw[] = await res.json()

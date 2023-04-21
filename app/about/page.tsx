@@ -1,19 +1,18 @@
-"use client"
-
-import {Singleton} from "@/lib/data"
-
-import {useState} from "react"
 // import TestComponent from "../../components/testComponent"
 import dynamic from "next/dynamic"
 // const TestComponent = dynamic(() => import("../../components/testComponent"))
+import s from "./about.module.css"
 
 export default function About() {
-    const [test, setTest] = useState(false)
-    console.log(Singleton.test)
     return (
-        <div>
-            <h1>About</h1>
-            <p>This is the about page</p>
+        <div className={s.page}>
+            <div className={s.header}>
+                <h1 style={{marginInline: "auto"}}>About us</h1>
+            </div>
+            <hr></hr>
+            <div className={s.content}>
+                <p>This is the about page</p>
+            </div>
         </div>
     )
 }
