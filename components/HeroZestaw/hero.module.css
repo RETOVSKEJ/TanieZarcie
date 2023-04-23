@@ -1,7 +1,8 @@
 .hero {
     position: sticky;
     inset: 0;
-    padding: clamp(1rem, 2vw, 3rem);
+    padding-inline: clamp(1rem, 2vw, 3rem);
+    padding-block: 1rem;
     width: min-content;
     gap: 0.5rem;
     margin-block: auto;
@@ -83,9 +84,46 @@
     gap: 0.25rem;
 }
 
+@media (max-width: 1000px) {
+
+    .hero img {
+        width: 300px;
+        height: 300px;
+    }
+
+}
+
 @media (max-width: 600px) {
     .hero {
         flex-direction: column;
         gap: 1rem;
+        padding-top: 0;
+    }
+
+    .hero img {
+        width: 300px;
+        height: 300px;
+    }
+
+}
+
+@media (max-width: 600px) and (max-height: 750px) {
+    .hero {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 0;
+    }
+
+    .product {
+        gap: 0.75rem;
+    }
+
+    .hero img {
+        width: 290px;
+        height: 290px;
+    }
+
+    .spaceDown {
+        display: none;
     }
 }

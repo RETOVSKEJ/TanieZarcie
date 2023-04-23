@@ -150,7 +150,7 @@
 
     .search:hover input,
     .search:focus-within input {
-        max-width: 100% - 1rem;
+        max-width: calc(100% - 1rem);
     }
 }
 

@@ -55,26 +55,14 @@ export default function HeroZestaw({
                             Węglowodany:<span>{product.weglowodany}g</span>
                         </p>
                         <p>
-                            <span
-                                style={{
-                                    fontWeight: 700,
-                                    fontSize: "14px",
-                                }}
-                            >
-                                w tym cukry:
-                            </span>
+                            <span style={{}}>w tym cukry:</span>
                             <span>{product.cukry}g</span>
                         </p>
                         <p>
                             Tłuszcze: <span>{product.tluszcze}g</span>
                         </p>
                         <p>
-                            <span
-                                style={{
-                                    fontWeight: 700,
-                                    fontSize: "14px",
-                                }}
-                            >
+                            <span style={{}}>
                                 w tym kwasy tłuszczowe nasycone:
                             </span>
                             <span>{product.tluszczeNasycone}g</span>

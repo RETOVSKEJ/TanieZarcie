@@ -1,3 +1,20 @@
+TODO:
+-przerobic na array memooized na SET
+- JAK WYKORZYSTAC router.push lub Link lub anchory wraz z # sections ?
+- moze dodac state currentHref?
+- PREV na initial wejsciu wywala ERROR, to samo jak przekrocze indexy
+
+-moze caly ten button wlozyc w useState? i generowac od nowa przy kazdym renderze, z gotowymi hrefami?
+            <div className={s.swipeButtons}>
+                <a
+                    href={`#${products[currentIndex - 1].slug}`}
+                    className={`${s.swipeButton} ${s.swipeButtonLeft}`}
+                    onPointerDown={handlePrev}
+                >
+                    Prev
+                </a>
+
+
 Architektura pojedynczego produktu:
 -Context lub RSC wrapper zestawów i buttona.  Nasze Fetche mozemy robic wewnatrz głownego page tsc
 
@@ -9,6 +26,9 @@ Carousel:
 	-prawdopodobnie intersection observer do fetchowania kolejnych zestawow
 -na wejściu powinno fetchować jeden lub dwa dodatkowe zestawy
 
+-renderowac 3, zmieniac to przy state (samo sie bedzie aktualizowac)
+-w momencie przejscia, robivc po prostu dodatkowo router-replace
+-obierac sie na anchorach z fragmentami
 
 -swap na tel nie polega na przesuwanie css przyciskami! tak jak przy hamburgerze!
 -swap na tel to zwykły scroll wraz ze scroll-snap-align lub czyms takim
@@ -24,6 +44,7 @@ TODO o 23:
 -loadingi i suspensy (next/dynamic czyli lazy loading na CAROUSELE liste zestawy itp)
 -FALLBACKI pod safari i te wszystkie dvh itp
 
+-CORS / security / rate limiting !
 https://nextjs.org/docs/advanced-features/security-headers
 
 	@supports (scroll-snap-type) {    ->  sprawdzic te @supports
@@ -32,8 +53,11 @@ https://nextjs.org/docs/advanced-features/security-headers
   }
 }
 
+-accesibility, metatagi, tooltipy  -> 
+https://www.youtube.com/watch?v=kRoDYkCxIqE&ab_channel=Joshtriedcoding
+ -wystarczy wrzucic statyczne zdjecie w route, które będzie naszym open:graph imagem
+ -mozna zadeklarowac funkcje sitemap() ktora wygeneruej statyczny html dla searchenginów
 
--accesibility, metatagi, tooltipy
 
 
 -REST API AUTH -> NEXT AUTH

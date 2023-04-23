@@ -1,5 +1,3 @@
-import Image from "next/image"
-import {Inter} from "next/font/google"
 import {FC, Suspense} from "react"
 import {Zestaw} from "@/types/types"
 import Table from "../components/Table/Table"
@@ -12,7 +10,7 @@ import s from "./page.module.css"
 async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
     const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
     const data: Zestaw[] = await res.json()
-    await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO do usunięcia, narazie
+    // await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO do usunięcia, narazie
     return data
 }
 

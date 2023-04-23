@@ -1,5 +1,16 @@
-.swipeButton {
+.swipeButtons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     position: absolute;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.swipeButton {
+    pointer-events: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,9 +37,86 @@
 
 .carousel {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: row;
     height: 100%;
-    gap: 100%;
+    width: auto;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel>div {
+    min-width: calc(100vw - var(--sidebar-width));
+    display: flex;
+    justify-content: center;
+    scroll-snap-align: center;
+}
+
+
+
+.current {}
+
+.initialButton {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 5%;
+    color: var(--text-white);
+    width: 100%;
+}
+
+.last {
+
+    /* 1/2 tego co gap */
+}
+
+.first {
+
+    /* 1/2 tego co gap */
+}
+
+.intitial {}
+
+@media screen and (max-width: 1000px) {
+    .swipeButton {
+        width: 10%;
+    }
+
+    .carousel>div {
+        min-width: calc(100vw - var(--sidebar-width-sm));
+        max-width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+    .carousel {
+        gap: 10%;
+    }
+
+    .carousel>div {
+        min-width: calc(100vw);
+        max-width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+    }
+
+    .swipeButtons {
+        height: var(--navbar-height-bottom);
+        background: var(--primary);
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-width: 600px) and (min-height: 800px) {
+    .carousel {
+        margin-top: 2rem;
+    }
 }

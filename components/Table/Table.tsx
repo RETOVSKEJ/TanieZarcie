@@ -233,7 +233,7 @@ export function TableRow({
                     width={64}
                     height={64}
                     alt="zdjecie żarcia"
-                ></Image>
+                />
                 <Link
                     href={product.slug}
                     className={s.tableRow__name + " tableRow__name"}

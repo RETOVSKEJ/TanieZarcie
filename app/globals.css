@@ -43,6 +43,10 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+.disable-scroll-behavior {
+  scroll-behavior: auto !important;
+  transition: none !important;
+}
 
 * {
   box-sizing: border-box;
