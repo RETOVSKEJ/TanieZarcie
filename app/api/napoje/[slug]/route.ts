@@ -2,16 +2,26 @@ import {NextResponse, NextRequest} from "next/server"
 import prisma from "../../../../prisma/client"
 
 export async function GET(req: NextRequest, {params}) {
-    let slug: string = params.slug.toLowerCase().replaceAll("-", " ")
-    const napoj = await prisma.food.findFirst({
+    const napoj = await prisma.food.findUnique({
         where: {
-            name: {
-                contains: slug,
-                mode: "insensitive",
+            slug: params.slug,
+        },
+        include: {
+            wo: {
+                select: {
+                    bialkoPorcja: true,
+                    kcalPorcja: true,
+                    tluszczePorcja: true,
+                    tluszczeNasyconePorcja: true,
+                    weglowodanyPorcja: true,
+                    cukryPorcja: true,
+                    blonnikPorcja: true,
+                    solPorcja: true,
+                },
             },
-            categoryId: 6,
         },
     })
+
     if (napoj == null) {
         return NextResponse.json(
             {error: "Napoj not Found"},

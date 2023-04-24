@@ -29,8 +29,8 @@ export default function Sidebar({inter}: {inter: NextFont}) {
             </li>
             <hr />
             <li>
-                <Link className="side-link" href="/food">
-                    Food
+                <Link className="side-link" href="/zarcie">
+                    Żarcie
                 </Link>
             </li>
             <hr />

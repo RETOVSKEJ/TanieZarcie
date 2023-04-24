@@ -1,0 +1,34 @@
+.navbarBottom {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .navbarBottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: var(--navbar-height-bottom);
+        background-color: var(--primary);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .navbarBottom button {
+        padding-inline: 2rem;
+        height: 100%;
+        border: none;
+        background-image: var(--btn-gradient);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        filter: grayscale(0.6);
+    }
+
+    .navbarBottom * svg {
+        height: 32px;
+        width: 32px;
+        color: var(--text-secondary);
+    }
+}

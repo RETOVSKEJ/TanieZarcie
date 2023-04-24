@@ -6,7 +6,7 @@ import {Sorter} from "@/components/SortButtons/SortTypes"
 
 async function getFoods(sort: Sorter["sort"], order: Sorter["order"]) {
     const res = await fetch(
-        `http://127.0.0.1:3000/api/food?sort=${sort}&order=${order}&q=1`
+        `http://127.0.0.1:3000/api/zarcie?sort=${sort}&order=${order}&q=1`
     )
     const data: Food[] = await res.json()
     return data
@@ -43,7 +43,11 @@ export default async function Foods({searchParams}) {
             </div>
             <div className={s.list}>
                 {foods.map((product) => (
-                    <ProductCard product={product} key={product.id} />
+                    <ProductCard
+                        product={product}
+                        key={product.id}
+                        type="zarcie"
+                    />
                 ))}
             </div>
         </div>

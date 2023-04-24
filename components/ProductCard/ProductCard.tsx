@@ -3,9 +3,19 @@ import Image from "next/image"
 import s from "./ProductCard.module.css"
 import {Food} from "@/types/types"
 
-export default function ProductCard({product}: {product: Food}) {
+export default function ProductCard({
+    product,
+    type,
+}: {
+    product: Food
+    type: "zarcie" | "napoj"
+}) {
+    let href
+    type === "zarcie"
+        ? (href = `zarcie/${product.slug}`)
+        : (href = `napoje/${product.slug}`)
     return (
-        <Link href={product.slug} className={s.zestaw}>
+        <Link href={href} className={s.zestaw}>
             <div className={s.left}>
                 <div>
                     <p className={s.zestawName}> {product.name}</p>

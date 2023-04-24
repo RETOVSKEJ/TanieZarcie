@@ -32,7 +32,7 @@
 .list {
     color: var(--text-white);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     gap: 2rem;
 
 }
@@ -50,6 +50,7 @@
         padding: 0.25rem 0.5rem;
     } */
     .list {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
         row-gap: 1.25rem;
     }
 }
@@ -61,7 +62,7 @@
 
     .list {
         gap: 1.25rem;
-        grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
     }
 
 }

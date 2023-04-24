@@ -40,16 +40,13 @@
     --table-border-width: 8px;
     position: relative;
     margin-left: auto;
-    /* border: var(--table-border-width) solid var(--primary); */
     background: linear-gradient(white, white) padding-box,
         linear-gradient(85deg, rgba(220, 190, 0, 1) 0%, rgba(245, 240, 0, 1) 30%, rgba(255, 255, 0, 1) 50%, rgba(245, 240, 0, 1) 70%, rgba(220, 200, 0, 1) 100%) border-box;
     border-radius: 50em;
     border: var(--table-border-width) solid transparent;
     padding: 1.25rem calc(var(--padding) - var(--goto-padding)) 1.25rem var(--padding);
     border-radius: 8px;
-    /* height: calc(100vh - var(--navbar-height)); */
     overflow-y: auto;
-    width: fit-content;
 }
 
 .table img {
@@ -66,12 +63,12 @@
     padding-block: 0.25rem;
 }
 
-.table th.hgoto {
-    /* visibility: hidden; */
-}
-
 .table td.dgoto {
     text-align: center;
+}
+
+.wOdz {
+    width: 107px;
 }
 
 .goto {
@@ -97,7 +94,6 @@
     padding-left: 1px;
 }
 
-.tableRow {}
 
 .table .rank {
     text-align: center;
@@ -108,6 +104,7 @@
     flex-direction: row;
     align-items: center;
     gap: 1.2vw;
+    width: calc(100% - 0.5rem);
 }
 
 
@@ -115,6 +112,9 @@
     opacity: 0.6;
 }
 
+.tableRow__wOdz {
+    text-align: center;
+}
 
 .tableButtons {
     /* margin-top: 20px;
@@ -204,3 +204,82 @@
 .goto {
     display: none;
 } */
+
+@media screen and (max-width: 1000px) {
+    .tableWrapper {
+        padding: 0;
+    }
+
+    .table {
+        padding: 1rem 1rem;
+    }
+
+    .theaders {
+        padding-inline: 0.25em;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .tableButtons.tableButtons {
+        /* increased specifity for media query bug */
+        position: fixed;
+        display: flex;
+        bottom: 0;
+        flex-direction: row;
+        justify-content: space-evenly;
+        background-color: var(--primary);
+        width: 100vw;
+        height: var(--navbar-height-bottom);
+    }
+
+    .tableButtons>button {
+        padding-inline: 2rem;
+        filter: brightness(1) !important;
+    }
+
+    .tableWrapper {
+        padding: 0;
+    }
+
+    .tableRow__zestaw {
+        width: calc(100% - 0.25rem);
+    }
+
+    .wOdz {
+        width: min-content;
+    }
+
+    .tableRow__wOdz {
+        font-size: 13px;
+    }
+
+    /* CONTENT */
+
+    .table {
+        padding: 0.5rem 0.5rem;
+    }
+
+    .table .hrank {
+        font-size: 0px;
+    }
+
+    .table .hrank::after {
+        content: "#";
+        font-size: 14px;
+    }
+
+    .tableRow__name {
+        font-size: 13px;
+    }
+
+    .table .hgoto {}
+
+    .table .dgoto {}
+
+    .goto {
+        /* vertical-align: middle;
+        padding-inline: 0;
+        text-align: center; */
+    }
+}

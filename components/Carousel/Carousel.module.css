@@ -1,33 +1,87 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+}
+
+.pageWrapper button {
+    background-color: transparent;
+    color: var(--text-white);
+    border: 1px solid #666;
+    filter: opacity(0.5);
+    transition: filter 0.2s ease;
+}
+
+.pageWrapper button:hover {
+    filter: opacity(0.75);
+}
+
+.pageWrapper button:active {
+    filter: opacity(0.85);
+}
+
+.modeButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    width: 100%;
+    margin-bottom: 2vh;
+    gap: 0.5rem;
+}
+
+.modeButtons button {
+    padding: 0.75rem;
+    font-weight: 700;
+    width: 280px;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    color: #808080;
+    border: 1px solid #444;
+}
+
+.modeButtons svg {
+    width: 30px;
+    height: 30px;
+}
+
+.initialButton.initialButton {
+    /* CENTRE SVG */
+    padding-top: 0.9rem;
+    padding-bottom: 0.6rem;
+}
+
 .swipeButtons {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     position: absolute;
     z-index: 15;
     pointer-events: none;
-    border: none;
-    background-image: none;
 }
+
+.swipeButtons svg {
+    width: 50px;
+    height: 100px;
+}
+
 
 .swipeButton {
     pointer-events: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    color: var(--text-white);
-    width: 15%;
-    filter: opacity(0.5);
-    transition: filter 0.2s ease;
-}
-
-.swipeButton:hover {
-    filter: opacity(1)
+    height: 15%;
+    width: 10%;
+    background-image: none;
 }
 
 .swipeButtonRight {
+    border-right: none;
     right: 0;
     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.9), transparent);
 }
@@ -38,6 +92,7 @@
 }
 
 .carousel {
+    margin-top: 2rem;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -54,16 +109,11 @@
     scroll-snap-align: center;
 }
 
-
-
-.initialButton {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 5%;
-    color: var(--text-white);
-    width: 100%;
+.carousel::-webkit-scrollbar {
+    appearance: none;
+    display: none;
 }
+
 
 .last {
 
@@ -75,16 +125,14 @@
     /* 1/2 tego co gap */
 }
 
-.intitial {}
 
 @media screen and (max-width: 1000px) {
     .swipeButton {
-        width: 10%;
+        width: 8%;
     }
 
     .carousel>div {
-        min-width: calc(100vw - var(--sidebar-width-sm));
-        max-width: calc(100vw - var(--sidebar-width));
+        min-width: 100vw;
         display: flex;
         justify-content: center;
     }
@@ -94,13 +142,26 @@
 
 
 @media screen and (max-width: 600px) {
+    .pageWrapper {
+        height: calc(100vh - var(--navbar-height-bottom));
+        height: calc(100dvh - var(--navbar-height-bottom));
+        justify-content: center;
+    }
+
     .carousel {
-        gap: 10%;
+        overflow: auto !important;
+        margin-top: 0;
+        align-items: normal;
+        height: auto;
+        touch-action: none;
+    }
+
+    .modeButtons {
+        display: none;
     }
 
     .carousel>div {
-        min-width: calc(100vw);
-        max-width: calc(100vw - var(--sidebar-width));
+        min-width: 100vw;
         display: flex;
         justify-content: center;
     }
@@ -108,15 +169,44 @@
     .swipeButtons {
         height: var(--navbar-height-bottom);
         background: var(--primary);
-        display: flex;
+        display: flex !important;
         flex-direction: row;
+        justify-content: space-evenly;
         position: fixed;
         bottom: 0;
     }
+
+    .swipeButton {
+        width: 25%;
+        height: 100%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        filter: opacity(1);
+        color: var(--text-secondary);
+        background-image: var(--btn-gradient);
+    }
+
+    .swipeButton svg {
+        height: 32px;
+        width: 32px;
+    }
+
+    .initialButton {
+        display: block !important;
+        padding: 0.75em;
+    }
 }
 
-@media screen and (max-width: 600px) and (min-height: 800px) {
+@media screen and (max-width: 600px) and (min-height: 750px) {}
+
+@media screen and (max-height: 750px) {
+    .modeButtons {
+        margin-bottom: 0;
+    }
+
     .carousel {
-        margin-top: 2rem;
+        margin-top: 0;
     }
 }

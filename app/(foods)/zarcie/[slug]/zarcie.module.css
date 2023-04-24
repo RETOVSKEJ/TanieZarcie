@@ -1,0 +1,16 @@
+.wrapper {
+    background-color: var(--text-secondary);
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 100dvh;
+    touch-action: none;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        height: calc(100vh - var(--navbar-height-bottom));
+        height: calc(100dvh - var(--navbar-height-bottom));
+    }
+}

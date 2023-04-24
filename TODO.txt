@@ -1,18 +1,14 @@
-TODO:
--przerobic na array memooized na SET
-- JAK WYKORZYSTAC router.push lub Link lub anchory wraz z # sections ?
-- moze dodac state currentHref?
-- PREV na initial wejsciu wywala ERROR, to samo jak przekrocze indexy
+WLACZYC JAKIEGOS AUTOPREFIXERA DLA CSS PRZED DEPLOYEM
 
--moze caly ten button wlozyc w useState? i generowac od nowa przy kazdym renderze, z gotowymi hrefami?
-            <div className={s.swipeButtons}>
-                <a
-                    href={`#${products[currentIndex - 1].slug}`}
-                    className={`${s.swipeButton} ${s.swipeButtonLeft}`}
-                    onPointerDown={handlePrev}
-                >
-                    Prev
-                </a>
+
+JUTRO:
+-szybko about / footer / poprawic heroZestaw CSS / zmiana nazw food / metatagi / drobne poprawki do bazy, zaokragloenia liczb / zdjecia / GOING IN PRODUCTION DEPLOY VERCEL
+-zaczac portfolio stronke SPA jakas prostą ze zdjeciem
+	-main page - zdjecie i cos o mnie
+	-skills/projekty
+	-expierence/wyksztalcenie
+	-contact
+
 
 
 Architektura pojedynczego produktu:

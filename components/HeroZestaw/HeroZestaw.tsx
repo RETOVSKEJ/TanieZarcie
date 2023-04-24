@@ -1,5 +1,6 @@
 import Image from "next/image"
-import {Zestaw, ZestawRanks} from "@/types/types"
+import {Food, Zestaw, ZestawRanks} from "@/types/types"
+import {isZestaw} from "@/types/typeGuards"
 import {Dancing_Script} from "next/font/google"
 import s from "./Hero.module.css"
 
@@ -12,25 +13,22 @@ export default function HeroZestaw({
     product,
     productRanks,
 }: {
-    product: Zestaw
-    productRanks: ZestawRanks
+    product: Zestaw | Food
+    productRanks?: ZestawRanks
 }) {
     return (
-        <div className={s.hero + " hero"}>
+        <div className={s.hero}>
             <div className={s.image_wrapper}>
                 <Image
                     src="/test.avif"
-                    width={350}
-                    height={350}
+                    width={330}
+                    height={330}
                     alt={product.name}
                 />
-                <strong
-                    style={{fontSize: 32}}
-                    className={dancingFont.className}
-                >
+                <strong className={`${dancingFont.className} ${s.name}`}>
                     {product.name}
                 </strong>
-                <p style={{marginTop: 8}}>
+                <p className={s.cena}>
                     Cena:
                     <span
                         style={{
@@ -44,38 +42,80 @@ export default function HeroZestaw({
             <div className={s.product}>
                 <div className={s.wartosciOdzywcze}>
                     <h2 className={s.spaceDown}>Tabela wartości odżywczych:</h2>
-                    <div className={s.flex}>
-                        <p>
-                            Kcal:<span>{product.kcal}</span>
-                        </p>
-                        <p>
-                            Białko:<span>{product.bialko}g</span>
-                        </p>
-                        <p>
-                            Węglowodany:<span>{product.weglowodany}g</span>
-                        </p>
-                        <p>
-                            <span style={{}}>w tym cukry:</span>
-                            <span>{product.cukry}g</span>
-                        </p>
-                        <p>
-                            Tłuszcze: <span>{product.tluszcze}g</span>
-                        </p>
-                        <p>
-                            <span style={{}}>
-                                w tym kwasy tłuszczowe nasycone:
-                            </span>
-                            <span>{product.tluszczeNasycone}g</span>
-                        </p>
-                        <p>
-                            Błonnik:<span>{product.blonnik}g</span>
-                        </p>
-                        <p>
-                            Sól:<span>{product.sol}g</span>
-                        </p>
-                    </div>
+                    {isZestaw(product) ? (
+                        <div className={s.flex}>
+                            <p>
+                                Kcal:<span>{product.kcal}</span>
+                            </p>
+                            <p>
+                                Białko(g):<span>{product.bialko}</span>
+                            </p>
+                            <p>
+                                Węglowodany(g):
+                                <span>{product.weglowodany}</span>
+                            </p>
+                            <p>
+                                <span>w tym cukry(g):</span>
+                                <span>{product.cukry}</span>
+                            </p>
+                            <p>
+                                Tłuszcze(g): <span>{product.tluszcze}</span>
+                            </p>
+                            <p>
+                                <span>w tym nasycone(g):</span>
+                                <span>{product.tluszczeNasycone}</span>
+                            </p>
+                            <p>
+                                Błonnik(g):<span>{product.blonnik}</span>
+                            </p>
+                            <p>
+                                Sól(g):<span>{product.sol}</span>
+                            </p>
+                        </div>
+                    ) : (
+                        <div
+                            style={{paddingInline: "0.75rem", gap: "0.5rem"}}
+                            className={s.flex}
+                        >
+                            <p>
+                                Kcal:<span>{product.wo?.kcalPorcja}</span>
+                            </p>
+                            <p>
+                                Białko(g):
+                                <span>{product.wo?.bialkoPorcja}</span>
+                            </p>
+                            <p>
+                                Węglowodany(g):
+                                <span>{product.wo?.weglowodanyPorcja}</span>
+                            </p>
+                            <p>
+                                <span>w tym cukry(g):</span>
+                                <span>{product.wo?.cukryPorcja}</span>
+                            </p>
+                            <p>
+                                Tłuszcze(g):
+                                <span>{product.wo?.tluszczePorcja}</span>
+                            </p>
+                            <p>
+                                <span>w tym nasycone(g):</span>
+                                <span>
+                                    {product.wo?.tluszczeNasyconePorcja}
+                                </span>
+                            </p>
+                            <p>
+                                Błonnik(g):
+                                <span>{product.wo?.blonnikPorcja}</span>
+                            </p>
+                            <p>
+                                Sól(g):<span>{product.wo?.solPorcja}</span>
+                            </p>
+                        </div>
+                    )}
                 </div>
-                <HeroZestawRanks productRanks={productRanks} />
+
+                {isZestaw(product) && productRanks ? (
+                    <HeroZestawRanks productRanks={productRanks} />
+                ) : null}
             </div>
         </div>
     )
@@ -99,27 +139,27 @@ export function HeroZestawRanks({productRanks}: {productRanks: ZestawRanks}) {
         <>
             <div className={s.ranks}>
                 <h2 className={s.spaceDown}>
-                    Aktualne Miejsca w Zestawieniach:
+                    Aktualne miejsca w zestawieniach:
                 </h2>
-                <div className={s.flex}>
-                    <strong>
-                        Ranking Cena:
+                <div className={s.flexRanks}>
+                    <p>
+                        <span>Ranking Ceny:</span>
                         <span style={colorizeRank(productRanks.rankprice)}>
                             {productRanks.rankprice}
                         </span>
-                    </strong>
-                    <strong>
-                        Ranking Kcal:
+                    </p>
+                    <p>
+                        <span>Ranking Kcal:</span>
                         <span style={colorizeRank(productRanks.rankkcal)}>
                             {productRanks.rankkcal}
                         </span>
-                    </strong>
-                    <strong>
-                        Ranking Białko:
+                    </p>
+                    <p>
+                        <span>Ranking Białko:</span>
                         <span style={colorizeRank(productRanks.rankbialko)}>
                             {productRanks.rankbialko}
                         </span>
-                    </strong>
+                    </p>
                 </div>
             </div>
         </>

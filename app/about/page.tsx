@@ -11,7 +11,10 @@ export default function About() {
             </div>
             <hr></hr>
             <div className={s.content}>
-                <p>This is the about page</p>
+                <h2>This is the about page</h2>
+            </div>
+            <div className={s.contact}>
+                <h2>Contact</h2>
             </div>
         </div>
     )

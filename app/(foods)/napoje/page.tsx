@@ -43,7 +43,11 @@ export default async function Napoje({searchParams}) {
             </div>
             <div className={s.list}>
                 {napoje.map((product) => (
-                    <ProductCard product={product} key={product.id} />
+                    <ProductCard
+                        product={product}
+                        key={product.id}
+                        type="napoj"
+                    />
                 ))}
             </div>
         </div>

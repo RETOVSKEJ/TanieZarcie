@@ -4,10 +4,13 @@ import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import {useState, useEffect, useRef} from "react"
 import s from "./Carousel.module.css"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
-
-function isZestaw(product: Zestaw | Food): product is Zestaw {
-    return (product as Zestaw).weglowodany !== undefined
-}
+import {
+    TbArrowBackUp,
+    TbCarouselHorizontal,
+    TbChevronLeft,
+    TbChevronRight,
+} from "react-icons/tb"
+import {MdViewCarousel, MdOutlineViewCarousel} from "react-icons/md"
 
 function createInitialDivs(products, productsRank, InitialIndex, LAST_ITEM) {
     let prevProduct, nextProduct, prevProductRank, nextProductRank
@@ -52,9 +55,9 @@ function createDiv(product, productsRank) {
     )
 }
 
-type Carouselable = {
-    id: number
-}
+// type Carouselable = {
+//     id: number
+// }
 
 export default function Carousel({
     products, // sorted by name asc
@@ -68,19 +71,14 @@ export default function Carousel({
     max: number
 }) {
     const LAST_ITEM = max - 1
-    const GAP = 500
-    const translate = 500 // -500 lub 500 (wszystkie beda sie na siebie nakładać z position absolute / fixed)
-    // DECYDOWAC O TRANSLATE BEDZIEMY POPRZEZ SPRAWDZANIE
-    // CZY INIIAL INDEX JEST > OD currentIndex, czy < od currentIndex
-    // jesli current jest wiekszy od initial, to ponizej curent sa .prev
-    // jesli current jest mniejszy od initial, to powyzej current sa .next
-    // current to .current
-    // initial to .initial  ->  dla powrotu do initial
     const [currentIndex, setCurrentIndex] = useState<number>(initialIndex)
     const [lastClicked, setLastClicked] = useState<"prev" | "next" | "">("")
     const [divs, setDivs] = useState<JSX.Element[]>(() =>
         createInitialDivs(products, productsRank, initialIndex, LAST_ITEM)
     )
+    const [carouselOn, setCarouselOn] = useState<boolean>(false)
+    const [touchStart, setTouchStart] = useState<number>(0)
+    const [touchEnd, setTouchEnd] = useState<number>(0)
     const carouselRef = useRef<HTMLDivElement>(null)
     const initialRef = useRef<HTMLDivElement>(null)
     const currentRef = useRef<HTMLDivElement>(null)
@@ -101,7 +99,11 @@ export default function Carousel({
     }
 
     useEffect(() => {
+        document.body.style.overflowY = "hidden"
         currentRef.current?.scrollIntoView({behavior: "auto", inline: "center"})
+        return () => {
+            document.body.style.overflowY = "auto"
+        }
     }, [])
 
     useEffect(() => {
@@ -132,7 +134,6 @@ export default function Carousel({
                     !currentRef.current?.previousSibling &&
                     carouselRef.current?.children.length === LAST_ITEM
                 ) {
-                    console.log("NIE MA")
                     return currentRef.current?.scrollIntoView({
                         behavior: "auto",
                         inline: "center",
@@ -148,7 +149,6 @@ export default function Carousel({
                     !currentRef.current?.nextSibling &&
                     carouselRef.current?.children.length === LAST_ITEM
                 ) {
-                    console.log("NIE MA")
                     return currentRef.current?.scrollIntoView({
                         behavior: "auto",
                         inline: "center",
@@ -181,34 +181,31 @@ export default function Carousel({
         setCurrentIndex((prev) => prev - 1)
     }
 
-    return (
-        <>
-            <div className={s.swipeButtons}>
-                <button
-                    className={`${s.swipeButton} ${s.swipeButtonLeft}`}
-                    onClick={handlePrev}
-                >
-                    Prev
-                </button>
-                <button
-                    className={`${s.swipeButton} ${s.swipeButtonRight}`}
-                    onClick={handleNext}
-                >
-                    Next
-                </button>
-            </div>
+    function handleTouchEnd() {
+        if (touchStart && touchEnd) {
+            if (touchStart - touchEnd > 60) {
+                setTouchStart(0)
+                setTouchEnd(0)
+                handleNext()
+            } else if (touchStart - touchEnd < -60) {
+                setTouchStart(0)
+                setTouchEnd(0)
+                handlePrev()
+            }
+        }
+    }
 
-            <button
-                onClick={() => {
-                    setCurrentIndex(initialIndex)
-                    initialRef.current?.scrollIntoView()
-                }}
-                className={s.initialButton}
+    return (
+        <div className={s.pageWrapper}>
+            <div
+                onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
+                onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+                onTouchEnd={handleTouchEnd}
+                className={s.carousel}
+                ref={carouselRef}
+                style={{overflow: carouselOn ? "auto" : "hidden"}}
             >
-                Revert to Initial
-            </button>
-            <div className={s.carousel} ref={carouselRef}>
-                {divs.map((div, index) => {
+                {divs.map((div) => {
                     // ISTOTNA JEST TUTAJ KOLEJNOSC IFOW:  current jest wazniejszy od initial
                     // ISTOTNE SA TEZ KEY -> MUSZA BYC UNIKALNE ZAROWNO TUTAJ JAK I  INITIAL DIVS
                     if (div.props.id == currentHref) {
@@ -240,7 +237,61 @@ export default function Carousel({
                     )
                 })}
             </div>
-        </>
+
+            <div
+                className={s.swipeButtons}
+                style={{display: carouselOn ? "flex" : "none"}}
+            >
+                <button
+                    className={`${s.swipeButton} ${s.swipeButtonLeft}`}
+                    onClick={handlePrev}
+                >
+                    <TbChevronLeft />
+                </button>
+                <button
+                    onClick={() => {
+                        setCurrentIndex(initialIndex)
+                        initialRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                            inline: "center",
+                        })
+                    }}
+                    style={{display: "none"}}
+                    className={`${s.swipeButton} ${s.initialButton}`}
+                >
+                    <TbArrowBackUp />
+                </button>
+                <button
+                    className={`${s.swipeButton} ${s.swipeButtonRight}`}
+                    onClick={handleNext}
+                >
+                    <TbChevronRight />
+                </button>
+            </div>
+
+            <div className={s.modeButtons}>
+                <button onClick={() => setCarouselOn((prev) => !prev)}>
+                    {carouselOn ? (
+                        <MdOutlineViewCarousel />
+                    ) : (
+                        <MdViewCarousel />
+                    )}
+                </button>
+                <button
+                    onClick={() => {
+                        setCurrentIndex(initialIndex)
+                        initialRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                            inline: "center",
+                        })
+                    }}
+                    style={{display: carouselOn ? "block" : "none"}}
+                    className={s.initialButton}
+                >
+                    <TbArrowBackUp />
+                </button>
+            </div>
+        </div>
     )
 }
 // DOMYŚLNIE:

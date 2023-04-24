@@ -132,14 +132,14 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
     let rank = 0
     return (
         <>
-            <div className={s.tableWrapper + " tableWrapper"}>
-                <table className={s.table + " table"}>
+            <div className={s.tableWrapper}>
+                <table className={s.table}>
                     <tbody className={s.tbody}>
                         <tr className={s.theaders}>
-                            <th className={s.hrank + " hrank"}>Rank</th>
+                            <th className={s.hrank}>Rank</th>
                             <th>Zestaw</th>
-                            <th>W. Odż.</th>
-                            <th className={s.hgoto + " hgoto"}>Więcej</th>
+                            <th className={s.wOdz}>W. Odż.</th>
+                            <th className={s.hgoto}>Więcej</th>
                         </tr>
                         {data.map((elem: Zestaw | Food) => {
                             rank++
@@ -161,7 +161,7 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                         })}
                     </tbody>
                 </table>
-                <div className={s.tableButtons + " tableButtons"}>
+                <div className={s.tableButtons}>
                     <button
                         onClick={() =>
                             activeSort == ACTIONS.PRICEDESC
@@ -226,7 +226,7 @@ export function TableRow({
 
     return (
         <tr className={s.tableRow}>
-            <td className={s.rank + " rank"}>{rank}</td>
+            <td className={s.rank}>{rank}</td>
             <td className={s.tableRow__zestaw}>
                 <Image
                     src="/test.avif"
@@ -234,25 +234,22 @@ export function TableRow({
                     height={64}
                     alt="zdjecie żarcia"
                 />
-                <Link
-                    href={product.slug}
-                    className={s.tableRow__name + " tableRow__name"}
-                >
+                <Link href={product.slug} className={s.tableRow__name}>
                     {product.name}
                     <span className={s.price}>{product.price} zł</span>
                 </Link>
             </td>
-            <td>
+            <td className={s.tableRow__wOdz}>
                 <span style={FontWeightStyle.FontWeightKcal}>
-                    {product.kcal.toFixed(0)} kcal
+                    {product.kcal.toFixed(0)}kcal
                 </span>
                 /
                 <span style={FontWeightStyle.FontWeightBialko}>
-                    {product.bialko.toFixed(0)} g
+                    {product.bialko.toFixed(0)}g
                 </span>
             </td>
-            <td className={s.dgoto + " dgoto"}>
-                <Link href={product.slug} className={s.goto + " goto"}>
+            <td className={s.dgoto}>
+                <Link href={product.slug} className={s.goto}>
                     <TbChevronRight />
                 </Link>
             </td>

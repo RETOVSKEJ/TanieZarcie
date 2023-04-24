@@ -345,20 +345,6 @@ footer {
   .sidebar-container {
     padding: 0 1rem;
   }
-
-  .table-wrapper {
-    padding: 0;
-  }
-
-  .table {
-    padding: 1rem 1rem;
-  }
-
-  th {
-    padding-inline: 0.25em;
-    white-space: nowrap;
-  }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -454,55 +440,4 @@ footer {
     background-color: rgba(255, 255, 255, 0.15)
   }
 
-
-  .tableButtons {
-    position: fixed;
-    display: flex;
-    bottom: 0;
-    flex-direction: row;
-    justify-content: space-evenly;
-    background-color: var(--primary);
-    width: 100vw;
-    height: var(--navbar-height-bottom);
-  }
-
-  .tableButtons>button {
-    padding-inline: 2rem;
-    filter: brightness(1) !important;
-  }
-
-  .tableWrapper {
-    padding: 0;
-  }
-
-
-
-  /* CONTENT */
-
-  .table {
-    padding: 0.5rem 0.5rem;
-  }
-
-  .table .hrank {
-    font-size: 0px;
-  }
-
-  .table .hrank::after {
-    content: "#";
-    font-size: 14px;
-  }
-
-  .tableRow__name {
-    font-size: 13px;
-  }
-
-  .table .hgoto {}
-
-  .table .dgoto {}
-
-  .goto {
-    /* vertical-align: middle;
-    padding-inline: 0;
-    text-align: center; */
-  }
 }
