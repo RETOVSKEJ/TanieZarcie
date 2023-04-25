@@ -4,11 +4,18 @@ import s from "./NavbarBottom.module.css"
 import {useEffect} from "react"
 import {TbChevronLeft, TbArrowBackUp, TbChevronRight} from "react-icons/tb"
 
-export default function NavbarBottom() {
+export default function NavbarBottom({overflow}: {overflow?: boolean}) {
     useEffect(() => {
-        document.body.style.overflowY = "hidden"
-        return () => {
+        if (overflow) {
+            document.body.style.overflowY = "hidden"
+            return () => {
+                document.body.style.overflowY = ""
+            }
+        } else {
             document.body.style.overflowY = "auto"
+            return () => {
+                document.body.style.overflowY = ""
+            }
         }
     }, [])
 

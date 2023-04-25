@@ -6,7 +6,6 @@ export async function GET(req: NextRequest, {params}) {
     const zestaw_ranks = await prisma.$transaction(async () => {
         let ranksPrev, zestawPrev, ranksNext, zestawNext, limit: number
         limit = await prisma.rankingsmat.count()
-        console.log(limit, rank)
 
         if (rank >= 1) {
             ranksPrev = await prisma.rankingsmat.findFirst({
@@ -23,8 +22,6 @@ export async function GET(req: NextRequest, {params}) {
                 },
             })
         }
-
-        console.log(ranksPrev, zestawPrev)
 
         if (rank <= limit) {
             ranksNext = await prisma.rankingsmat.findFirst({

@@ -22,7 +22,6 @@ export default function InputCheckbox() {
 
     const clickDebounced = debounce((ev) => {
         if (ev.target.nodeName === "A") {
-            console.log(ev.target)
             return checkboxRef.current?.click()
         }
     }, 100)

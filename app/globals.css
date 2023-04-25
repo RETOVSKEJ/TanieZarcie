@@ -1,15 +1,15 @@
 :root {
-  --primary-light: rgb(250, 238, 0);
+  --bg: #292929;
   --primary: #FFD93D;
-  --primary-alpha: #FFD93D77;
-  --accent: #2A5B84;
   --text-primary: #111;
   --text-secondary: #333;
   --text-white: #eee;
-  --border: 1px solid #ccc;
 
+
+  --border: 1px solid #ccc;
   --radius: 8px;
 
+  --suspense-gradient: linear-gradient(80deg, rgb(56, 56, 56) 0%, rgb(83, 83, 83) 30%, rgb(70, 70, 70) 100%);
   --btn-gradient: linear-gradient(80deg, rgba(250, 210, 0, 1) 0%, rgba(253, 230, 0, 1) 40%, rgba(255, 255, 0, 1) 100%);
   --btn-gradient-hero: linear-gradient(90deg, rgba(235, 205, 0, 1) 0%, rgba(235, 230, 0, 1) 30%, rgba(235, 215, 0, 1) 100%);
   --btn-gradient-hero-sm: linear-gradient(90deg, rgba(235, 205, 0, 1) 0%, rgba(255, 238, 0, 1) 50%, rgba(235, 215, 0, 1) 100%);
@@ -349,18 +349,11 @@ footer {
 
 @media screen and (max-width: 600px) {
   body {
-    grid-template-columns: 1fr;
     /* zabiezpieczenie przed rozjezdzaniem sie ui */
-    grid-auto-columns: 0px;
-    grid-template-rows: minmax(calc(100vh - var(--navbar-height-bottom)), 1fr);
-    grid-template-areas:
-      "main";
+    display: block;
     padding: 0;
     font-size: 14px;
-    margin-bottom: var(--navbar-height-bottom);
   }
-
-
 
   .title {
     font-size: 2rem;

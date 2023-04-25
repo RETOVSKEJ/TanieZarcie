@@ -1,4 +1,4 @@
-import {FC, Suspense} from "react"
+import {Suspense} from "react"
 import {Zestaw} from "@/types/types"
 import Table from "../components/Table/Table"
 import Header from "../components/Header/Header"
@@ -6,6 +6,11 @@ import Spinner from "@/components/Spinner/Spinner"
 import s from "./page.module.css"
 
 // type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
+
+export const metadata = {
+    title: "Home | TanieZarcie",
+    description: "TanieZarcie.pl - najtansze zestawy mcDonalds",
+}
 
 async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
     const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
@@ -17,19 +22,19 @@ async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
 export default async function Home() {
     const ranking = await fetchAllZestawy()
 
+    // <div
+    //     style={{
+    //         marginBottom: "var(--navbar-height-bottom)",
+    //     }}
+    // >
+
     return (
         <>
             <Suspense fallback={<Spinner />}>
                 <Header />
             </Suspense>
             <Table initialData={ranking} />
-            <div
-                style={{
-                    marginLeft: "1.5rem",
-                    color: "var(--text-white)",
-                    marginBottom: "0.5rem",
-                }}
-            >
+            <div className={s.infoPyszne}>
                 <em>
                     * Ceny z portalu pyszne.pl, ostatnia aktualizacja cen:
                     14.04.2023

@@ -31,7 +31,6 @@ async function zestawySorterService(sortParam, orderParam) {
 
     if (sortParam == "kcalPorcja" || sortParam == "bialkoPorcja") {
         sort = sortParam.slice(0, -6)
-        console.log(sort)
     } else {
         sort = "price"
     }

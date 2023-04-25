@@ -35,7 +35,7 @@ export default function ZestawCard({product}: {product: Zestaw}) {
             </div>
             <div className={s.right}>
                 <Image
-                    src="/test.avif"
+                    src="/test.jpg"
                     width={150}
                     height={150}
                     alt={product.name}

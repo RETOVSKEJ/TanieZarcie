@@ -6,7 +6,6 @@ export async function GET(req: Request) {
     const {searchParams} = new URL(req.url)
     const sortParam: string | null = searchParams.get("sort")
     const orderParam: string | null = searchParams.get("order")
-    console.log("CONTROLLER", sortParam, orderParam)
 
     const foods = await foodSorterService(sortParam, orderParam)
 
@@ -31,7 +30,6 @@ async function foodSorterService(
 ) {
     // Musi być tak dziwnie kcalPorcja / bialkoPorcja  (prisma query)
     let sort: "kcalPorcja" | "bialkoPorcja" | "price" = "price"
-    console.log("SERVICE2", orderParam)
     let order: "desc" | "asc"
     if (orderParam == "desc") {
         order = "desc"
@@ -45,7 +43,6 @@ async function foodSorterService(
         : null
 
     const NAPOJE_CAT_ID = 6
-    console.log("SERVICE", order)
     if (sort === "price") {
         return await prisma.food.findMany({
             where: {

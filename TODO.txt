@@ -1,4 +1,15 @@
+ABOUT US
+LOADING / SUSPENSY
+METATAGI - szybka robota
 WLACZYC JAKIEGOS AUTOPREFIXERA DLA CSS PRZED DEPLOYEM
+DEPLOY
+
+DO CV:
+-zdjecie
+-HTML, CSS, SASS, JS, TypeScript, postgresql, mongodb, react, next.js 13, express, mongoose, prisma, vite, puppeteer, REST API, JWT, PostCSS, VSC, GIT,   :  python, vercel, railway, framer-motion, figma
+-chcialbym: svelte, django, playwright, test, figma
+-wyksztalcenie
+-moge znalezc stare cv na szybko i skopiowac cos
 
 
 JUTRO:
@@ -9,6 +20,15 @@ JUTRO:
 	-expierence/wyksztalcenie
 	-contact
 
+wartosci
+sweetSpicy burger 60
+sweetSpicy mcwrap 61
+
+Zestawy
+9 burger powiekszony
+10 mcwrap powiekszony
+26burger
+27mcwrap
 
 
 Architektura pojedynczego produktu:

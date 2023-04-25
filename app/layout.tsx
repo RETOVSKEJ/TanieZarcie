@@ -6,6 +6,7 @@ import logo from "../public/logo.svg"
 import SearchBar from "@/components/SearchBar/SearchBar"
 import Hamburger from "@/components/Hamburger/Hamburger"
 import Sidebar from "@/components/Sidebar/Sidebar"
+import Footer from "@/components/Footer/Footer"
 
 export const metadata = {
     title: "Create Next App",
@@ -55,7 +56,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                     <Sidebar inter={inter} />
                 </nav>
                 <main className="main">{children}</main>
-                <footer>test footer fooooter footer</footer>
+                <Footer />
             </body>
         </html>
     )

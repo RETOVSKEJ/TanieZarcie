@@ -4,10 +4,10 @@ SUM("WartosciOdzywcze"."kcalPorcja") as kcal,
 SUM("WartosciOdzywcze"."bialkoPorcja") as bialko,
 SUM("WartosciOdzywcze"."tluszczePorcja") as tluszcze,
 SUM("WartosciOdzywcze"."tluszczeNasyconePorcja") as "tluszczeNasycone",
-SUM("WartosciOdzywcze"."weglowodanyPorcja") as weglowodany,
-SUM("WartosciOdzywcze"."cukryPorcja") as cukry,
-SUM("WartosciOdzywcze"."blonnikPorcja") as blonnik,
-SUM("WartosciOdzywcze"."solPorcja") as sol
+CAST(ROUND(SUM("WartosciOdzywcze"."weglowodanyPorcja")::numeric, 1) as double precision) as weglowodany,
+CAST(ROUND(SUM("WartosciOdzywcze"."cukryPorcja")::numeric, 1) as double precision) as cukry,
+CAST(ROUND(SUM("WartosciOdzywcze"."blonnikPorcja")::numeric, 2) as double precision) as blonnik,
+CAST(ROUND(SUM("WartosciOdzywcze"."solPorcja")::numeric, 2) as double precision) as sol
 from "Zestawy"
 JOIN "_FoodToZestawy" on "_FoodToZestawy"."B" = "Zestawy".id
 JOIN "Food" on "_FoodToZestawy"."A" = "Food".id
@@ -155,3 +155,20 @@ WHERE table_name = 'Food' AND column_name = 'id';
 select * from "_FoodToZestawy"
 select * from "Zestawy"
 select * from "Food"
+
+update "Zestawy" 
+set name = CONCAT(name, ' Powiększony'),
+	slug = CONCAT(slug, '-powiekszony')
+where id BETWEEN 18 and 35
+
+update "Zestawy" 
+set name = REPLACE(name, 'Powiększony', 'x'),
+	slug = REPLACE(slug, 'powiekszony', 'x')
+where id < 18;
+
+update "Zestawy" 
+set name = REPLACE(name, ' x', ''),
+	slug = REPLACE(slug, '-x', '')
+where id < 18;
+
+

@@ -4,6 +4,11 @@ import ProductCard from "@/components/ProductCard/ProductCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
 import {Sorter} from "@/components/SortButtons/SortTypes"
 
+export const metadata = {
+    title: "Zarcie | TanieZarcie",
+    description: "TanieZarcie.pl - katalog z Żarciem",
+}
+
 async function getFoods(sort: Sorter["sort"], order: Sorter["order"]) {
     const res = await fetch(
         `http://127.0.0.1:3000/api/zarcie?sort=${sort}&order=${order}&q=1`

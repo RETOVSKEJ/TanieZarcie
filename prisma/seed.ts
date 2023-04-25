@@ -1,6 +1,30 @@
 import prisma from "./client"
 import fs from "fs"
-import kategorie from "../lib/kategorie2023-03-27.json"
+
+async function seed() {
+    // id 1-34 - srednie
+    // id 35-68 duze
+    // id 69-74 - male happy meal
+    // id 75-84 - male 2 for u
+    // id 85-94 - srednie 2foru
+    // cola/marcheweczki - parzyste
+    // frytki - nieparzyste
+    // frytki duze 49, srednie 50, male 51
+    // cola mala 97, 98, 99, zero 100
+    // marcheweczkie 54, jabluszka 55, kubus mus 56
+    // nugets 43, 44, 45, 46  (4,6,9,20)
+    // BRAKUJE : mcdouble, supreme chicken, chickenbox
+
+    await connectMany([9, 26], 60)
+}
+
+seed()
+    .catch((e) => {
+        console.error(e.message)
+    })
+    .finally(async () => {
+        return await prisma.$disconnect()
+    })
 
 // {
 //     id: 1,
@@ -146,22 +170,25 @@ async function connectMany(idArrZestaw: number[], idProd: number) {
                 in: idArrZestaw,
             },
         },
+        include: {
+            foods: true,
+        },
     })
-    await prisma.$transaction(async () => {
-        return items.map(async (elem) => {
-            await prisma.zestawy.update({
-                where: {
-                    id: elem.id,
-                },
-                data: {
-                    foods: {
-                        connect: {id: idProd},
-                    },
-                },
-            })
-        })
-    })
-    console.log(items)
+    // await prisma.$transaction(async () => {
+    //     return items.map(async (elem) => {
+    //         await prisma.zestawy.update({
+    //             where: {
+    //                 id: elem.id,
+    //             },
+    //             data: {
+    //                 foods: {
+    //                     connect: {id: idProd},
+    //                 },
+    //             },
+    //         })
+    //     })
+    // })
+    console.log(items[0].foods)
 }
 
 async function groupByKcal() {
@@ -190,53 +217,6 @@ async function groupByKcal() {
 //         name: {},
 //     },
 // })
-
-async function seed() {
-    // id 1-34 - srednie
-    // id 35-68 duze
-    // id 69-74 - male happy meal
-    // id 75-84 - male 2 for u
-    // id 85-94 - srednie 2foru
-    // cola/marcheweczki - parzyste
-    // frytki - nieparzyste
-    // frytki duze 49, srednie 50, male 51
-    // cola mala 97, 98, 99, zero 100
-    // marcheweczkie 54, jabluszka 55, kubus mus 56
-    // nugets 43, 44, 45, 46  (4,6,9,20)
-    // BRAKUJE : mcdouble, supreme chicken, chickenbox
-
-    const test = await prisma.food.findMany({
-        where: {id: 1},
-        include: {
-            wo: {
-                select: {
-                    bialkoPorcja: true,
-                    kcalPorcja: true,
-                    tluszczePorcja: true,
-                    weglowodanyPorcja: true,
-                    cukryPorcja: true,
-                },
-            },
-        },
-    })
-    // const test2 = await prisma.zestawy.create({
-    //     data: {
-
-    //         id: 153151,
-    //         name: "test",
-    //         price: 0,
-    //     },
-    // })
-    console.log(test)
-}
-
-seed()
-    .catch((e) => {
-        console.error(e.message)
-    })
-    .finally(async () => {
-        return await prisma.$disconnect()
-    })
 
 ////
 

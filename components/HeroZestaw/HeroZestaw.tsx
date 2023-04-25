@@ -20,7 +20,7 @@ export default function HeroZestaw({
         <div className={s.hero}>
             <div className={s.image_wrapper}>
                 <Image
-                    src="/test.avif"
+                    src="/test.jpg"
                     width={330}
                     height={330}
                     alt={product.name}

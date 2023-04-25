@@ -4,6 +4,11 @@ import ZestawCard from "@/components/ProductCard/ZestawCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
 import {Sorter} from "@/components/SortButtons/SortTypes"
 
+export const metadata = {
+    title: "Zestawy | TanieZarcie",
+    description: "TanieZarcie.pl - katalog z Zestawami",
+}
+
 async function getZestawy(sort: Sorter["sort"], order: Sorter["order"]) {
     const res = await fetch(
         `http://127.0.0.1:3000/api/zestawywo?sort=${sort}&order=${order}`

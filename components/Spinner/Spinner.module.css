@@ -1,10 +1,12 @@
 /* SPINNER LOADING */
 
 .spinner {
-    display: inline-block;
-    position: relative;
-    width: 100vw;
-    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 45%;
+    width: 100%;
+    background-color: var(--bg);
     text-align: center;
 }
 
@@ -29,6 +31,12 @@
 
 .spinner div:nth-child(3) {
     animation-delay: -0.15s;
+}
+
+.phrases {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--text-white);
 }
 
 @keyframes spinner {

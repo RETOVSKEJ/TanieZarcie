@@ -1,20 +1,27 @@
 import React from "react"
+import s from "./zglosProblem.module.css"
 
-export default function page() {
+export default function ZnalazlesBlad() {
     return (
         <div>
             <h2>Znalazles bład na stronie?</h2>
-            <p>Podziel się!</p>
-            <form>
-                <label style={{display: "block"}} htmlFor="problem">
-                    Opisz problem:
+            <form className={s.form}>
+                <label
+                    style={{display: "block", marginTop: "1rem"}}
+                    htmlFor="problem"
+                >
+                    Podziel się nim z nami!
                 </label>
+                <input type="email" placeholder="Twoj e-mail (opcjonalnie)" />
                 <textarea
                     name="problem"
                     id="problem"
-                    cols={30}
-                    rows={10}
+                    className={s.textarea}
+                    placeholder="Opisz problem..."
                 ></textarea>
+                <button disabled className={s.submit} type="submit">
+                    Wyslij
+                </button>
             </form>
         </div>
     )

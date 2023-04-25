@@ -148,6 +148,25 @@
         justify-content: center;
     }
 
+    .pageWrapper button {
+        background-color: transparent;
+        background-image: var(--btn-gradient);
+        color: var(--text-secondary);
+        filter: opacity(0.9);
+        border: none;
+        transition: background-image 0.4s ease;
+    }
+
+    .pageWrapper button:active {
+        filter: opacity(1);
+        background-image: var(--btn-gradient-hover);
+    }
+
+    .initialButton.initialButton {
+        padding-top: 0.5rem;
+        padding-bottom: 0.9rem;
+    }
+
     .carousel {
         overflow: auto !important;
         margin-top: 0;

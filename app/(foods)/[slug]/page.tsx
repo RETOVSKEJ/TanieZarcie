@@ -3,6 +3,11 @@ import {Zestaw, ZestawRanks} from "@/types/types"
 import Carousel from "@/components/Carousel/Carousel"
 import {Sorter} from "@/components/SortButtons/SortTypes"
 
+export const metadata = {
+    title: "Zestaw | TanieZarcie",
+    description: "TanieZarcie.pl - Karuzela zestawow - Porównywarka cen",
+}
+
 async function getNextZestaw(rank: string) {
     const res = await fetch(
         `http://localhost:3000/api/zestawywo/ranking/${rank}`

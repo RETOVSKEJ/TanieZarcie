@@ -123,7 +123,6 @@ export default function Carousel({
         } else {
             setDivs((prev) => [...prev])
         }
-        console.log(MEMOIZED_INDEXES)
     }, [currentIndex])
 
     useEffect(() => {

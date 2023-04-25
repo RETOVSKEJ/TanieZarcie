@@ -28,7 +28,7 @@ export default function SearchProductCard({
         >
             <Image
                 alt={"Zdjecie produktu" + product.name}
-                src="/test.avif"
+                src="/test.jpg"
                 width={64}
                 height={64}
             />

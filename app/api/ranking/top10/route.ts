@@ -5,7 +5,6 @@ export async function GET(request: Request) {
     const {searchParams} = new URL(request.url)
     const orderBy = searchParams.get("orderby")
     const price = searchParams.get("price")
-    console.log(orderBy)
 
     /// KCAL IS the DEFAULT on main page
     if (orderBy?.match("kcal|bialko|price")) {

@@ -1,0 +1,15 @@
+.infoPyszne {
+    margin-left: 1.5rem;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+    padding-block: 0.5rem;
+
+}
+
+@media screen and (max-width: 600px) {
+    .infoPyszne {
+        padding-top: 0;
+        padding-bottom: 0.75rem;
+        margin-bottom: var(--navbar-height-bottom);
+    }
+}

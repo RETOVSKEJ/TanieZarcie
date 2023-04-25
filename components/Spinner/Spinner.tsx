@@ -9,7 +9,7 @@ export default function Spinner({children}: {children?: string}) {
                 <div></div>
                 <div></div>
             </div>
-            <strong>{children}</strong>
+            <p className={s.phrases}>{children}</p>
         </>
     )
 }

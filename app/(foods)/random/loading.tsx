@@ -9,5 +9,13 @@ const loadingPhrases = [
 
 export default function loading() {
     const randInt = Math.floor(Math.random() * loadingPhrases.length)
-    return <Spinner>{loadingPhrases[randInt]}</Spinner>
+    return (
+        <div
+            style={{
+                height: "100dvh",
+            }}
+        >
+            <Spinner>{loadingPhrases[randInt]}</Spinner>
+        </div>
+    )
 }

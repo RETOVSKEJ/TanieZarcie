@@ -229,7 +229,7 @@ export function TableRow({
             <td className={s.rank}>{rank}</td>
             <td className={s.tableRow__zestaw}>
                 <Image
-                    src="/test.avif"
+                    src="/test.jpg"
                     width={64}
                     height={64}
                     alt="zdjecie żarcia"
