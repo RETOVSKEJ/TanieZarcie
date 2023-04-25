@@ -141,7 +141,7 @@ export default function Table({initialData}: {initialData: Zestaw[]}) {
                             <th className={s.wOdz}>W. Odż.</th>
                             <th className={s.hgoto}>Więcej</th>
                         </tr>
-                        {data.map((elem: Zestaw | Food) => {
+                        {data.map((elem: Zestaw) => {
                             rank++
                             return (
                                 <Suspense

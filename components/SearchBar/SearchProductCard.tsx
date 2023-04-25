@@ -23,7 +23,7 @@ export default function SearchProductCard({
             href={product.slug}
             className={s.searchResult}
             onClick={() => {
-                setFocus(false)
+                setFocus ? setFocus(false) : null
             }}
         >
             <Image
