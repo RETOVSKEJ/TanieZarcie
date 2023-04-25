@@ -1,8 +1,7 @@
 "use client"
 
 import s from "./Header.module.css"
-import {useEffect, useState, useRef} from "react"
-import {Singleton} from "@/lib/data"
+import {useEffect, useState} from "react"
 
 export default function Header() {
     const headerTitle = "TanieZarcie.pl"
