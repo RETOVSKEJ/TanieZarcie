@@ -8,13 +8,13 @@ export const metadata = {
     description: "TanieZarcie.pl - Karuzela zestawow - Porównywarka cen",
 }
 
-async function getNextZestaw(rank: string) {
-    const res = await fetch(
-        `http://localhost:3000/api/zestawywo/ranking/${rank}`
-    )
-    const data: Zestaw = await res.json()
-    return data
-}
+// async function getNextZestaw(rank: string) {
+//     const res = await fetch(
+//         `http://localhost:3000/api/zestawywo/ranking/${rank}`
+//     )
+//     const data: Zestaw = await res.json()
+//     return data
+// }
 
 export default async function Page({params}) {
     let currIndex: number = 1
@@ -36,6 +36,7 @@ export default async function Page({params}) {
 
     if (product)
         currIndex = products.findIndex((elem) => product.slug === elem.slug)
+    else throw new Error("Ups! Niczego tu nie ma...")
 
     return (
         <Carousel
