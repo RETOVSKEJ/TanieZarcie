@@ -1,8 +1,6 @@
 import {NextResponse, NextRequest} from "next/server"
-import {headers} from "next/headers"
 import rateLimit from "@/utils/rate-limit"
 import log from "@/utils/log"
-import {LRUCache} from "lru-cache"
 
 export const config = {
     matcher: "/api/:path*", // regex, tylko dla sciezek zaczynajacych sie od /api
@@ -12,8 +10,6 @@ export const limiter = rateLimit({
     interval: 60 * 1000, // 60 seconds
     uniqueTokenPerInterval: 500, // Max 500 users per second
 })
-
-console.log("test")
 
 function noApiKey(req: NextRequest) {
     const {searchParams} = new URL(req.url)
