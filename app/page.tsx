@@ -5,8 +5,6 @@ import Header from "../components/Header/Header"
 import Spinner from "@/components/Spinner/Spinner"
 import s from "./page.module.css"
 
-// type ProductNoCurrent = Omit<Product, "current"> // TODO do przetestowania
-
 export const metadata = {
     title: "Home | TanieZarcie",
     description: "TanieZarcie.pl - najtansze zestawy mcDonalds",
@@ -17,18 +15,11 @@ async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
         `http://localhost:3000/api/zestawywo?KEY=${process.env.API_KEY}`
     )
     const data: Zestaw[] = await res.json()
-    // await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO do usunięcia, narazie
     return data
 }
 
 export default async function Home() {
     const ranking = await fetchAllZestawy()
-
-    // <div
-    //     style={{
-    //         marginBottom: "var(--navbar-height-bottom)",
-    //     }}
-    // >
 
     return (
         <>
@@ -45,15 +36,3 @@ export default async function Home() {
         </>
     )
 }
-
-// export function PriceButton() {
-//     // const [cena, setCena] = useState(20)
-//     const handleClick = () => {
-//         return getRanking("bialko")
-//     }
-//     return (
-//         <>
-//             <button onClick={}>Cena</button>
-//         </>
-//     )
-// }
