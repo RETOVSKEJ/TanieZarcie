@@ -11,7 +11,7 @@ export const metadata = {
 
 async function getZestawy(sort: Sorter["sort"], order: Sorter["order"]) {
     const res = await fetch(
-        `http://127.0.0.1:3000/api/zestawywo?sort=${sort}&order=${order}`
+        `${process.env.API_URL}/api/zestawywo?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
     )
     const data: Zestaw[] = await res.json()
     return data

@@ -1,7 +1,7 @@
 import {getZestawy, getZestawyRanks} from "@/utils/fetches"
-import {Zestaw, ZestawRanks} from "@/types/types"
+import type {Zestaw, ZestawRanks} from "@/types/types"
 import Carousel from "@/components/Carousel/Carousel"
-import {Sorter} from "@/components/SortButtons/SortTypes"
+import type {Sorter} from "@/components/SortButtons/SortTypes"
 
 export const metadata = {
     title: "Zestaw | TanieZarcie",
@@ -33,10 +33,11 @@ export default async function Page({params}) {
             (elem) => elem.zestawslug === params.slug
         )
     }
-
-    if (product)
+    if (product) {
         currIndex = products.findIndex((elem) => product.slug === elem.slug)
-    else throw new Error("Ups! Niczego tu nie ma...")
+    } else {
+        throw new Error("Ups! Niczego tu nie ma...")
+    }
 
     return (
         <Carousel

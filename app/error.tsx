@@ -20,7 +20,7 @@ export default function error({
                 color: "var(--text-white)",
             }}
         >
-            <h1>{error.message || "Wystąpił nieoczekiwany błąd"}</h1>
+            <h1>Wystąpił nieoczekiwany błąd</h1>
             <button onClick={reset}>Spróbuj jeszcze raz</button>
         </div>
     )

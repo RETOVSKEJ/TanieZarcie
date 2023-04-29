@@ -8,7 +8,9 @@ export const metadata = {
 }
 
 async function getFood(slug) {
-    const data = await fetch(`http://127.0.0.1:3000/api/zarcie/${slug}`)
+    const data = await fetch(
+        `${process.env.API_URL}/api/zarcie/${slug}?KEY=${process.env.API_KEY}`
+    )
     const food = await data.json()
     return food
 }

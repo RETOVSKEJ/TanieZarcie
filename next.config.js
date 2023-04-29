@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-const dns = require("dns")
-dns.setDefaultResultOrder("ipv4first")
+// const dns = require("dns")
+// dns.setDefaultResultOrder("ipv4first")
 
 const securityHeaders = [
     {
@@ -30,6 +30,10 @@ const nextConfig = {
     experimental: {
         appDir: true,
     },
+    env: {
+        API_URL: process.env.API_URL,
+        API_KEY: process.env.API_KEY,
+    },
     async headers() {
         return [
             {
@@ -42,3 +46,14 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+// FLOW:
+
+// 1.	headers from next.config.js
+// 2.	redirects from next.config.js
+// 3.	Middleware (rewrites, redirects, etc.)
+// 4.	beforeFiles (rewrites) from next.config.js
+// 5.	Filesystem routes (public/, _next/static/, Pages, etc.)
+// 6.	afterFiles (rewrites) from next.config.js
+// 7.	Dynamic Routes (/blog/[slug])
+// 8.	fallback (rewrites) from next.config.js

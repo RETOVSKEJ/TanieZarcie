@@ -13,7 +13,9 @@ export const metadata = {
 }
 
 async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
-    const res = await fetch(`http://127.0.0.1:3000/api/zestawywo`)
+    const res = await fetch(
+        `http://localhost:3000/api/zestawywo?KEY=${process.env.API_KEY}`
+    )
     const data: Zestaw[] = await res.json()
     // await new Promise((resolve) => setTimeout(resolve, 1000)) // TODO do usunięcia, narazie
     return data

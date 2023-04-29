@@ -11,7 +11,7 @@ export const metadata = {
 
 async function getFoods(sort: Sorter["sort"], order: Sorter["order"]) {
     const res = await fetch(
-        `http://127.0.0.1:3000/api/zarcie?sort=${sort}&order=${order}&q=1`
+        `${process.env.API_URL}/api/zarcie?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
     )
     const data: Food[] = await res.json()
     return data

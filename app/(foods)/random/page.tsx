@@ -12,9 +12,12 @@ export const metadata = {
 }
 
 async function getRandomZestaw() {
-    const res = await fetch("http://127.0.0.1:3000/api/random", {
-        cache: "no-store",
-    })
+    const res = await fetch(
+        `${process.env.API_URL}/api/random?KEY=${process.env.API_KEY}`,
+        {
+            cache: "no-store",
+        }
+    )
     const zestaw: Zestaw = await res.json()
     return zestaw
 }

@@ -1,7 +1,13 @@
 import {NextResponse} from "next/server"
 import prisma from "@/prisma/client"
+import {limiter} from "@/utils/rate-limit"
 
 export async function GET(request: Request) {
+    try {
+        await limiter.check(new NextResponse(), 3, "CACHE_TOKEN") // MAX RESPONSES per 30s
+    } catch (e) {
+        return NextResponse.json({error: "To many Requests"}, {status: 429})
+    }
     const {searchParams} = new URL(request.url)
     const orderBy = searchParams.get("orderby")
     const price = searchParams.get("price")

@@ -1,21 +1,15 @@
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import s from "./zarcie.module.css"
 import NavbarBottom from "@/components/NavbarBottom/NavbarBottom"
+import {getNapoje, getNapoj} from "@/utils/fetches"
 
 export const metadata = {
     title: "Napoj | TanieZarcie",
     description: "TanieZarcie.pl - Karta napoju, wartosci odzywcze, ceny",
 }
-async function getFood(slug) {
-    const data = await fetch(`http://127.0.0.1:3000/api/napoje/${slug}`)
-    const food = await data.json()
-    return food
-}
 
 export default async function page({params}) {
-    const product = await getFood(params.slug)
-    console.log(product)
-    console.log(params.slug)
+    const product = await getNapoj(params.slug)
     return (
         <div className={s.wrapper}>
             <HeroZestaw product={product} />
@@ -23,3 +17,8 @@ export default async function page({params}) {
         </div>
     )
 }
+
+// export async function generateStaticParams() {
+//     const napoje = await getNapoje("PRICE", "asc")
+//     return napoje.map((napoj) => ({slug: napoj.slug}))
+// }

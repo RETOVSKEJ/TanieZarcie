@@ -50,7 +50,7 @@ export default function SearchBar() {
 
     useEffectAfterMount(() => {
         ;(async () => {
-            const res = await fetch("/api/products")
+            const res = await fetch(`/api/products?k=${process.env.API_KEY}`)
             const data: (Food | Zestaw)[] = await res.json()
             setProducts(data)
         })()
