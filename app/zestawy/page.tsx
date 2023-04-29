@@ -1,4 +1,4 @@
-import {Zestaw} from "../../../types/types"
+import {Zestaw} from "@/types/types"
 import s from "../list.module.css"
 import ZestawCard from "@/components/ProductCard/ZestawCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
