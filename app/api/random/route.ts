@@ -1,6 +1,7 @@
 import {NextRequest, NextResponse} from "next/server"
 import prisma from "@/prisma/client"
 import {limiter} from "@/utils/rate-limit"
+import {getRandomZestaw} from "@/lib/prisma"
 
 export async function GET() {
     try {
@@ -8,12 +9,8 @@ export async function GET() {
     } catch (e) {
         return NextResponse.json({error: "To many Requests"}, {status: 429})
     }
-    const iloscZestawow: number = await prisma.zestawy.count()
-    const randInt = Math.floor(Math.random() * iloscZestawow)
-    const randomZestaw = await prisma.rankings.findFirst({
-        where: {},
-        skip: randInt,
-    })
+
+    const randomZestaw = await getRandomZestaw()
 
     if (!randomZestaw) {
         return NextResponse.json(
@@ -35,5 +32,6 @@ export async function GET() {
     }
     return NextResponse.json(randomZestaw, {
         status: 200,
+        headers: {"cache-control": "no-store"},
     })
 }

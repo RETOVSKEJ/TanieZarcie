@@ -1,33 +1,27 @@
-import {getZestawy, getZestawyRanks} from "@/utils/fetches"
 import type {Zestaw, ZestawRanks} from "@/types/types"
 import Carousel from "@/components/Carousel/Carousel"
-import type {Sorter} from "@/components/SortButtons/SortTypes"
+import {getZestawyRanks, getZestawySorted} from "@/lib/prisma"
 
 export const metadata = {
     title: "Zestaw | TanieZarcie",
     description: "TanieZarcie.pl - Karuzela zestawow - Porównywarka cen",
 }
 
-// async function getNextZestaw(rank: string) {
-//     const res = await fetch(
-//         `http://localhost:3000/api/zestawywo/ranking/${rank}`
-//     )
-//     const data: Zestaw = await res.json()
-//     return data
+// async function getData(): Promise<[number, Zestaw[], ZestawRanks[]]> {
+//     return [count, products, productsRank]
 // }
 
 export default async function Page({params}) {
     let currIndex: number = 1
     let product, productRank
-    const productsPromise = getZestawy()
-    const productsRankPromise = getZestawyRanks()
-    const [productsArr, productsRank] = await Promise.all([
-        productsPromise,
-        productsRankPromise,
+    const [productsArr, productsRanksArr] = await Promise.all([
+        getZestawySorted(),
+        getZestawyRanks(),
     ])
     const [count, products] = productsArr
+    const [count2, productsRank] = productsRanksArr
 
-    if (products) {
+    if (products && productsRank) {
         product = products.find((elem) => elem.slug === params.slug)
         productRank = productsRank.find(
             (elem) => elem.zestawslug === params.slug
@@ -47,4 +41,10 @@ export default async function Page({params}) {
             max={count}
         />
     )
+}
+
+export async function generateStaticParams() {
+    const [count, zestawy] = await getZestawySorted()
+    if (zestawy) return zestawy.map((zestaw) => ({slug: zestaw.slug}))
+    else throw new Error("Ups! Niczego tu nie ma...")
 }

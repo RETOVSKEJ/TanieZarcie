@@ -1,22 +1,15 @@
 import {NextResponse} from "next/server"
-import prisma from "@/prisma/client"
 import {limiter} from "@/utils/rate-limit"
+import {getZestawySorted} from "@/lib/prisma"
 
-export async function GET(req: Request) {
+export async function GET() {
     try {
-        await limiter.check(new NextResponse(), 40, "CACHE_TOKEN") // MAX RESPONSES per 30s
+        await limiter.check(new NextResponse(), 70, "CACHE_TOKEN") // MAX RESPONSES per 30s
     } catch (e) {
         return NextResponse.json({error: "To many Requests"}, {status: 429})
     }
     try {
-        const zestawy = await prisma.$transaction([
-            prisma.rankings.count(),
-            prisma.rankings.findMany({
-                orderBy: {
-                    name: "asc",
-                },
-            }),
-        ])
+        const zestawy = await getZestawySorted()
 
         if (!zestawy) {
             return NextResponse.json(

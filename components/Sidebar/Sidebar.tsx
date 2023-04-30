@@ -57,10 +57,10 @@ export default function Sidebar({inter}: {inter: NextFont}) {
                     <Link href="https://www.facebook.com/retovskej">
                         <BsFacebook className="fb" role="button" />
                     </Link>
-                    <Link href="https://www.facebook.com/retovskej">
+                    <Link href="https://www.instagram.com/retolicious">
                         <BsInstagram className="ig" role="button" />
                     </Link>
-                    <Link href="https://www.facebook.com/retovskej">
+                    <Link href="https://www.twitter.com/retovskej">
                         <BsTwitter className="tw" role="button" />
                     </Link>
                 </div>

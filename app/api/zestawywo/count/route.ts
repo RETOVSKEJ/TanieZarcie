@@ -2,7 +2,7 @@ import {NextRequest, NextResponse} from "next/server"
 import prisma from "@/prisma/client"
 import {limiter} from "@/utils/rate-limit"
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
         await limiter.check(new NextResponse(), 40, "CACHE_TOKEN") // MAX RESPONSES per 30s
     } catch (e) {

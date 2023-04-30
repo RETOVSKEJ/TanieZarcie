@@ -1,30 +1,41 @@
-import {Food} from "../../types/types"
+import {Food} from "@/types/types"
 import s from "../list.module.css"
 import ProductCard from "@/components/ProductCard/ProductCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
 import {Sorter} from "@/components/SortButtons/SortTypes"
-import {getNapoje} from "@/utils/fetches"
+import {GET as getZarcie} from "../../api/zarcie/route"
 
 export const metadata = {
-    title: "Napoje | TanieZarcie",
-    description: "TanieZarcie.pl - katalog z napojami",
+    title: "Zarcie | TanieZarcie",
+    description: "TanieZarcie.pl - katalog z Żarciem",
 }
 
-export default async function Napoje({searchParams}) {
+async function getData(sort: Sorter["sort"], order: Sorter["order"]) {
+    const res = await getZarcie(
+        new Request(
+            `${process.env.API_URL}/api/zarcie?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
+        )
+    )
+    const data: Food[] = await res.json()
+    return data
+}
+
+export default async function Zarcie({searchParams}) {
     const initialSorterData: Omit<Sorter, "style"> = {
-        sort: "PRICE",
-        sortPath: "?sort=price&order=asc",
-        order: "asc",
+        sort: "KCAL",
+        sortPath: "?sort=kcalPorcja&order=desc",
+        order: "desc",
     }
+
     let {sort, order} = searchParams
     sort ? sort : (sort = initialSorterData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
     order ? order : (order = initialSorterData.order)
-    const napoje = await getNapoje(sort, order)
+    const foods = await getData(sort, order)
 
     return (
         <div className={s.zestawyWrapper}>
             <div className={s.header}>
-                <h1 className={s.title}>Napoje</h1>
+                <h1 className={s.title}>Żarcie</h1>
                 <div>
                     <strong
                         style={{
@@ -39,11 +50,11 @@ export default async function Napoje({searchParams}) {
                 </div>
             </div>
             <div className={s.list}>
-                {napoje.map((product) => (
+                {foods.map((product) => (
                     <ProductCard
                         product={product}
                         key={product.id}
-                        type="napoj"
+                        type="zarcie"
                     />
                 ))}
             </div>

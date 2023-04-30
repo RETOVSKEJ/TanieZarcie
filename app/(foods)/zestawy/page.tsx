@@ -3,21 +3,24 @@ import s from "../list.module.css"
 import ZestawCard from "@/components/ProductCard/ZestawCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
 import {Sorter} from "@/components/SortButtons/SortTypes"
+import {GET as getZestawy} from "../../api/zestawywo/route"
 
 export const metadata = {
     title: "Zestawy | TanieZarcie",
     description: "TanieZarcie.pl - katalog z Zestawami",
 }
 
-async function getZestawy(sort: Sorter["sort"], order: Sorter["order"]) {
-    const res = await fetch(
-        `${process.env.API_URL}/api/zestawywo?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
+async function getData(sort: Sorter["sort"], order: Sorter["order"]) {
+    const res = await getZestawy(
+        new Request(
+            `${process.env.API_URL}/api/zestawywo?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
+        )
     )
     const data: Zestaw[] = await res.json()
     return data
 }
 
-export default async function Foods({searchParams}) {
+export default async function Page({searchParams}) {
     const initialSorterData: Omit<Sorter, "style"> = {
         sort: "KCAL",
         sortPath: "?sort=kcalPorcja&order=desc",
@@ -27,7 +30,7 @@ export default async function Foods({searchParams}) {
     let {sort, order} = searchParams
     sort ? sort : (sort = initialSorterData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
     order ? order : (order = initialSorterData.order)
-    const zestawy = await getZestawy(sort, order)
+    const zestawy = await getData(sort, order)
     return (
         <div className={s.zestawyWrapper}>
             <div className={s.header}>

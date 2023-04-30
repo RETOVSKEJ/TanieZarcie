@@ -1,9 +1,10 @@
 import {Zestaw} from "@/types/types"
-import {getZestawRanks} from "@/utils/fetches"
 import s from "./random.module.css"
 import NavbarBottom from "@/components/NavbarBottom/NavbarBottom"
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import Header from "@/components/Header/Header"
+import {GET as getRandomZestaw} from "../../api/random/route"
+import {GET as getZestawRanks} from "../../api/ranking/[slug]/route"
 
 export const metadata = {
     title: "Losowy Zestaw | TanieZarcie",
@@ -11,20 +12,22 @@ export const metadata = {
         "TanieZarcie.pl - Wylosuj swój darmowy zestaw! Cos dla niezdecydowanych",
 }
 
-async function getRandomZestaw() {
-    const res = await fetch(
-        `${process.env.API_URL}/api/random?KEY=${process.env.API_KEY}`,
-        {
-            cache: "no-store",
-        }
-    )
+async function getData(): Promise<Zestaw> {
+    const res = await getRandomZestaw()
     const zestaw: Zestaw = await res.json()
     return zestaw
 }
 
 export default async function Page() {
-    const zestaw = await getRandomZestaw()
-    const zestawRanks = await getZestawRanks(zestaw.slug)
+    const zestaw = await getData()
+    const zestawRanks = await (
+        await getZestawRanks(
+            new Request(
+                `${process.env.API_URL}/api/ranking/${zestaw.slug}&KEY=${process.env.API_KEY}`
+            ),
+            {params: {slug: zestaw.slug}}
+        )
+    ).json()
     return (
         <div style={{marginBottom: "var(--navbar-height-bottom)"}}>
             <Header />

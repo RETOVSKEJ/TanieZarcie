@@ -1,7 +1,7 @@
 import type {Zestaw, ZestawRanks, Food} from "@/types/types"
 import type {Sorter} from "@/components/SortButtons/SortTypes"
 
-export async function getNextZestaw(rank: string) {
+export async function fetchNextZestaw(rank: string) {
     const res = await fetch(
         `${process.env.API_URL}/api/zestawywo/ranking/${rank}?KEY=${process.env.API_KEY}`
     )
@@ -9,7 +9,7 @@ export async function getNextZestaw(rank: string) {
     return data
 }
 
-export async function getZestawy(): Promise<[number, Zestaw[]]> {
+export async function fetchZestawy(): Promise<[number, Zestaw[]]> {
     const res = await fetch(
         `${process.env.API_URL}/api/zestawywo/sorted?KEY=${process.env.API_KEY}`
     )
@@ -20,7 +20,7 @@ export async function getZestawy(): Promise<[number, Zestaw[]]> {
     return [count, data]
 }
 
-export async function getZestawyRanks() {
+export async function fetchZestawyRanks() {
     const res = await fetch(
         `${process.env.API_URL}/api/ranking/sorted?KEY=${process.env.API_KEY}`
     )
@@ -28,7 +28,7 @@ export async function getZestawyRanks() {
     return data
 }
 
-export async function getZestaw(slug): Promise<Zestaw> {
+export async function fetchZestaw(slug): Promise<Zestaw> {
     const res = await fetch(
         `${process.env.API_URL}/api/zestawywo/${slug}?KEY=${process.env.API_KEY}`
     )
@@ -36,7 +36,7 @@ export async function getZestaw(slug): Promise<Zestaw> {
     return data
 }
 
-export async function getZestawRanks(slug) {
+export async function fetchZestawRanks(slug) {
     const res = await fetch(
         `${process.env.API_URL}/api/ranking/${slug}?KEY=${process.env.API_KEY}`
     )
@@ -44,7 +44,7 @@ export async function getZestawRanks(slug) {
     return data
 }
 
-export async function getNapoj(slug) {
+export async function fetchNapoj(slug) {
     const res = await fetch(
         `${process.env.API_URL}/api/napoje/${slug}?KEY=${process.env.API_KEY}`
     )
@@ -52,7 +52,10 @@ export async function getNapoj(slug) {
     return data
 }
 
-export async function getNapoje(sort: Sorter["sort"], order: Sorter["order"]) {
+export async function fetchNapoje(
+    sort: Sorter["sort"],
+    order: Sorter["order"]
+) {
     const res = await fetch(
         `${process.env.API_URL}/api/napoje?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
     )

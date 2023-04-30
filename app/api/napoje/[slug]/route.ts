@@ -1,32 +1,15 @@
-import {NextResponse, NextRequest} from "next/server"
-import prisma from "@/prisma/client"
+import {NextResponse} from "next/server"
 import {limiter} from "@/utils/rate-limit"
+import {getNapoj} from "@/lib/prisma"
 
-export async function GET(req: NextRequest, {params}) {
+export async function GET(req: Request, {params}) {
     try {
         await limiter.check(new NextResponse(), 40, "CACHE_TOKEN") // MAX RESPONSES per 30s
     } catch (e) {
         return NextResponse.json({error: "To many Requests"}, {status: 429})
     }
-    const napoj = await prisma.food.findUnique({
-        where: {
-            slug: params.slug,
-        },
-        include: {
-            wo: {
-                select: {
-                    bialkoPorcja: true,
-                    kcalPorcja: true,
-                    tluszczePorcja: true,
-                    tluszczeNasyconePorcja: true,
-                    weglowodanyPorcja: true,
-                    cukryPorcja: true,
-                    blonnikPorcja: true,
-                    solPorcja: true,
-                },
-            },
-        },
-    })
+
+    const napoj = await getNapoj(params.slug)
 
     if (napoj == null) {
         return NextResponse.json(

@@ -4,23 +4,24 @@ import Table from "../components/Table/Table"
 import Header from "../components/Header/Header"
 import Spinner from "@/components/Spinner/Spinner"
 import s from "./page.module.css"
+import {GET} from "./api/zestawywo/route"
 
 export const metadata = {
     title: "Home | TanieZarcie",
     description: "TanieZarcie.pl - najtansze zestawy mcDonalds",
 }
 
-async function fetchAllZestawy(orderby?: string): Promise<Zestaw[]> {
-    const res = await fetch(
-        `${process.env.API_URL}/api/zestawywo?KEY=${process.env.API_KEY}`
+async function getData(): Promise<Zestaw[]> {
+    const data = await GET(
+        new Request(
+            `${process.env.API_URL}/api/zestawywo?KEY=${process.env.API_KEY}`
+        )
     )
-    const data: Zestaw[] = await res.json()
-    return data
+    return await data.json()
 }
 
 export default async function Home() {
-    const ranking = await fetchAllZestawy()
-
+    const ranking = await getData()
     return (
         <>
             <Suspense fallback={<Spinner />}>
