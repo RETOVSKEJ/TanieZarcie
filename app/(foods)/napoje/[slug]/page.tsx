@@ -1,15 +1,26 @@
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import s from "./zarcie.module.css"
 import NavbarBottom from "@/components/NavbarBottom/NavbarBottom"
-import {Food} from "@/types/types"
-import {getNapoje, getNapoj} from "@/lib/prisma"
+import {Zarcie} from "@/types/types"
+import {getNapoje, getNapoj} from "@/utils/prisma"
+import {Metadata} from "next"
 
-export const metadata = {
-    title: "Napoj | TanieZarcie",
-    description: "TanieZarcie.pl - Karta napoju, wartosci odzywcze, ceny",
+export const fetchCache = "force-cache"
+
+type Props = {
+    params: {slug: string}
 }
 
-async function getData(slug: string): Promise<Food> {
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+    const product = await getNapoj(params.slug)
+    if (!product) throw new Error("No such product")
+    return {
+        title: product.name + " | TanieZarcie",
+        description: "TanieZarcie.pl - Karta napoju, wartosci odzywcze, ceny",
+    }
+}
+
+async function getData(slug: string): Promise<Zarcie> {
     const product = await getNapoj(slug)
     if (product) return product
     else throw new Error("No such product")

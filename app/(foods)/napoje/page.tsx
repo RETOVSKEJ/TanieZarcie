@@ -1,9 +1,11 @@
-import {Food} from "@/types/types"
+import {Zarcie} from "@/types/types"
 import s from "../list.module.css"
 import ProductCard from "@/components/ProductCard/ProductCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
 import {Sorter} from "@/components/SortButtons/SortTypes"
-import {getNapoje} from "@/lib/prisma"
+import {getNapoje} from "@/utils/prisma"
+
+export const fetchCache = "force-cache"
 
 export const metadata = {
     title: "Napoje | TanieZarcie",

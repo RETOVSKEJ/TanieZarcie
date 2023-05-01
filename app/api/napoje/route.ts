@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server"
 import {limiter} from "@/utils/rate-limit"
-import {getNapoje} from "@/lib/prisma"
+import {getNapoje} from "@/utils/prisma"
 
 export async function GET(request: Request) {
     try {

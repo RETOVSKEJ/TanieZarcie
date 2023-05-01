@@ -1,5 +1,8 @@
 import prisma from "@/prisma/client"
 import type {Sorter} from "@/components/SortButtons/SortTypes"
+import {Zestaw, Zarcie} from "@/types/types"
+import {cache} from "react"
+
 const NAPOJE_CAT_ID = 6
 
 export async function getCategories() {
@@ -7,33 +10,34 @@ export async function getCategories() {
     return categories
 }
 
-export async function getNapoje(
-    sortParam: string | null,
-    orderParam: string | null
-) {
-    // Musi być tak dziwnie kcalPorcja / bialkoPorcja  (prisma query)
-    let sort: "kcalPorcja" | "bialkoPorcja" | "price" = "price"
-    let order: "desc" | "asc" = "desc"
-    if (orderParam === "desc") {
-        order = "desc"
-    } else {
-        order = "asc"
-    }
-    sortParam === "kcalPorcja" ||
-    sortParam === "bialkoPorcja" ||
-    sortParam === "price"
-        ? (sort = sortParam)
-        : null
+export const getNapoje = cache(
+    async (sortParam: string | null, orderParam: string | null) => {
+        let napoje
+        let sort: "kcalPorcja" | "bialkoPorcja" | "price" = "price"
+        let order: "desc" | "asc" = "desc"
+        if (orderParam === "desc") {
+            order = "desc"
+        } else {
+            order = "asc"
+        }
+        sortParam === "kcalPorcja" ||
+        sortParam === "bialkoPorcja" ||
+        sortParam === "price"
+            ? (sort = sortParam)
+            : null
 
-    if (sort === "price") {
-        return await getNapojeByPrice(order)
-    } else {
-        return await getNapojeBy(sort, order)
+        if (sort === "price") {
+            napoje = await getNapojeByPrice(order)
+        } else {
+            napoje = await getNapojeBy(sort, order)
+        }
+        if (napoje.length == 0) throw new Error("Could not retrieve zarcie")
+        return napoje
     }
-}
+)
 
 export async function getNapojeByPrice(order) {
-    return await prisma.food.findMany({
+    const napoje = await prisma.food.findMany({
         where: {
             categoryId: NAPOJE_CAT_ID,
         },
@@ -44,10 +48,12 @@ export async function getNapojeByPrice(order) {
             price: order,
         },
     })
+    if (napoje.length == 0) throw new Error("Could not retrieve zarcie")
+    return napoje
 }
 
 export async function getNapojeBy(sort, order) {
-    return await prisma.food.findMany({
+    const napoje = await prisma.food.findMany({
         where: {
             categoryId: NAPOJE_CAT_ID,
         },
@@ -60,10 +66,12 @@ export async function getNapojeBy(sort, order) {
             },
         },
     })
+    if (napoje.length == 0) throw new Error("Could not retrieve zarcie")
+    return napoje
 }
 
 export async function getNapoj(slug) {
-    return await prisma.food.findUnique({
+    const napoj = await prisma.food.findUnique({
         where: {
             slug: slug,
         },
@@ -82,10 +90,12 @@ export async function getNapoj(slug) {
             },
         },
     })
+    if (!napoj) throw new Error("Could not retrieve napoj")
+    return napoj
 }
 
 export async function getZarc(slug) {
-    return await prisma.food.findUnique({
+    const zarc = await prisma.food.findUnique({
         where: {
             slug: slug,
         },
@@ -104,13 +114,15 @@ export async function getZarc(slug) {
             },
         },
     })
+    if (!zarc) throw new Error("Could not retrieve zarc")
+    return zarc
 }
 
 export async function getZarcie(
     sortParam: string | null,
     orderParam: string | null
 ) {
-    // Musi być tak dziwnie kcalPorcja / bialkoPorcja  (prisma query)
+    let zarcie
     let sort: "kcalPorcja" | "bialkoPorcja" | "price" = "price"
     let order: "desc" | "asc"
     if (orderParam == "desc") {
@@ -126,7 +138,7 @@ export async function getZarcie(
 
     const NAPOJE_CAT_ID = 6
     if (sort === "price") {
-        return await prisma.food.findMany({
+        zarcie = await prisma.food.findMany({
             where: {
                 NOT: {
                     categoryId: NAPOJE_CAT_ID,
@@ -140,7 +152,7 @@ export async function getZarcie(
             },
         })
     } else {
-        return await prisma.food.findMany({
+        zarcie = await prisma.food.findMany({
             where: {
                 NOT: {
                     categoryId: NAPOJE_CAT_ID,
@@ -156,17 +168,38 @@ export async function getZarcie(
             },
         })
     }
+    if (zarcie.length === 0) throw new Error("Could not retrieve zarcie")
+    return zarcie
 }
 
 export async function getProductsForSearch() {
-    const zestawy = await prisma.zestawy.findMany()
-    const food = await prisma.food.findMany()
-    return [...zestawy, ...food]
+    console.time()
+    const [zestawy, zarcie] = await Promise.all([
+        prisma.zestawy.findMany(),
+        prisma.food.findMany(),
+    ])
+    console.timeEnd()
+    const products = [...zestawy, ...zarcie]
+    if (products.length === 0)
+        throw new Error("Could not retrieve products for search")
+    return products
 }
 
-export async function getZestawy(sortParam, orderParam) {
-    //tu nie musi byc kcalPorcja i bialkoPorcja (bo inne prisma query)
-    let sort: "kcal" | "bialko" | "price" = "price"
+export async function getZestaw(slug) {
+    const zestaw = await prisma.rankings.findUnique({
+        where: {
+            slug: slug,
+        },
+    })
+    if (!zestaw) throw new Error("Could not retrieve zestaw")
+    return zestaw
+}
+
+export async function getZestawy(
+    sortParam: string | null,
+    orderParam: string | null
+) {
+    let sort = "price"
     let order: Sorter["order"] = "desc"
     orderParam === "asc" ? (order = "asc") : null
 
@@ -176,16 +209,18 @@ export async function getZestawy(sortParam, orderParam) {
         sort = "price"
     }
 
-    return await prisma.rankings.findMany({
+    const zestawy = await prisma.rankings.findMany({
         where: {},
         orderBy: {
             [`${sort}`]: order,
         },
     })
+    if (zestawy.length === 0) throw new Error("Could not retrieve zestawy")
+    return zestawy
 }
 
 export async function getZestawySorted() {
-    return await prisma.$transaction([
+    const dataArr = await Promise.all([
         prisma.rankings.count(),
         prisma.rankings.findMany({
             orderBy: {
@@ -193,18 +228,23 @@ export async function getZestawySorted() {
             },
         }),
     ])
+    if (dataArr[1].length === 0) throw new Error("Zestawy Sorted are empty")
+    if (!dataArr[1]) throw new Error("Could not retrieve zestawyRanks")
+    return dataArr
 }
 
 export async function getZestawRanks(slug) {
-    return await prisma.rankingsmat.findUnique({
+    const zestawRanks = await prisma.rankingsmat.findUnique({
         where: {
             zestawslug: slug,
         },
     })
+    if (!zestawRanks) throw new Error("Could not retrieve zestawRanks")
+    return zestawRanks
 }
 
-export async function getZestawyRanks() {
-    return await prisma.$transaction([
+export const getZestawyRanks = cache(async () => {
+    const dataArr = await Promise.all([
         prisma.rankingsmat.count(),
         prisma.rankingsmat.findMany({
             orderBy: {
@@ -212,13 +252,18 @@ export async function getZestawyRanks() {
             },
         }),
     ])
-}
+    if (dataArr[1].length === 0) throw new Error("Ranks of zestawy are empty")
+    if (!dataArr[1]) throw new Error("Could not retrieve zestawyRanks")
+    return dataArr
+})
 
 export async function getRandomZestaw() {
     const iloscZestawow: number = await prisma.zestawy.count()
     const randInt = Math.floor(Math.random() * iloscZestawow)
-    return await prisma.rankings.findFirst({
+    const randomZestaw = await prisma.rankings.findFirst({
         where: {},
         skip: randInt,
     })
+    if (!randomZestaw) throw new Error("Could not retrieve random Zestaw")
+    return randomZestaw
 }

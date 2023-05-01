@@ -4,10 +4,10 @@ import Link from "next/link"
 import Image from "next/image"
 import s from "./SearchBar.module.css"
 import {Dispatch, SetStateAction} from "react"
-import {Food, Zestaw} from "@/types/types"
+import {Zarcie, Zestaw} from "@/types/types"
 
 type ProductCardProps = {
-    product: Food | Zestaw
+    product: Zarcie | Zestaw
     setFocus?: Dispatch<SetStateAction<boolean>>
     children?: React.ReactNode
 }

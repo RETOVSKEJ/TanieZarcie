@@ -1,23 +1,15 @@
-import {Food} from "@/types/types"
+import {Zarcie} from "@/types/types"
 import s from "../list.module.css"
 import ProductCard from "@/components/ProductCard/ProductCard"
 import SortButtons from "@/components/SortButtons/SortButtons"
 import {Sorter} from "@/components/SortButtons/SortTypes"
-import {GET as getZarcie} from "../../api/zarcie/route"
+import {getZarcie} from "@/utils/prisma"
+
+export const fetchCache = "force-cache"
 
 export const metadata = {
     title: "Zarcie | TanieZarcie",
     description: "TanieZarcie.pl - katalog z Żarciem",
-}
-
-async function getData(sort: Sorter["sort"], order: Sorter["order"]) {
-    const res = await getZarcie(
-        new Request(
-            `${process.env.API_URL}/api/zarcie?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
-        )
-    )
-    const data: Food[] = await res.json()
-    return data
 }
 
 export default async function Zarcie({searchParams}) {
@@ -30,22 +22,14 @@ export default async function Zarcie({searchParams}) {
     let {sort, order} = searchParams
     sort ? sort : (sort = initialSorterData.sort) // DEFAULT QUERY (IF NO QUERY IN URL)
     order ? order : (order = initialSorterData.order)
-    const foods = await getData(sort, order)
+    const foods = await getZarcie(sort, order)
 
     return (
         <div className={s.zestawyWrapper}>
             <div className={s.header}>
                 <h1 className={s.title}>Żarcie</h1>
                 <div>
-                    <strong
-                        style={{
-                            color: "var(--text-white)",
-                            marginRight: "0.75rem",
-                        }}
-                        className={s.sorting}
-                    >
-                        Sortowanie:
-                    </strong>
+                    <strong className={s.sorting}>Sortowanie:</strong>
                     <SortButtons initialData={initialSorterData} />
                 </div>
             </div>

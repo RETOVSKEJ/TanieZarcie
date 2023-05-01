@@ -45,13 +45,15 @@ export type WartosciOdzywcze = {
     solPorcja: number
 }
 
-export type Food = {
+export type Zarcie = {
     id: Int
     name: string
     slug: string
     price: number
     wo: WartosciOdzywcze
 }
+
+export type Product = Zarcie | Zestaw
 
 export type ZestawRanks = {
     zestawid?: number

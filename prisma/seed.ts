@@ -1,5 +1,4 @@
 import prisma from "./client"
-import fs from "fs"
 
 async function seed() {
     // id 1-34 - srednie
@@ -25,6 +24,46 @@ seed()
     .finally(async () => {
         return await prisma.$disconnect()
     })
+
+async function connectMany(idArrZestaw: number[], idProd: number) {
+    const items = await prisma.zestawy.findMany({
+        where: {
+            id: {
+                in: idArrZestaw,
+            },
+        },
+        include: {
+            foods: true,
+        },
+    })
+    // await prisma.$transaction(async () => {
+    //     return items.map(async (elem) => {
+    //         await prisma.zestawy.update({
+    //             where: {
+    //                 id: elem.id,
+    //             },
+    //             data: {
+    //                 foods: {
+    //                     connect: {id: idProd},
+    //                 },
+    //             },
+    //         })
+    //     })
+    // })
+    console.log(items[0].foods)
+}
+
+async function groupByKcal() {
+    const result =
+        await prisma.$queryRaw`SELECT "Zestawy".name, "Zestawy"."price", SUM("WartosciOdzywcze"."kcalPorcja") as "kcal", 	SUM("WartosciOdzywcze"."bialkoPorcja") as "bialko" from "Zestawy"
+    JOIN "_FoodToZestawy" on "_FoodToZestawy"."B" = "Zestawy".id
+    JOIN "Zarcie" on "_FoodToZestawy"."A" = "Zarcie".id
+    JOIN "WartosciOdzywcze" on "WartosciOdzywcze".id = "Zarcie"."woId"
+    GROUP BY "Zestawy"."name", "Zestawy"."price"
+    ORDER BY "kcal" DESC
+    `
+    console.log(result)
+}
 
 // {
 //     id: 1,
@@ -162,46 +201,6 @@ seed()
 //         })
 //     })
 // })
-
-async function connectMany(idArrZestaw: number[], idProd: number) {
-    const items = await prisma.zestawy.findMany({
-        where: {
-            id: {
-                in: idArrZestaw,
-            },
-        },
-        include: {
-            foods: true,
-        },
-    })
-    // await prisma.$transaction(async () => {
-    //     return items.map(async (elem) => {
-    //         await prisma.zestawy.update({
-    //             where: {
-    //                 id: elem.id,
-    //             },
-    //             data: {
-    //                 foods: {
-    //                     connect: {id: idProd},
-    //                 },
-    //             },
-    //         })
-    //     })
-    // })
-    console.log(items[0].foods)
-}
-
-async function groupByKcal() {
-    const result =
-        await prisma.$queryRaw`SELECT "Zestawy".name, "Zestawy"."price", SUM("WartosciOdzywcze"."kcalPorcja") as "kcal", 	SUM("WartosciOdzywcze"."bialkoPorcja") as "bialko" from "Zestawy"
-    JOIN "_FoodToZestawy" on "_FoodToZestawy"."B" = "Zestawy".id
-    JOIN "Food" on "_FoodToZestawy"."A" = "Food".id
-    JOIN "WartosciOdzywcze" on "WartosciOdzywcze".id = "Food"."woId"
-    GROUP BY "Zestawy"."name", "Zestawy"."price"
-    ORDER BY "kcal" DESC
-    `
-    console.log(result)
-}
 
 // POWIEKSZONE zestawy
 // const Powiekszone = await prisma.zestawy.updateMany({

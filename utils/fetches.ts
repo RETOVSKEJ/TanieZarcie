@@ -1,4 +1,4 @@
-import type {Zestaw, ZestawRanks, Food} from "@/types/types"
+import type {Zestaw, ZestawRanks, Zarcie} from "@/types/types"
 import type {Sorter} from "@/components/SortButtons/SortTypes"
 
 export async function fetchNextZestaw(rank: string) {
@@ -48,7 +48,7 @@ export async function fetchNapoj(slug) {
     const res = await fetch(
         `${process.env.API_URL}/api/napoje/${slug}?KEY=${process.env.API_KEY}`
     )
-    const data: Food = await res.json()
+    const data: Zarcie = await res.json()
     return data
 }
 
@@ -59,6 +59,6 @@ export async function fetchNapoje(
     const res = await fetch(
         `${process.env.API_URL}/api/napoje?sort=${sort}&order=${order}&KEY=${process.env.API_KEY}`
     )
-    const data: Food[] = await res.json()
+    const data: Zarcie[] = await res.json()
     return data
 }

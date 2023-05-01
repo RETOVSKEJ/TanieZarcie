@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import {Food, Zestaw} from "../../types/types"
+import {Zarcie, Zestaw} from "../../types/types"
 import s from "./Table.module.css"
 import {Suspense, useState, useReducer, useEffect} from "react"
 import {TbMeat, TbBrandCashapp, TbChevronRight, TbBolt} from "react-icons/tb"

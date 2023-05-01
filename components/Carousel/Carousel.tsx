@@ -1,16 +1,12 @@
 "use client"
-import {Zestaw, Food, ZestawRanks} from "@/types/types"
+
+import {Zestaw, Zarcie, ZestawRanks} from "@/types/types"
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import {useState, useEffect, useRef} from "react"
 import s from "./Carousel.module.css"
-import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
-import {
-    TbArrowBackUp,
-    TbCarouselHorizontal,
-    TbChevronLeft,
-    TbChevronRight,
-} from "react-icons/tb"
+import {TbArrowBackUp, TbChevronLeft, TbChevronRight} from "react-icons/tb"
 import {MdViewCarousel, MdOutlineViewCarousel} from "react-icons/md"
+import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
 
 function createInitialDivs(products, productsRank, InitialIndex, LAST_ITEM) {
     let prevProduct, nextProduct, prevProductRank, nextProductRank
@@ -55,10 +51,6 @@ function createDiv(product, productsRank) {
     )
 }
 
-// type Carouselable = {
-//     id: number
-// }
-
 export default function Carousel({
     products, // sorted by name asc
     productsRank,
@@ -82,8 +74,6 @@ export default function Carousel({
     const carouselRef = useRef<HTMLDivElement>(null)
     const initialRef = useRef<HTMLDivElement>(null)
     const currentRef = useRef<HTMLDivElement>(null)
-    const firstRef = useRef<HTMLDivElement>(null)
-    const lastRef = useRef<HTMLDivElement>(null)
     const MEMOIZED_INDEXES = useRef<Set<number>>(
         new Set([initialIndex, initialIndex + 1, initialIndex - 1])
     ).current
@@ -100,6 +90,9 @@ export default function Carousel({
 
     useEffect(() => {
         document.body.style.overflowY = "hidden"
+        setCarouselOn(
+            localStorage.getItem("carouselOn") === "true" ? true : false
+        )
         currentRef.current?.scrollIntoView({behavior: "auto", inline: "center"})
         return () => {
             document.body.style.overflowY = "auto"
@@ -163,6 +156,10 @@ export default function Carousel({
 
         history.pushState(null, currentProduct.name, `${currentHref}`)
     }, [divs])
+
+    useEffectAfterMount(() => {
+        localStorage.setItem("carouselOn", `${carouselOn}`)
+    }, [carouselOn])
 
     function handleNext() {
         setLastClicked("next")

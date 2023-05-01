@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server"
-import {getZestawy} from "@/lib/prisma"
+import {getZestawy} from "@/utils/prisma"
 import {limiter} from "@/utils/rate-limit"
 
 export async function GET(req: Request) {

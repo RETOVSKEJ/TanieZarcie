@@ -1,6 +1,6 @@
 import {NextResponse, NextRequest} from "next/server"
 import {limiter} from "@/utils/rate-limit"
-import {getZarcie} from "@/lib/prisma"
+import {getZarcie} from "@/utils/prisma"
 
 // TODO PAGINACJA
 export async function GET(req: Request) {

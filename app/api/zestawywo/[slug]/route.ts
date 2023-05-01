@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server"
-import prisma from "../../../../prisma/client"
 import {limiter} from "@/utils/rate-limit"
+import {getZestaw} from "@/utils/prisma"
 
 export async function GET(req: Request, {params}: {params: {slug: string}}) {
     try {
@@ -8,11 +8,8 @@ export async function GET(req: Request, {params}: {params: {slug: string}}) {
     } catch (e) {
         return NextResponse.json({error: "To many Requests"}, {status: 429})
     }
-    const zestaw = await prisma.rankings.findUnique({
-        where: {
-            slug: params.slug,
-        },
-    })
+    const zestaw = await getZestaw(params.slug)
+
     if (!zestaw) {
         return NextResponse.json(
             {error: "Zestaw not found"},

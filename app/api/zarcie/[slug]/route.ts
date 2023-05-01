@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server"
 import {limiter} from "@/utils/rate-limit"
-import {getZarc} from "@/lib/prisma"
+import {getZarc} from "@/utils/prisma"
 
 export async function GET(req: Request, {params}) {
     try {
@@ -11,7 +11,7 @@ export async function GET(req: Request, {params}) {
     const food = await getZarc(params.slug)
     if (food == null) {
         return NextResponse.json(
-            {error: "Food not Found"},
+            {error: "Zarcie not Found"},
             {
                 status: 404,
             }

@@ -1,7 +1,7 @@
 import {NextResponse} from "next/server"
 import prisma from "@/prisma/client"
 import {limiter} from "@/utils/rate-limit"
-import {getZestawyRanks} from "@/lib/prisma"
+import {getZestawyRanks} from "@/utils/prisma"
 
 export async function GET() {
     try {

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import {Food, Zestaw, ZestawRanks} from "@/types/types"
+import {Zarcie, Zestaw, ZestawRanks} from "@/types/types"
 import {isZestaw} from "@/types/typeGuards"
 import {Dancing_Script} from "next/font/google"
 import s from "./Hero.module.css"
@@ -13,7 +13,7 @@ export default function HeroZestaw({
     product,
     productRanks,
 }: {
-    product: Zestaw | Food
+    product: Zestaw | Zarcie
     productRanks?: ZestawRanks
 }) {
     return (

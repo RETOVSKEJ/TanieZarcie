@@ -1,13 +1,13 @@
 import Link from "next/link"
 import Image from "next/image"
 import s from "./ProductCard.module.css"
-import {Food} from "@/types/types"
+import {Zarcie} from "@/types/types"
 
 export default function ProductCard({
     product,
     type,
 }: {
-    product: Food
+    product: Zarcie
     type: "zarcie" | "napoj"
 }) {
     let href

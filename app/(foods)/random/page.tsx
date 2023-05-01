@@ -1,33 +1,27 @@
-import {Zestaw} from "@/types/types"
-import s from "./random.module.css"
 import NavbarBottom from "@/components/NavbarBottom/NavbarBottom"
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import Header from "@/components/Header/Header"
-import {GET as getRandomZestaw} from "../../api/random/route"
-import {GET as getZestawRanks} from "../../api/ranking/[slug]/route"
+import {getRandomZestaw, getZestawRanks} from "@/utils/prisma"
+import {zestawy} from "@/lib/seed"
+import {Zestaw} from "@/types/types"
 
-export const metadata = {
-    title: "Losowy Zestaw | TanieZarcie",
-    description:
-        "TanieZarcie.pl - Wylosuj swój darmowy zestaw! Cos dla niezdecydowanych",
-}
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+export const fetchCache = "force-no-store"
 
-async function getData(): Promise<Zestaw> {
-    const res = await getRandomZestaw()
-    const zestaw: Zestaw = await res.json()
-    return zestaw
-}
+// export const metadata = {
+//     title: "Losowy Zestaw | TanieZarcie",
+//     description:
+//         "TanieZarcie.pl - Wylosuj swój darmowy zestaw! Cos dla niezdecydowanych",
+// }
 
 export default async function Page() {
-    const zestaw = await getData()
-    const zestawRanks = await (
-        await getZestawRanks(
-            new Request(
-                `${process.env.API_URL}/api/ranking/${zestaw.slug}&KEY=${process.env.API_KEY}`
-            ),
-            {params: {slug: zestaw.slug}}
-        )
-    ).json()
+    const randomNumberMax60 = Math.floor(Math.random() * 60)
+    const randomZestaw: Zestaw = zestawy[randomNumberMax60]
+    const randomZestawRanks = await getZestawRanks(randomZestaw.slug)
+    if (!randomZestawRanks)
+        throw new Error("Wystąpił błąd podczas losowania zestawu")
+
     return (
         <div style={{marginBottom: "var(--navbar-height-bottom)"}}>
             <Header />
@@ -41,7 +35,10 @@ export default async function Page() {
                 Twój wylosowany zestaw to:
             </h2>
             <div style={{display: "flex", justifyContent: "center"}}>
-                <HeroZestaw product={zestaw} productRanks={zestawRanks} />
+                <HeroZestaw
+                    product={randomZestaw}
+                    productRanks={randomZestawRanks}
+                />
             </div>
             <NavbarBottom overflow={false} />
         </div>

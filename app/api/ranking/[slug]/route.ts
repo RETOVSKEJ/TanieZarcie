@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server"
 import {limiter} from "@/utils/rate-limit"
-import {getZestawRanks} from "@/lib/prisma"
+import {getZestawRanks} from "@/utils/prisma"
 
 export async function GET(req: Request, {params}: {params: {slug: string}}) {
     try {

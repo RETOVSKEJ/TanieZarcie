@@ -13,15 +13,3 @@ export async function GET() {
         status: 200,
     })
 }
-
-export async function POST(request: Request) {
-    const {name} = await request.json() // this is req.body
-    const category = await prisma.category.create({
-        data: {
-            name: name,
-        },
-    })
-    return NextResponse.json(category, {
-        status: 200,
-    })
-}

@@ -3,7 +3,7 @@
 import {useEffect, useState, useRef} from "react"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
 import s from "./SearchBar.module.css"
-import {Food, Zestaw} from "@/types/types"
+import {Zarcie, Zestaw} from "@/types/types"
 import SearchProductCard from "./SearchProductCard"
 import {Inter, Dancing_Script} from "next/font/google"
 import {BsSearch} from "react-icons/bs"
@@ -41,17 +41,17 @@ export default function SearchBar() {
 
     const [hover, setHover] = useState<boolean>(false)
     const [focus, setFocus] = useState<boolean>(false)
-    const [products, setProducts] = useState<(Food | Zestaw)[]>([])
-    const [filteredProducts, setFilteredProducts] = useState<(Food | Zestaw)[]>(
-        []
-    )
+    const [products, setProducts] = useState<(Zarcie | Zestaw)[]>([])
+    const [filteredProducts, setFilteredProducts] = useState<
+        (Zarcie | Zestaw)[]
+    >([])
     const [searchInput, setSearchInput] = useState<string>("")
     const inputRef = useRef<HTMLInputElement>(null)
 
     useEffectAfterMount(() => {
         ;(async () => {
             const res = await fetch(`/api/products?k=${process.env.API_KEY}`)
-            const data: (Food | Zestaw)[] = await res.json()
+            const data: (Zarcie | Zestaw)[] = await res.json()
             setProducts(data)
         })()
     }, [hover])

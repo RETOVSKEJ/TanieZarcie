@@ -1,15 +1,22 @@
 import type {Zestaw, ZestawRanks} from "@/types/types"
 import Carousel from "@/components/Carousel/Carousel"
-import {getZestawyRanks, getZestawySorted} from "@/lib/prisma"
+import {getZestawyRanks, getZestawySorted, getZestaw} from "@/utils/prisma"
 
-export const metadata = {
-    title: "Zestaw | TanieZarcie",
-    description: "TanieZarcie.pl - Karuzela zestawow - Porównywarka cen",
+export const fetchCache = "force-cache"
+
+type Props = {
+    params: {slug: string}
 }
 
-// async function getData(): Promise<[number, Zestaw[], ZestawRanks[]]> {
-//     return [count, products, productsRank]
-// }
+export async function generateMetadata({params}: Props) {
+    const product = await getZestaw(params.slug)
+    if (!product) throw new Error("No such product")
+
+    return {
+        title: product.name + " | TanieZarcie",
+        description: "TanieZarcie.pl - Karta Zestawu, wartosci odzywcze, ceny",
+    }
+}
 
 export default async function Page({params}) {
     let currIndex: number = 1

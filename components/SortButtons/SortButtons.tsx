@@ -96,7 +96,7 @@ function reducer(prevState: Sorter, action: {type: string}): Sorter {
 export default function SortButtons({
     initialData,
 }: {
-    initialData: Omit<Sorter, "style">
+    initialData: Omit<Sorter, "style"> | any
 }) {
     const [{sort, sortPath, order, style}, dispatch] = useReducer(reducer, {
         ...initialData,
@@ -108,6 +108,7 @@ export default function SortButtons({
 
     useEffectAfterMount(() => {
         router.replace(path + sortPath)
+        localStorage.setItem("sort", JSON.stringify({sort, order}))
         setInitialRender(false)
     }, [sortPath])
 

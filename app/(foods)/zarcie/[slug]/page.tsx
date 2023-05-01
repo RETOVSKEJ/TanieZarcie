@@ -1,15 +1,24 @@
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
 import s from "./zarcie.module.css"
 import NavbarBottom from "@/components/NavbarBottom/NavbarBottom"
-import type {Food} from "@/types/types"
-import {getZarc, getZarcie} from "@/lib/prisma"
+import type {Zarcie} from "@/types/types"
+import {getZarc, getZarcie} from "@/utils/prisma"
 
-export const metadata = {
-    title: "Napoj | TanieZarcie",
-    description: "TanieZarcie.pl - Karta napoju, wartosci odzywcze, ceny",
+type Props = {
+    params: {slug: string}
 }
 
-async function getData(slug: string): Promise<Food> {
+export async function generateMetadata({params}: Props) {
+    const product = await getZarc(params.slug)
+    if (!product) throw new Error("No such product")
+
+    return {
+        title: product.name + " | TanieZarcie",
+        description: "TanieZarcie.pl - Karta Produktu, wartosci odzywcze, ceny",
+    }
+}
+
+async function getData(slug: string): Promise<Zarcie> {
     const product = await getZarc(slug)
     if (product) return product
     else throw new Error("No such product")

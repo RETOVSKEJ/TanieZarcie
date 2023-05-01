@@ -1,6 +1,3 @@
-// import TestComponent from "../../components/testComponent"
-import dynamic from "next/dynamic"
-// const TestComponent = dynamic(() => import("../../components/testComponent"))
 import s from "./about.module.css"
 import Footer from "@/components/Footer/Footer"
 import ZnalazlesBlad from "../zglos-problem/page"
