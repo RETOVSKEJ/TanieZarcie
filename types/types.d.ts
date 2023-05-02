@@ -1,5 +1,3 @@
-import {Prisma} from "@prisma/client"
-
 export type FoodPure = {
     id: number
     name: string
@@ -50,10 +48,12 @@ export type Zarcie = {
     name: string
     slug: string
     price: number
+    categoryId: number
     wo: WartosciOdzywcze
 }
 
-export type Product = Zarcie | Zestaw
+export type Napoj = Zarcie & {categoryId: 6}
+export type Product = Zarcie | Zestaw | ZestawPure | Napoj
 
 export type ZestawRanks = {
     zestawid?: number

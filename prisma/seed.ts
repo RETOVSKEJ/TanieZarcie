@@ -13,8 +13,17 @@ async function seed() {
     // marcheweczkie 54, jabluszka 55, kubus mus 56
     // nugets 43, 44, 45, 46  (4,6,9,20)
     // BRAKUJE : mcdouble, supreme chicken, chickenbox
-
-    await connectMany([9, 26], 60)
+    // const napoje = await prisma.food.findMany({
+    //     where: {
+    //         categoryId: 6,
+    //     },
+    //     include: {
+    //         wo: true,
+    //     },
+    // })
+    // if (napoje.length == 0) throw new Error("Could not retrieve zarcie")
+    // console.log(napoje)
+    // await connectMany([9, 26], 60)
 }
 
 seed()

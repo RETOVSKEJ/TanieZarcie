@@ -4,10 +4,11 @@ import Link from "next/link"
 import Image from "next/image"
 import s from "./SearchBar.module.css"
 import {Dispatch, SetStateAction} from "react"
-import {Zarcie, Zestaw} from "@/types/types"
+import {Product, Zarcie, Zestaw} from "@/types/types"
+import {isZestaw, isZarcie, isNapoj} from "@/types/typeGuards"
 
 type ProductCardProps = {
-    product: Zarcie | Zestaw
+    product: Product
     setFocus?: Dispatch<SetStateAction<boolean>>
     children?: React.ReactNode
 }
@@ -17,10 +18,16 @@ export default function SearchProductCard({
     setFocus,
     children,
 }: ProductCardProps) {
+    function determineHref() {
+        console.log(product)
+        if (isZarcie(product)) return `/zarcie/${product.slug}`
+        if (isNapoj(product)) return `/napoje/${product.slug}`
+        return `${product.slug}`
+    }
     return (
         <Link
             key={product.id}
-            href={product.slug}
+            href={determineHref()}
             className={s.searchResult}
             onClick={() => {
                 setFocus ? setFocus(false) : null

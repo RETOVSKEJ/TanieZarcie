@@ -2,8 +2,7 @@ import prisma from "@/prisma/client"
 import type {Sorter} from "@/components/SortButtons/SortTypes"
 import {Zestaw, Zarcie, ZestawRanks} from "@/types/types"
 import {cache} from "react"
-
-const NAPOJE_CAT_ID = 6
+import {NAPOJE_CAT_ID} from "@/types/typeGuards"
 
 export async function getCategories() {
     const categories = await prisma.category.findMany()
@@ -59,6 +58,7 @@ export async function getNapojeBy(sort, order) {
         },
         include: {
             wo: true,
+            Category: true,
         },
         orderBy: {
             wo: {
@@ -136,7 +136,6 @@ export async function getZarcie(
         ? (sort = sortParam)
         : null
 
-    const NAPOJE_CAT_ID = 6
     if (sort === "price") {
         zarcie = await prisma.food.findMany({
             where: {
@@ -173,12 +172,10 @@ export async function getZarcie(
 }
 
 export async function getProductsForSearch() {
-    console.time()
     const [zestawy, zarcie] = await Promise.all([
         prisma.zestawy.findMany(),
         prisma.food.findMany(),
     ])
-    console.timeEnd()
     const products = [...zestawy, ...zarcie]
     if (products.length === 0)
         throw new Error("Could not retrieve products for search")
