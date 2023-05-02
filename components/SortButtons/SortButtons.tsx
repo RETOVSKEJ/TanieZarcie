@@ -1,6 +1,6 @@
 "use client"
 import s from "./SortButtons.module.css"
-import {useReducer, useState} from "react"
+import {useEffect, useReducer, useState} from "react"
 import {usePathname, useRouter} from "next/navigation"
 import {TbMeat, TbBrandCashapp, TbBolt} from "react-icons/tb"
 import {useEffectAfterMount} from "@/hooks/useEffectAfterMount"
@@ -16,6 +16,22 @@ export const ACTIONS = {
     BIALKODESC: "?sort=bialkoPorcja&order=desc",
 }
 
+const inActiveStyle = {
+    backgroundImage: "var(--btn-gradient)",
+    opacity: 0.7,
+    transition: "none",
+}
+const activeStyleRed = {
+    backgroundImage: "var(--btn-gradient-red)",
+    opacity: 1,
+    transition: "none",
+}
+const activeStyleGreen = {
+    backgroundImage: "var(--btn-gradient-green)",
+    opacity: 1,
+    transition: "none",
+}
+
 function reducer(prevState: Sorter, action: {type: string}): Sorter {
     switch (action.type) {
         case ACTIONS.initial:
@@ -23,70 +39,42 @@ function reducer(prevState: Sorter, action: {type: string}): Sorter {
                 order: "asc",
                 sort: "PRICE",
                 sortPath: ACTIONS.PRICEASC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-red)",
-                    filter: "none",
-                },
             }
         case ACTIONS.PRICEASC:
             return {
                 order: "asc",
                 sort: "PRICE",
                 sortPath: ACTIONS.PRICEASC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-red)",
-                    filter: "none",
-                },
             }
         case ACTIONS.PRICEDESC:
             return {
                 order: "desc",
                 sort: "PRICE",
                 sortPath: ACTIONS.PRICEDESC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-green)",
-                    filter: "none",
-                },
             }
         case ACTIONS.KCALASC:
             return {
                 order: "asc",
                 sort: "KCAL",
                 sortPath: ACTIONS.KCALASC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-red)",
-                    filter: "none",
-                },
             }
         case ACTIONS.KCALDESC:
             return {
                 order: "desc",
                 sort: "KCAL",
                 sortPath: ACTIONS.KCALDESC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-green)",
-                    filter: "none",
-                },
             }
         case ACTIONS.BIALKOASC:
             return {
                 order: "asc",
                 sort: "BIALKO",
                 sortPath: ACTIONS.BIALKOASC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-red)",
-                    filter: "none",
-                },
             }
         case ACTIONS.BIALKODESC:
             return {
                 order: "desc",
                 sort: "BIALKO",
                 sortPath: ACTIONS.BIALKODESC,
-                style: {
-                    backgroundImage: "var(--btn-gradient-green)",
-                    filter: "none",
-                },
             }
         default:
             return prevState
@@ -96,38 +84,39 @@ function reducer(prevState: Sorter, action: {type: string}): Sorter {
 export default function SortButtons({
     initialData,
 }: {
-    initialData: Omit<Sorter, "style"> | any
+    initialData: Omit<Sorter, "style">
 }) {
-    const [{sort, sortPath, order, style}, dispatch] = useReducer(reducer, {
+    const [{sort, sortPath, order}, dispatch] = useReducer(reducer, {
         ...initialData,
-        style: {},
     })
     const [initialRender, setInitialRender] = useState(true)
     const path = usePathname()
     const router = useRouter()
 
+    // ONLY FOR NEXT 13.3 > VERSION
+    // useEffect(() => {
+    //     const sortPath = localStorage.getItem("sortPath")
+    //     if (sortPath) dispatch({type: sortPath})
+    //     else dispatch({type: ACTIONS.initial})
+    // }, [])
+
     useEffectAfterMount(() => {
-        router.replace(path + sortPath)
-        localStorage.setItem("sort", JSON.stringify({sort, order}))
+        router.replace(path + sortPath, {forceOptimisticNavigation: true})
         setInitialRender(false)
     }, [sortPath])
 
     function styleButton(currentChoice: SorterChoices) {
-        if (initialRender)
-            return {
-                backgroundImage: "var(--btn-gradient)",
-                opacity: 0.65,
-                transition: "none",
-            }
-        else {
-            if (sort == currentChoice) return style
-            return {
-                // DEFAULT STYLING (FOR OFF BUTTONS)
-                backgroundImage: "var(--btn-gradient)",
-                opacity: 0.65,
-                transition: "none",
-            }
+        if (initialRender) {
+            // DEFAULT STYLING ON FIRST ENTRY
+            return inActiveStyle
         }
+        if (sort.includes(currentChoice)) {
+            // STYLING ON ACTIVE SORT
+            if (order.includes("desc")) return activeStyleGreen
+            if (order.includes("asc")) return activeStyleRed
+        }
+        // STYLING ON INACTIVE SORT
+        return inActiveStyle
     }
 
     function handleClick(sortChoice: SorterChoices) {

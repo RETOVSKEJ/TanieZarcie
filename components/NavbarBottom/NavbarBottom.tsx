@@ -3,6 +3,7 @@
 import s from "./NavbarBottom.module.css"
 import {useEffect} from "react"
 import {TbChevronLeft, TbArrowBackUp, TbChevronRight} from "react-icons/tb"
+import Button from "@/components/Button/Button"
 
 export default function NavbarBottom({overflow}: {overflow?: boolean}) {
     useEffect(() => {
@@ -24,9 +25,7 @@ export default function NavbarBottom({overflow}: {overflow?: boolean}) {
             <button disabled>
                 <TbChevronLeft />
             </button>
-            <button disabled>
-                <TbArrowBackUp />
-            </button>
+            <Button />
             <button disabled>
                 <TbChevronRight />
             </button>

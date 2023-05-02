@@ -1,6 +1,6 @@
 import prisma from "@/prisma/client"
 import type {Sorter} from "@/components/SortButtons/SortTypes"
-import {Zestaw, Zarcie} from "@/types/types"
+import {Zestaw, Zarcie, ZestawRanks} from "@/types/types"
 import {cache} from "react"
 
 const NAPOJE_CAT_ID = 6
@@ -266,4 +266,12 @@ export async function getRandomZestaw() {
     })
     if (!randomZestaw) throw new Error("Could not retrieve random Zestaw")
     return randomZestaw
+}
+
+export async function getRandomZestawWithRanks(): Promise<
+    [Zestaw, ZestawRanks]
+> {
+    const zestaw = await getRandomZestaw()
+    const ranks = await getZestawRanks(zestaw.slug)
+    return [zestaw, ranks]
 }

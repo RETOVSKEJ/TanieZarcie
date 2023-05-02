@@ -1,0 +1,17 @@
+.button {
+    margin-top: 2rem;
+    background-image: var(--btn-gradient);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+}
+
+@media screen and (max-width: 600px) {
+    .button {
+        margin-top: 0;
+        filter: grayscale(0.4) !important;
+    }
+
+    .button:hover {
+        filter: grayscale(0) !important;
+    }
+}

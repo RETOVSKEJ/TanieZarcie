@@ -57,6 +57,10 @@ export default function SearchBar() {
     }, [hover])
 
     useEffectAfterMount(() => {
+        if (focus === false) inputRef.current?.blur()
+    }, [focus])
+
+    useEffectAfterMount(() => {
         const filteredArr = products.filter(
             (product) =>
                 product.name

@@ -44,7 +44,7 @@ const nextConfig = {
                 source: "/random",
                 headers: [
                     ...securityHeaders,
-                    {key: "cache-control", value: "no-store, max-age=0"},
+                    {key: "cache-control", value: "no-store"},
                 ],
             },
         ]
