@@ -19,7 +19,6 @@ export default function SearchProductCard({
     children,
 }: ProductCardProps) {
     function determineHref() {
-        console.log(product)
         if (isZarcie(product)) return `/zarcie/${product.slug}`
         if (isNapoj(product)) return `/napoje/${product.slug}`
         return `${product.slug}`
