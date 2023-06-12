@@ -41,7 +41,7 @@ export default function Sidebar({inter}: {inter: NextFont}) {
             </li>
             <hr />
             <li style={{textAlign: "center", alignSelf: "center"}}>
-                <Link className="side-link" href="/random">
+                <Link className="side-link" href="/random" >
                     Wylosuj zestaw
                 </Link>
             </li>

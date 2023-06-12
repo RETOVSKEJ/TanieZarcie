@@ -1,106 +1,104 @@
 .page {
-    color: var(--text-white);
-    padding: 2rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+  color: var(--text-white);
+  padding: 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .header {
-    margin-block: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
+  margin-block: 1rem;
+  text-align: center;
 }
 
 .hr {
-    width: 100%;
+  width: 100%;
 }
 
 .content {
-    display: flex;
-    width: 100%;
-    margin: 1rem;
+  display: flex;
+  width: 100%;
+  margin: 1rem;
 }
 
 .content img {
-    display: block;
-    margin-right: auto;
-    width: 400px;
-    height: auto;
-    object-fit: contain;
+  display: block;
+  margin-right: auto;
+  width: 400px;
+  height: auto;
+  object-fit: contain;
 }
 
 .content h2 {
-    margin-right: auto;
-    text-align: center;
+  margin-right: auto;
+  text-align: center;
 }
 
 .content p {
-    display: block;
-    text-align: justify;
-    margin: 1rem;
-    margin-inline: 1.5rem;
-    line-height: 1.45;
+  display: block;
+  text-align: justify;
+  margin: 1rem;
+  margin-inline: 1.5rem;
+  line-height: 1.45;
 }
 
 .content p::first-line {
-    line-height: 1.15;
+  line-height: 1.15;
 }
 
 .content p::first-letter {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .footer {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: 1000px) {
-    .content img {
-        height: auto;
-        object-fit: contain;
-    }
+  .content img {
+    height: auto;
+    object-fit: contain;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .content {
-        flex-direction: column;
-        align-items: center;
-    }
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .content h2 {
+    margin-block: 0.75rem;
+  }
 
-    .content h2 {
-        margin-block: 0.75rem;
-    }
-
-    .content img {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-    }
+  .content img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .page {
-        overflow: hidden;
-        padding: 1.25rem;
-    }
+  .page {
+    overflow: hidden;
+    padding: 1.25rem;
+  }
 
-    .header {
-        width: 100%;
-        margin-block: 1.5rem;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
+  .header {
+    width: 100%;
+    margin-block: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
 
-    .content {
-        margin-inline: 0;
-    }
+  .content {
+    margin-inline: 0;
+  }
 
-    .content p {
-        margin-inline: 0.5rem;
-    }
+  .content p {
+    margin-inline: 0.5rem;
+  }
 
-    .footer {
-        display: block;
-    }
+  .footer {
+    display: block;
+  }
 }
