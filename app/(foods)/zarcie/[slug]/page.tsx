@@ -1,40 +1,47 @@
-import HeroZestaw from "@/components/HeroZestaw/HeroZestaw"
-import s from "./zarcie.module.css"
-import NavbarBottom from "@/components/NavbarBottom/NavbarBottom"
-import type {Zarcie} from "@/types/types"
-import {getZarc, getZarcie} from "@/utils/prisma"
+import { getZarc, getZarcie, getZarcieSorted } from "@/utils/prisma";
+import Carousel from "@/components/Carousel/Carousel";
 
 type Props = {
-    params: {slug: string}
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props) {
+  const product = await getZarc(params.slug);
+  if (!product) throw new Error("No such product");
+
+  return {
+    title: product.name + " | TanieZarcie",
+    description: "TanieZarcie.pl - Karta Produktu, wartosci odzywcze, ceny",
+  };
 }
 
-export async function generateMetadata({params}: Props) {
-    const product = await getZarc(params.slug)
-    if (!product) throw new Error("No such product")
+export default async function Page({ params }) {
+  let currIndex: number = 1;
+  let product;
+  const productsArr = await getZarcieSorted(); // sposób sortowania wyznacza kolejnosc w karuzeli
 
-    return {
-        title: product.name + " | TanieZarcie",
-        description: "TanieZarcie.pl - Karta Produktu, wartosci odzywcze, ceny",
-    }
+  const [count, products] = productsArr;
+
+  if (products) {
+    product = products.find((elem) => elem.slug === params.slug);
+  }
+  if (product) {
+    currIndex = products.findIndex((elem) => product.slug === elem.slug);
+  } else {
+    throw new Error("Ups! Niczego tu nie ma...");
+  }
+
+  return (
+    <Carousel
+      products={products} // sorted by Name asc
+      initialIndex={currIndex}
+      max={count}
+    />
+  );
 }
 
-async function getData(slug: string): Promise<Zarcie> {
-    const product = await getZarc(slug)
-    if (product) return product
-    else throw new Error("No such product")
-}
-
-export default async function Page({params}) {
-    const product = await getData(params.slug)
-    return (
-        <div className={s.wrapper}>
-            <HeroZestaw product={product} />
-            <NavbarBottom overflow={true} />
-        </div>
-    )
-}
 export async function generateStaticParams() {
-    const napoje = await getZarcie("price", "asc")
-    if (napoje) return napoje.map((napoj) => ({slug: napoj.slug}))
-    else throw new Error("Zarcie not found")
+  const zarcie = await getZarcie("price", "asc");
+  if (zarcie) return zarcie.map((zarc) => ({ slug: zarc.slug }));
+  else throw new Error("Zarcie not found");
 }
