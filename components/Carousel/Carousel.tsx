@@ -184,7 +184,7 @@ export default function Carousel({
 
   function handleNext() {
     setLastClicked("next");
-    if (currentIndex === LAST_ITEM - 1) {
+    if (currentIndex === LAST_ITEM - 1 || currentIndex === LAST_ITEM) {
       return setCurrentIndex(0);
     }
     setCurrentIndex((prev) => prev + 1);
@@ -192,7 +192,7 @@ export default function Carousel({
 
   function handlePrev() {
     setLastClicked("prev");
-    if (currentIndex === 1) {
+    if (currentIndex === 0 || currentIndex === 1) {
       return setCurrentIndex(LAST_ITEM);
     }
     setCurrentIndex((prev) => prev - 1);
