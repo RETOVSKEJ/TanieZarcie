@@ -1,10 +1,23 @@
 import React from "react";
 import s from "./zglosProblem.module.css";
+import { Dancing_Script } from "next/font/google";
+
+const dancingFont = Dancing_Script({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function ZnalazlesBlad() {
   return (
     <div className={s.bladWrapper}>
-      <h2>Znalazles bład na stronie?</h2>
+      <h2
+        className={`${s.bladHeader} ${dancingFont.className}`}
+        style={{ fontSize: 32 }}
+      >
+        Znalazles bład na stronie?
+      </h2>
       <form className={s.form}>
         <label
           style={{
