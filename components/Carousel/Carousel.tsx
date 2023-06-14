@@ -1,6 +1,6 @@
 "use client";
 
-import { Zestaw, Zarcie, ZestawRanks } from "@/types/types";
+import { Zestaw, Zarcie, ZestawRanks, Napoj } from "@/types/types";
 import HeroZestaw from "@/components/HeroZestaw/HeroZestaw";
 import { useState, useEffect, useRef } from "react";
 import s from "./Carousel.module.css";
@@ -74,7 +74,7 @@ export default function Carousel({
   initialIndex,
   max,
 }: {
-  products: Zestaw[] | Zarcie[];
+  products: Zestaw[] | Zarcie[] | Napoj[];
   productsRank?: ZestawRanks[];
   initialIndex: number;
   max: number;

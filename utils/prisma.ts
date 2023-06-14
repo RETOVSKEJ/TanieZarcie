@@ -72,7 +72,11 @@ export async function getNapojeBy(sort, order) {
 
 export const getNapojeSorted = cache(async () => {
   const dataArr = await Promise.all([
-    prisma.food.count(),
+    prisma.food.count({
+      where: {
+        categoryId: NAPOJE_CAT_ID,
+      },
+    }),
     prisma.food.findMany({
       where: {
         categoryId: NAPOJE_CAT_ID,
@@ -96,6 +100,7 @@ export const getNapojeSorted = cache(async () => {
       },
     }),
   ]);
+  if (dataArr[1].length === 0) throw new Error("Napoje Sorted are empty");
   if (!dataArr[1]) throw new Error("Could not retrieve napoje");
   return dataArr;
 });
@@ -203,8 +208,19 @@ export async function getZarcie(
 
 export const getZarcieSorted = cache(async () => {
   const dataArr = await Promise.all([
-    prisma.food.count(),
+    prisma.food.count({
+      where: {
+        categoryId: {
+          not: NAPOJE_CAT_ID,
+        },
+      },
+    }),
     prisma.food.findMany({
+      where: {
+        categoryId: {
+          not: NAPOJE_CAT_ID,
+        },
+      },
       orderBy: {
         name: "asc",
       },
@@ -224,6 +240,7 @@ export const getZarcieSorted = cache(async () => {
       },
     }),
   ]);
+  if (dataArr[1].length === 0) throw new Error("Zarcie Sorted are empty");
   if (!dataArr[1]) throw new Error("Could not retrieve zarcie");
   return dataArr;
 });

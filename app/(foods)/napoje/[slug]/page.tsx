@@ -1,6 +1,7 @@
 import { getNapoje, getNapoj, getNapojeSorted } from "@/utils/prisma";
 import { Metadata } from "next";
 import Carousel from "@/components/Carousel/Carousel";
+import { Napoj } from "@/types/types";
 
 export const fetchCache = "force-cache";
 
@@ -43,7 +44,7 @@ export default async function Page({ params }) {
 }
 
 export async function generateStaticParams() {
-  const napoje = await getNapoje("price", "asc");
-  if (napoje) return napoje.map((napoj) => ({ slug: napoj.slug }));
+  const napoje: Napoj[] = await getNapoje("price", "asc");
+  if (napoje) return napoje.map((napoj: Napoj) => ({ slug: napoj.slug }));
   else throw new Error("Napoj not found");
 }
