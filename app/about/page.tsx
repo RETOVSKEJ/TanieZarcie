@@ -4,8 +4,7 @@ import ZnalazlesBlad from "../zglos-problem/page";
 import Image from "next/image";
 import zdjecie from "@/public/about.jpg";
 import { Dancing_Script } from "next/font/google";
-import Link from "next/link";
-import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import Socials from "@/components/Socials/Socials";
 
 export const metadata = {
   title: "About | TanieZarcie",
@@ -56,41 +55,6 @@ export default function About() {
       <div className={s.footer}>
         <Footer />
       </div>
-    </div>
-  );
-}
-
-export function Socials() {
-  return (
-    <div className={s.socialsWrapper}>
-      <h2 className={`${dancingFont.className} ${s.socialsHeader}`}>
-        Nasze Media Społecznościowe:
-      </h2>
-
-      <div className={s.socials}>
-        <Link
-          target="_blank"
-          rel="noopener"
-          href="https://www.facebook.com/retovskej"
-        >
-          Facebook: <BsFacebook className="fb" role="button" />
-        </Link>
-        <Link
-          target="_blank"
-          rel="noopener"
-          href="https://www.instagram.com/retolicious"
-        >
-          Instagram: <BsInstagram className="ig" role="button" />
-        </Link>
-        <Link
-          target="_blank"
-          rel="noopener"
-          href="https://www.twitter.com/retovskej"
-        >
-          Twitter: <BsTwitter className="tw" role="button" />
-        </Link>
-      </div>
-      <label className={s.label}>Odwiedź nas!</label>
     </div>
   );
 }
