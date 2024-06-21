@@ -1,3 +1,29 @@
+### Michał Silski C4 157132
+# Zaliczenie "Popularne frameworki JavaScript"
+
+## Użyte narzędzia oraz biblioteki/frameworki:
+
+- TypeScript
+- Next.js 13  (Wraz z server components, oraz wbudowanym webServerem - REST API również przy pomocy next.js)
+- React
+- PostgreSQL
+- Prisma ORM 
+- CSS Modules
+- Puppeteer 
+
+## Przykładowe rozwiązane problemy:
+
+- Korzystając z obfitości udogodnień które dostarcza next.js, pozwoliłem sobie na wykorzystanie SSG (Static-Site-Generation) oraz SSR (Server-Side-Rendering) tam gdzie to tylko możliwe. Generując strony przy pomocy SSG (np. "About us"), zyskujemy bardzo dużo na wydajności i zmniejszamy obciązenie backendu i bazy, bo serwer odrazu zwraca nam pre-renderowany HTML. 
+- Bardzo mocno również polegałem na cachowaniu, wszystkie strony z pojedynczymi produktami, cachują się u klienta
+- Po stronie bazy, użyłem zmaterializowanych widoków dla rankingów cen i wartości odżywzych (jako że produkty zmieniają się bardzo rzadko). Dzięki temu mniej obciążam bazę danych.
+- Użyłem również triggerów oraz funkcji w PostgreSQL do generowania slug-ów, czyli skróconych nazw produktów w URL  (np. male-frytki)
+- Puppeteer użyłem jako web-scrapera do pobrania cen produktów
+- Za pomocą LRU-Cache, zaimplementowałem rate-limit do aplikacji
+
+
+
+------------------------------------------------------------------------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
