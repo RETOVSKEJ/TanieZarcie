@@ -14,12 +14,13 @@
 ## Przykładowe rozwiązane problemy:
 
 - Korzystając z obfitości udogodnień które dostarcza next.js, pozwoliłem sobie na wykorzystanie SSG (Static-Site-Generation) oraz SSR (Server-Side-Rendering) tam gdzie to tylko możliwe. Generując strony przy pomocy SSG (np. "About us"), zyskujemy bardzo dużo na wydajności i zmniejszamy obciązenie backendu i bazy, bo serwer odrazu zwraca nam pre-renderowany HTML. 
-- Bardzo mocno również polegałem na cachowaniu, wszystkie strony z pojedynczymi produktami, cachują się u klienta
+- Dzięki korzystaniu z CSS Modules zadbałem o lepszą modularność i porządek w pisaniu styli CSS. Każdy komponent reacta, ma swój moduł CSS.
+- Użyłem Prismy jako konektora do bazy danych PostgreSQL, oraz jako ORM gdzie zmapowałem encje oraz widoki
 - Po stronie bazy, użyłem zmaterializowanych widoków dla rankingów cen i wartości odżywzych (jako że produkty zmieniają się bardzo rzadko). Dzięki temu mniej obciążam bazę danych.
 - Użyłem również triggerów oraz funkcji w PostgreSQL do generowania slug-ów, czyli skróconych nazw produktów w URL  (np. male-frytki)
 - Puppeteer użyłem jako web-scrapera do pobrania cen produktów
 - Za pomocą LRU-Cache, zaimplementowałem rate-limit do aplikacji
-
+- Bardzo mocno również polegałem na cachowaniu, wszystkie strony z pojedynczymi produktami, cachują się u klienta
 
 
 ------------------------------------------------------------------------------------
